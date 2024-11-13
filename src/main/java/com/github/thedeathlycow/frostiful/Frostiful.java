@@ -1,19 +1,17 @@
 package com.github.thedeathlycow.frostiful;
 
-import com.github.thedeathlycow.frostiful.block.CampfireUseEventListener;
 import com.github.thedeathlycow.frostiful.compat.FrostifulIntegrations;
 import com.github.thedeathlycow.frostiful.config.FrostifulConfig;
 import com.github.thedeathlycow.frostiful.entity.loot.StrayLootTableModifier;
-import com.github.thedeathlycow.frostiful.item.FSmithingTemplateItem;
 import com.github.thedeathlycow.frostiful.item.cloak.AbstractFrostologyCloakItem;
 import com.github.thedeathlycow.frostiful.item.event.FrostResistanceProvider;
 import com.github.thedeathlycow.frostiful.registry.*;
 import com.github.thedeathlycow.frostiful.server.command.RootCommand;
 import com.github.thedeathlycow.frostiful.server.command.WindCommand;
 import com.github.thedeathlycow.frostiful.server.network.PointWindSpawnPacket;
-import com.github.thedeathlycow.frostiful.server.world.gen.feature.FFeatures;
-import com.github.thedeathlycow.frostiful.server.world.gen.feature.FPlacedFeatures;
-import com.github.thedeathlycow.frostiful.sound.FSoundEvents;
+import com.github.thedeathlycow.frostiful.registry.FFeatures;
+import com.github.thedeathlycow.frostiful.registry.FPlacedFeatures;
+import com.github.thedeathlycow.frostiful.registry.FSoundEvents;
 import com.github.thedeathlycow.frostiful.survival.*;
 import com.github.thedeathlycow.thermoo.api.armor.material.ArmorMaterialEvents;
 import com.github.thedeathlycow.thermoo.api.temperature.event.EnvironmentControllerInitializeEvent;
@@ -23,7 +21,6 @@ import me.shedaniel.autoconfig.ConfigHolder;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.util.TriState;
@@ -58,31 +55,27 @@ public class Frostiful implements ModInitializer {
                     });
         }
 
-
         LootTableEvents.MODIFY.register(StrayLootTableModifier::addFrostTippedArrows);
 
         FArmorMaterials.initialize();
-        FBlocks.registerBlocks();
-        FItems.registerItems();
-        FEntityTypes.registerEntities();
+        FBlocks.initialize();
+        FItems.initialize();
+        FEntityTypes.initialize();
         FGameRules.initialize();
-        FSoundEvents.registerSoundEvents();
+        FSoundEvents.initialize();
         FStatusEffects.initialize();
-        FParticleTypes.registerParticleTypes();
+        FParticleTypes.initialize();
         FPotions.initialize();
-        FItemGroups.registerAll();
-        FLootConditionTypes.registerAll();
-
-        FFeatures.registerAll();
-        FPlacedFeatures.placeFeatures();
+        FItemGroups.initialize();
+        FLootConditionTypes.initialize();
+        FFeatures.initialize();
+        FPlacedFeatures.initialize();
 
         this.registerThermooEventListeners();
-        FSmithingTemplateItem.addTemplatesToLoot();
         PayloadTypeRegistry.playS2C().register(
                 PointWindSpawnPacket.PACKET_ID,
                 PointWindSpawnPacket.PACKET_CODEC
         );
-        UseBlockCallback.EVENT.register(new CampfireUseEventListener());
 
         LOGGER.info("Initialized Frostiful!");
     }

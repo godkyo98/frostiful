@@ -1,7 +1,6 @@
 package com.github.thedeathlycow.frostiful.registry;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
-import com.github.thedeathlycow.frostiful.sound.FSoundEvents;
 import com.github.thedeathlycow.frostiful.registry.tag.FItemTags;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
@@ -53,7 +52,7 @@ public class FArmorMaterials {
 
 
     public static void initialize() {
-        // ensure this class is loaded
+        Frostiful.LOGGER.debug("Initialized Frostiful armor materials");
     }
 
     private static RegistryEntry<ArmorMaterial> register(
