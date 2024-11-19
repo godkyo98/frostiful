@@ -20,10 +20,10 @@ public class FItemGroups {
                     .icon(() -> new ItemStack(FItems.FROST_WAND))
                     .displayName(Text.translatable("itemGroup.frostiful.frostiful"))
                     .entries((context, entries) -> {
-                        entries.add(new ItemStack(FItems.GLACIAL_HEART));
                         entries.add(new ItemStack(FItems.FROST_WAND));
                         entries.add(new ItemStack(FItems.INERT_FROSTOLOGY_CLOAK));
                         addEnchantedFrostologyCloak(context, entries);
+                        entries.add(new ItemStack(FItems.GLACIAL_HEART));
 
                         entries.add(new ItemStack(FItems.FUR_HELMET));
                         entries.add(new ItemStack(FItems.FUR_CHESTPLATE));
@@ -72,6 +72,11 @@ public class FItemGroups {
                         entries.add(new ItemStack(FItems.ICICLE));
                         entries.add(new ItemStack(FItems.GLACIAL_ARROW));
                         entries.add(new ItemStack(FItems.FROZEN_TORCH));
+
+                        entries.add(new ItemStack(FItems.ICY_TRIAL_SPAWNER));
+                        entries.add(new ItemStack(FItems.ICY_VAULT));
+                        entries.add(new ItemStack(FItems.CASTLE_KEY));
+                        entries.add(new ItemStack(FItems.OMINOUS_CASTLE_KEY));
 
                         entries.add(new ItemStack(FItems.FROSTOLOGER_SPAWN_EGG));
                         entries.add(new ItemStack(FItems.CHILLAGER_SPAWN_EGG));

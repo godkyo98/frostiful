@@ -29,6 +29,8 @@
   "item.frostiful.armored_ice_skates": "Armored Ice Skates",
   "item.frostiful.frostology_cloak.tooltip": "Reborn in Ice",
   "item.frostiful.inert_frostology_cloak.tooltip": "Inert",
+  "item.frostiful.castle_key": "Castle Key",
+  "item.frostiful.ominous_castle_key": "Ominous Castle Key",
   "item.frostiful.warming.tooltip": "Warming \uD83D\uDD25",
 
   "item.minecraft.potion.effect.frostiful.freezing": "Potion of Freezing",
@@ -93,6 +95,8 @@
   "block.frostiful.cut_blue_ice_stairs": "Cut Blue Ice Stairs",
   "block.frostiful.cut_blue_ice_slab": "Cut Blue Ice Slab",
   "block.frostiful.cut_blue_ice_wall": "Cut Blue Ice Wall",
+  "block.frostiful.icy_trial_spawner": "Icy Trial Spawner",
+  "block.frostiful.icy_vault": "Icy Vault",
   
   "block.minecraft.banner.frostiful.snowflake": "Snowflake",
 

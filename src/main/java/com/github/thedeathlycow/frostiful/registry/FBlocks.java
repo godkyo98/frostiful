@@ -4,7 +4,10 @@ import com.github.thedeathlycow.frostiful.Frostiful;
 import com.github.thedeathlycow.frostiful.block.*;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.enums.NoteBlockInstrument;
+import net.minecraft.block.enums.TrialSpawnerState;
+import net.minecraft.block.enums.VaultState;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -244,11 +247,40 @@ public class FBlocks {
             new WallBlock(AbstractBlock.Settings.copy(CUT_BLUE_ICE))
     );
 
+    public static final Block ICY_TRIAL_SPAWNER = register(
+            "icy_trial_spawner",
+            new TrialSpawnerBlock(
+                    AbstractBlock.Settings.create()
+                            .mapColor(MapColor.DARK_AQUA)
+                            .instrument(NoteBlockInstrument.BASEDRUM)
+                            .luminance(state -> state.get(TrialSpawnerBlock.TRIAL_SPAWNER_STATE).getLuminance())
+                            .strength(50.0f)
+                            .sounds(BlockSoundGroup.TRIAL_SPAWNER)
+                            .blockVision(Blocks::never)
+                            .nonOpaque()
+            )
+    );
+    public static final Block ICY_VAULT = register(
+            "icy_vault",
+            new VaultBlock(
+                    AbstractBlock.Settings.create()
+                            .mapColor(MapColor.DARK_AQUA)
+                            .instrument(NoteBlockInstrument.BASEDRUM)
+                            .nonOpaque()
+                            .sounds(BlockSoundGroup.VAULT)
+                            .luminance(state -> state.get(VaultBlock.VAULT_STATE).getLuminance())
+                            .strength(50.0f)
+                            .blockVision(Blocks::never)
+            )
+    );
+
     public static void initialize() {
         Frostiful.LOGGER.debug("Initialized Frostiful blocks");
         DispenserBlock.registerProjectileBehavior(FItems.GLACIAL_ARROW);
         DispenserBlock.registerProjectileBehavior(FItems.PACKED_SNOWBALL);
         UseBlockCallback.EVENT.register(new CampfireUseEventListener());
+        BlockEntityType.TRIAL_SPAWNER.addSupportedBlock(ICY_TRIAL_SPAWNER);
+        BlockEntityType.VAULT.addSupportedBlock(ICY_VAULT);
     }
 
     private static Block register(String id, Block block) {

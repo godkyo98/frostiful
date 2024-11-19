@@ -308,6 +308,26 @@ public class FItems {
             )
     );
 
+    public static final Item ICY_TRIAL_SPAWNER = register(
+            "icy_trial_spawner",
+            new BlockItem(FBlocks.ICY_TRIAL_SPAWNER, new Item.Settings())
+    );
+
+    public static final Item ICY_VAULT = register(
+            "icy_vault",
+            new BlockItem(FBlocks.ICY_VAULT, new Item.Settings())
+    );
+
+    public static final Item CASTLE_KEY = register(
+            "castle_key",
+            new Item(new Item.Settings())
+    );
+
+    public static final Item OMINOUS_CASTLE_KEY = register(
+            "ominous_castle_key",
+            new Item(new Item.Settings())
+    );
+
     public static void initialize() {
         Frostiful.LOGGER.debug("Initialized Frostiful items");
         FSmithingTemplateItem.addTemplatesToLoot();
