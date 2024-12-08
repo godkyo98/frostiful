@@ -272,6 +272,20 @@ public class FBlocks {
             )
     );
 
+    public static final Block BRITTLE_ICE = register(
+            "brittle_ice",
+            new BrittleIceBlock(
+                    AbstractBlock.Settings.create()
+                            .mapColor(MapColor.PALE_PURPLE)
+                            .slipperiness(0.98f)
+                            .ticksRandomly()
+                            .strength(0.5f)
+                            .sounds(BlockSoundGroup.GLASS)
+                            .nonOpaque()
+                            .solidBlock(Blocks::never)
+            )
+    );
+
     public static void initialize() {
         Frostiful.LOGGER.debug("Initialized Frostiful blocks");
         DispenserBlock.registerProjectileBehavior(FItems.GLACIAL_ARROW);
