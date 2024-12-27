@@ -6,7 +6,7 @@
             "element": {
                 "element_type": "minecraft:single_pool_element",
                 "projection": "rigid",
-                "location": "frostiful:frostologer_castle/mobs/chillagers1",
+                "location": "frostiful:frostologer_castle/spawners/simple_biter",
                 "processors": "minecraft:empty"
             }
         },
@@ -15,7 +15,7 @@
             "element": {
                 "element_type": "minecraft:single_pool_element",
                 "projection": "rigid",
-                "location": "frostiful:frostologer_castle/mobs/chillagers2",
+                "location": "frostiful:frostologer_castle/spawners/simple_chillager",
                 "processors": "minecraft:empty"
             }
         },
@@ -24,7 +24,7 @@
             "element": {
                 "element_type": "minecraft:single_pool_element",
                 "projection": "rigid",
-                "location": "frostiful:frostologer_castle/mobs/chillagers3",
+                "location": "frostiful:frostologer_castle/spawners/simple_stray",
                 "processors": "minecraft:empty"
             }
         }
