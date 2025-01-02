@@ -3,14 +3,10 @@ package com.github.thedeathlycow.frostiful.entity.frostologer;
 import com.github.thedeathlycow.frostiful.Frostiful;
 import com.github.thedeathlycow.frostiful.block.FrozenTorchBlock;
 import com.github.thedeathlycow.frostiful.entity.BiterEntity;
-import com.github.thedeathlycow.frostiful.entity.RootedEntity;
 import com.github.thedeathlycow.frostiful.entity.ThrownIcicleEntity;
 import com.github.thedeathlycow.frostiful.item.FrostWandItem;
 import com.github.thedeathlycow.frostiful.item.enchantment.HeatDrainEnchantmentEffect;
-import com.github.thedeathlycow.frostiful.registry.FEnchantmentProviders;
-import com.github.thedeathlycow.frostiful.registry.FEntityTypes;
-import com.github.thedeathlycow.frostiful.registry.FItems;
-import com.github.thedeathlycow.frostiful.registry.FSoundEvents;
+import com.github.thedeathlycow.frostiful.registry.*;
 import com.github.thedeathlycow.frostiful.registry.tag.FBlockTags;
 import com.github.thedeathlycow.frostiful.registry.tag.FDamageTypeTags;
 import com.github.thedeathlycow.thermoo.api.ThermooAttributes;
@@ -23,7 +19,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.provider.EnchantmentProviders;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.*;
@@ -394,7 +389,7 @@ public class FrostologerEntity extends SpellcastingIllagerEntity implements Rang
     public boolean isTargetRooted() {
         LivingEntity target = this.getTarget();
         return target != null
-                && ((RootedEntity) target).frostiful$isRooted();
+                && FComponents.FROST_WAND_ROOT_COMPONENT.get(target).isRooted();
     }
 
     public boolean isUsingFrostWand() {
