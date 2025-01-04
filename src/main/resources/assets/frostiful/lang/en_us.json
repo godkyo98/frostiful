@@ -55,6 +55,10 @@
   
   "item.frostiful.frosty_armor_trim_smithing_template": "Smithing Template",
   "trim_pattern.frostiful.frosty": "Frosty Armor Trim",
+  "item.frostiful.glacial_armor_trim_smithing_template": "Smithing Template",
+  "trim_pattern.frostiful.glacial": "Glacial Armor Trim",
+  "item.frostiful.snow_man_armor_trim_smithing_template": "Smithing Template",
+  "trim_pattern.frostiful.snow_man": "Snow Man Armor Trim",
   
   "item.frostiful.snowflake_banner_pattern": "Banner Pattern",
   "item.frostiful.snowflake_banner_pattern.desc": "Snowflake",
@@ -143,6 +147,8 @@
   "advancements.frostiful.add_log_to_fire.desc": "Add a log to a campfire",
   "advancements.frostiful.adventure.obtain_ice_skates.title": "Sword Shoes",
   "advancements.frostiful.adventure.obtain_ice_skates.description": "Craft a pair of Ice Skates in the Smithing Table",
+  "advancements.frostiful.adventure.trim_with_all_frostiful_patterns.title": "Winter Has Come",
+  "advancements.frostiful.adventure.trim_with_all_frostiful_patterns.description": "Apply all the smithing templates from Frostiful at least once: Snow Man, Frosty, and Glacial",
   
   "death.attack.frostiful.icicle": "%1$s was impaled on an icicle",
   "death.attack.frostiful.icicle.player": "%1$s was impaled on an icicle whilst fighting %2$s",
@@ -234,8 +240,7 @@
   "text.autoconfig.frostiful.option.combatConfig.packedSnowballVulnerableTypesDamage": "Packed snowball vulnerable types damage",
   "text.autoconfig.frostiful.option.combatConfig.biterFrostBiteMaxAmplifier": "Max Frost Bite Max Amplifier (inclusive)",
   "text.autoconfig.frostiful.option.combatConfig.chillagerFireDamageMultiplier": "Chillager fire damage multiplier",
-  "text.autoconfig.frostiful.option.combatConfig.furUpgradeTemplateGenerateChance": "Fur upgrade generate chance (0-1)",
-  "text.autoconfig.frostiful.option.combatConfig.skateUpgradeTemplateGenerateChance": "Ice Skate upgrade generate chance (0-1)",
+  "text.autoconfig.frostiful.option.combatConfig.skateUpgradeTemplateIglooGenerateChance": "Ice Skate upgrade generate chance in Igloos (0-1)",
   "text.autoconfig.frostiful.option.combatConfig.veryProtectiveFrostResistanceMultiplier": "Very protective Frost Resistance multiplier",
   "text.autoconfig.frostiful.option.combatConfig.protectiveFrostResistanceMultiplier": "Protective Frost Resistance multiplier",
   
