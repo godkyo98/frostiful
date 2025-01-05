@@ -1,42 +1,45 @@
 {
-    "parent": "frostiful:adventure/find_frostologer_castle",
+    "parent": "frostiful:adventure/root",
     "display": {
         "icon": {
-            "id": "frostiful:glacial_heart"
+            "id": "minecraft:brush"
         },
         "title": {
-            "translate": "advancements.frostiful.adventure.kill_frostologer.title"
+            "translate": "advancements.frostiful.adventure.brush_polar_bear.title"
         },
         "description": {
-            "translate": "advancements.frostiful.adventure.kill_frostologer.description"
+            "translate": "advancements.frostiful.adventure.brush_polar_bear.description"
         },
-        "frame": "goal",
+        "frame": "task",
         "show_toast": true,
         "announce_to_chat": true,
         "hidden": false
     },
     "criteria": {
-        "frostologer": {
-            "trigger": "minecraft:player_killed_entity",
+        "brush_polar_bear": {
+            "trigger": "minecraft:player_interacted_with_entity",
             "conditions": {
                 "entity": [
                     {
                         "condition": "minecraft:entity_properties",
                         "entity": "this",
                         "predicate": {
-                            "type": "frostiful:frostologer"
+                            "type": "minecraft:polar_bear"
                         }
                     }
-                ]
+                ],
+                "item": {
+                    "items": "minecraft:brush"
+                }
             }
         }
     },
     "requirements": [
         [
-            "frostologer"
+            "brush_polar_bear"
         ]
     ],
     "rewards": {
-        "experience": 50
+        "experience": 15
     }
 }

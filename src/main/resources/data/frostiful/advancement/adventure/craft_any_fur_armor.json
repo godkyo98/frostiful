@@ -1,27 +1,27 @@
 {
-    "parent": "frostiful:adventure/craft_any_fur_armor",
+    "parent": "frostiful:adventure/brush_polar_bear",
     "display": {
         "icon": {
-            "id": "frostiful:ice_skates"
+            "id": "frostiful:fur_chestplate"
         },
         "title": {
-            "translate": "advancements.frostiful.adventure.obtain_ice_skates.title"
+            "translate": "advancements.frostiful.adventure.craft_any_fur_armor.title"
         },
         "description": {
-            "translate": "advancements.frostiful.adventure.obtain_ice_skates.description"
+            "translate": "advancements.frostiful.adventure.craft_any_fur_armor.description"
         },
-        "frame": "goal",
+        "frame": "task",
         "show_toast": true,
         "announce_to_chat": true,
         "hidden": false
     },
     "criteria": {
-        "has_ice_skates": {
+        "has_any_fur_armor_piece": {
             "trigger": "minecraft:inventory_changed",
             "conditions": {
                 "items": [
                     {
-                        "items": "#frostiful:ice_skates"
+                        "items": "#frostiful:fur_armor"
                     }
                 ]
             }
@@ -29,10 +29,10 @@
     },
     "requirements": [
         [
-            "has_ice_skates"
+            "has_any_fur_armor_piece"
         ]
     ],
     "rewards": {
-        "experience": 25
+        "experience": 15
     }
 }

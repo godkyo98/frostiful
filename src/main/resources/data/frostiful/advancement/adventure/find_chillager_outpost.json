@@ -1,30 +1,32 @@
 {
-    "parent": "frostiful:adventure/find_frostologer_castle",
+    "parent": "frostiful:adventure/root",
     "display": {
         "icon": {
-            "id": "frostiful:glacial_heart"
+            "id": "frostiful:glacial_arrow"
         },
         "title": {
-            "translate": "advancements.frostiful.adventure.kill_frostologer.title"
+            "translate": "advancements.frostiful.adventure.find_chillager_outpost.title"
         },
         "description": {
-            "translate": "advancements.frostiful.adventure.kill_frostologer.description"
+            "translate": "advancements.frostiful.adventure.find_chillager_outpost.description"
         },
-        "frame": "goal",
+        "frame": "task",
         "show_toast": true,
         "announce_to_chat": true,
         "hidden": false
     },
     "criteria": {
-        "frostologer": {
-            "trigger": "minecraft:player_killed_entity",
+        "find_outpost": {
+            "trigger": "minecraft:location",
             "conditions": {
-                "entity": [
+                "player": [
                     {
                         "condition": "minecraft:entity_properties",
                         "entity": "this",
                         "predicate": {
-                            "type": "frostiful:frostologer"
+                            "location": {
+                                "structures": "frostiful:chillager_outpost"
+                            }
                         }
                     }
                 ]
@@ -33,10 +35,10 @@
     },
     "requirements": [
         [
-            "frostologer"
+            "find_outpost"
         ]
     ],
     "rewards": {
-        "experience": 50
+        "experience": 25
     }
 }
