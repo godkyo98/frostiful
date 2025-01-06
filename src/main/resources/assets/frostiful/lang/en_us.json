@@ -116,6 +116,9 @@
   "entity.frostiful.thrown_icicle": "Thrown Icicle",
   "entity.frostiful.biter": "Biter",
   "entity.frostiful.freezing_wind": "Freezing Wind",
+  
+  
+  "attribute.frostiful.generic.ice_break_damage": "Ice Break Damage",
 
 
   "frostiful.commands.frost.exception.not_living_entity": "Target is not a living entity!",
@@ -264,6 +267,7 @@
   "text.autoconfig.frostiful.option.combatConfig.skateUpgradeTemplateIglooGenerateChance": "Ice Skate upgrade generate chance in Igloos (0-1)",
   "text.autoconfig.frostiful.option.combatConfig.veryProtectiveFrostResistanceMultiplier": "Very protective Frost Resistance multiplier",
   "text.autoconfig.frostiful.option.combatConfig.protectiveFrostResistanceMultiplier": "Protective Frost Resistance multiplier",
+  "text.autoconfig.frostiful.option.combatConfig.iceBreakFallbackDamage": "Ice Break fallback damage",
   
   "text.autoconfig.frostiful.option.freezingConfig": "Freezing Config",
   "text.autoconfig.frostiful.option.freezingConfig.doPassiveFreezing": "Do passive freezing (global)",

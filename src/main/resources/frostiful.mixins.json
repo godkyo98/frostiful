@@ -13,6 +13,7 @@
         "entity.EntityInvoker",
         "entity.FallingBlockEntityAccessor",
         "entity.FallingIcicleMixin",
+        "entity.LivingEntityMixin",
         "entity.WaterPotionSoakingMixin",
         "entity.ice_skating.EntitySoundMixin",
         "entity.ice_skating.LivingEntityMovementMixin",
