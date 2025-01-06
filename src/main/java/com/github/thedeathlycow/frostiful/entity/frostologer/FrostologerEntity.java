@@ -194,7 +194,7 @@ public class FrostologerEntity extends SpellcastingIllagerEntity implements Rang
 
         this.goalSelector.add(2, new FleeEntityGoal<>(this, IronGolemEntity.class, 8.0F, 1.2, 1.5));
 
-        this.goalSelector.add(3, new IcicleAttackGoal(UniformIntProvider.create(20, 30), UniformIntProvider.create(15, 25)));
+        this.goalSelector.add(3, new IcicleAttackGoal(UniformIntProvider.create(20, 30), UniformIntProvider.create(10, 15)));
         this.goalSelector.add(4, new FrostWandAttackGoal(this));
 
         this.goalSelector.add(6, new DestroyHeatSourcesGoal(15));
