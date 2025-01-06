@@ -29,7 +29,7 @@ public class FEntityTypes {
                             BiterEntity::new,
                             SpawnGroup.MONSTER
                     )
-                    .dimensions(1.0f, 2.0f)
+                    .dimensions(1.0f, 1.5f)
                     .maxTrackingRange(8)
     );
 
