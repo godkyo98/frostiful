@@ -224,6 +224,11 @@ public class FrostologerEntity extends SpellcastingIllagerEntity implements Rang
         );
     }
 
+    @Override
+    public boolean isFireImmune() {
+        return this.isChanneling() || super.isFireImmune();
+    }
+
     @Nullable
     @Override
     public EntityData initialize(

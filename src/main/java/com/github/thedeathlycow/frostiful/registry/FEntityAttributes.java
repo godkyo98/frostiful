@@ -13,7 +13,7 @@ public final class FEntityAttributes {
     public static final RegistryEntry<EntityAttribute> ICE_BREAK_DAMAGE = register(
             "generic.ice_breaker_damage",
             new ClampedEntityAttribute(
-                    "attribute.frostiful.generic.ice_break_damage", 1.5, 0, 1024.0
+                    "attribute.frostiful.generic.ice_break_damage", 3.0, 0, 1024.0
             ).setTracked(true)
     );
 
