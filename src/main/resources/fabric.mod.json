@@ -3,9 +3,14 @@
     "id": "frostiful",
     "version": "${version}",
     "name": "Frostiful",
-    "description": "A Frosty Vanilla+ Survival Experience. Also try Scorchful!",
+    "description": "A Vanilla+ Freezing Temperature Mod. Also try Scorchful!",
     "authors": [
-        "TheDeathlyCow"
+        {
+            "name": "TheDeathlyCow",
+            "contact": {
+                "homepage": "https://github.com/TheDeathlyCow/"
+            }
+        }
     ],
     "contributors": [
         "NerjalNosk (Various compatibility patches)",
@@ -60,7 +65,8 @@
         "java": ">=21"
     },
     "suggests": {
-        "scorchful": "*"
+        "scorchful": "*",
+        "thermoo-patches": "*"
     },
     "accessWidener": "frostiful.accesswidener",
     "custom": {
