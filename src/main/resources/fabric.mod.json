@@ -9,7 +9,13 @@
     ],
     "contributors": [
         "NerjalNosk (Various compatibility patches)",
-        "YeoXuHang (Assistance with the Frost Wand 3D model redesign)"
+        "YeoXuHang (Assistance with the Frost Wand 3D model redesign)",
+        "Terrails (Crash fix for Colorful Hearts)",
+        "godkyo98 (Vietnamese Translation)",
+        "noawx (Finnish Translation)",
+        "Tefnya (Russian Translation)",
+        "unroman (Ukrainian Translation)",
+        "Nezila (Ukrainian Translation)"
     ],
     "contact": {
         "homepage": "https://github.com/TheDeathlyCow/frostiful/wiki",
