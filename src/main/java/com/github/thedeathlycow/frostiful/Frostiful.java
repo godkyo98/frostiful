@@ -25,8 +25,6 @@ import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.util.TriState;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.SharedConstants;
-import net.minecraft.server.command.SpawnArmorTrimsCommand;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;

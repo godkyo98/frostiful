@@ -1,6 +1,5 @@
 package com.github.thedeathlycow.frostiful.test.sun_lichen;
 
-import com.github.thedeathlycow.frostiful.Frostiful;
 import com.github.thedeathlycow.frostiful.registry.FBlocks;
 import com.github.thedeathlycow.frostiful.test.FrostifulGameTest;
 import com.github.thedeathlycow.thermoo.api.ThermooAttributes;

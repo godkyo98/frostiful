@@ -1,12 +1,9 @@
 package com.github.thedeathlycow.frostiful.entity.loot;
 
 import com.github.thedeathlycow.frostiful.registry.FLootConditionTypes;
-import com.github.thedeathlycow.thermoo.api.predicate.TemperatureLootCondition;
-import com.github.thedeathlycow.thermoo.api.temperature.EnvironmentController;
 import com.github.thedeathlycow.thermoo.api.temperature.EnvironmentManager;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.loot.condition.LocationCheckLootCondition;
 import net.minecraft.loot.condition.LootCondition;
 import net.minecraft.loot.condition.LootConditionType;
 import net.minecraft.loot.context.LootContext;

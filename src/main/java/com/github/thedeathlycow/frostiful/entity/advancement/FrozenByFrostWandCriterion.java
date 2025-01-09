@@ -3,7 +3,6 @@ package com.github.thedeathlycow.frostiful.entity.advancement;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.advancement.criterion.AbstractCriterion;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.predicate.NumberRange;
