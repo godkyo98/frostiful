@@ -1,4 +1,4 @@
-![](https://raw.githubusercontent.com/TheDeathlyCow/frostiful/main/docs/title.png)
+![](https://raw.githubusercontent.com/TheDeathlyCow/frostiful/1.21.1/docs/title.png)
 
 
 **Frostiful** is a Vanilla+ combat and survival temperature mod that substantially reworks the Powder Snow freezing mechanics. It introduces more ways of freezing and being frozen, as well as new methods for warming up again.
@@ -15,7 +15,7 @@ There are now many more ways to freeze to death in addition to powder snow with 
 
 There are also new ways of resisting the cold! Use **Fur Tufts** to craft fur armor, which provides **Frost Resistance** to help you keep warm and resist the creeping winter. When you get too cold, warm up by the light of a fire or by getting some heat from a **Sun Lichen-covered rock**, or even steal the heat from your enemies with Enervation!
 
-![](https://raw.githubusercontent.com/TheDeathlyCow/frostiful/main/docs/lichen.png)
+![](https://raw.githubusercontent.com/TheDeathlyCow/frostiful/1.21.1/docs/lichen.png)
 
 A Sun Lichen covered rock in the snowy taiga.
 
@@ -26,7 +26,7 @@ A Sun Lichen covered rock in the snowy taiga.
 You can wield this magic, too. By defeating the Frostologer you are able to craft the **Frost Wand**, which can cast spells that freeze your enemies in place when they are hit. If you can demonstrate your mastery over the cold by defeating an Ominous Frostologer Trial, you can also get the **Cloak of Frostology**. The Cloak is an **obtainable cape** item that reverses the effects of freezing to make you become like the Frostologer yourself. Be careful though! With the Frostology Cloak on, you will begin to melt if you get too warm!
 
 
-![](https://raw.githubusercontent.com/TheDeathlyCow/frostiful/main/docs/frostologer.png)
+![](https://raw.githubusercontent.com/TheDeathlyCow/frostiful/1.21.1/docs/frostologer.png)
 
 The Frostologer keeping watch on their Castle Wall
 
