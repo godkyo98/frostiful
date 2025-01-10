@@ -7,8 +7,8 @@
             "element": {
                 "element_type": "minecraft:single_pool_element",
                 "projection": "rigid",
-                "location": "frostiful:frostologer_castle/keep/base_01",
-                "processors": "frostiful:frostologer_castle/keep"
+                "location": "frostiful:frostologer_castle/classic_keep/base",
+                "processors": "minecraft:empty"
             }
         }
     ]

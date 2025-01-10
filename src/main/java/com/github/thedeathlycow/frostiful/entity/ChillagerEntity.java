@@ -2,6 +2,7 @@ package com.github.thedeathlycow.frostiful.entity;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
 import com.github.thedeathlycow.frostiful.config.FrostifulConfig;
+import com.github.thedeathlycow.frostiful.entity.frostologer.FrostologerEntity;
 import com.github.thedeathlycow.frostiful.registry.FEntityTypes;
 import com.github.thedeathlycow.frostiful.registry.FItems;
 import com.github.thedeathlycow.frostiful.registry.FSoundEvents;
@@ -26,13 +27,12 @@ public class ChillagerEntity extends PillagerEntity {
 
     public static DefaultAttributeContainer.Builder createChillagerAttributes() {
         return PillagerEntity.createPillagerAttributes()
-                .add(ThermooAttributes.MIN_TEMPERATURE, 5.0)
+                .add(ThermooAttributes.MIN_TEMPERATURE, 45.0)
                 .add(ThermooAttributes.FROST_RESISTANCE, 10.0);
     }
 
     @Override
     public boolean damage(DamageSource source, float amount) {
-
         if (source.isIn(DamageTypeTags.IS_FIRE)) {
             FrostifulConfig config = Frostiful.getConfig();
             amount *= config.combatConfig.getChillagerFireDamageMultiplier();

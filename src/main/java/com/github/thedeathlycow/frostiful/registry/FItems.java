@@ -308,6 +308,22 @@ public class FItems {
             )
     );
 
+    public static final Item ICICLE_BANNER_PATTERN = register(
+            "icicle_banner_pattern",
+            new BannerPatternItem(
+                    FBannerPatternTags.ICICLE_PATTERN_ITEM,
+                    new Item.Settings().maxCount(1)
+            )
+    );
+
+    public static final Item FROSTOLOGY_BANNER_PATTERN = register(
+            "frostology_banner_pattern",
+            new BannerPatternItem(
+                    FBannerPatternTags.FROSTOLOGY_PATTERN_ITEM,
+                    new Item.Settings().maxCount(1)
+            )
+    );
+
     public static final Item ICY_TRIAL_SPAWNER = register(
             "icy_trial_spawner",
             new BlockItem(FBlocks.ICY_TRIAL_SPAWNER, new Item.Settings())
@@ -331,6 +347,21 @@ public class FItems {
     public static final Item BRITTLE_ICE = register(
             "brittle_ice",
             new BlockItem(FBlocks.BRITTLE_ICE, new Item.Settings())
+    );
+
+    public static final Item FROZEN_ROD = register(
+            "frozen_rod",
+            new Item(new Item.Settings())
+    );
+
+    public static final Item GLACIAL_ARMOR_TRIM_SMITHING_TEMPLATE = register(
+            "glacial_armor_trim_smithing_template",
+            SmithingTemplateItem.of(FArmorTrimPatterns.GLACIAL)
+    );
+
+    public static final Item SNOW_MAN_ARMOR_TRIM_SMITHING_TEMPLATE = register(
+            "snow_man_armor_trim_smithing_template",
+            SmithingTemplateItem.of(FArmorTrimPatterns.SNOW_MAN)
     );
 
     public static void initialize() {

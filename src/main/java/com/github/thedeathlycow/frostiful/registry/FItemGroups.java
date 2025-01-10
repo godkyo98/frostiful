@@ -23,6 +23,7 @@ public class FItemGroups {
                         entries.add(new ItemStack(FItems.FROST_WAND));
                         entries.add(new ItemStack(FItems.INERT_FROSTOLOGY_CLOAK));
                         addEnchantedFrostologyCloak(context, entries);
+                        entries.add(new ItemStack(FItems.FROZEN_ROD));
                         entries.add(new ItemStack(FItems.GLACIAL_HEART));
 
                         entries.add(new ItemStack(FItems.FUR_HELMET));
@@ -67,8 +68,12 @@ public class FItemGroups {
 
                         entries.add(new ItemStack(FItems.FUR_UPGRADE_TEMPLATE));
                         entries.add(new ItemStack(FItems.ICE_SKATE_UPGRADE_TEMPLATE));
+                        entries.add(new ItemStack(FItems.SNOW_MAN_ARMOR_TRIM_SMITHING_TEMPLATE));
                         entries.add(new ItemStack(FItems.FROSTY_ARMOR_TRIM_SMITHING_TEMPLATE));
+                        entries.add(new ItemStack(FItems.GLACIAL_ARMOR_TRIM_SMITHING_TEMPLATE));
                         entries.add(new ItemStack(FItems.SNOWFLAKE_BANNER_PATTERN));
+                        entries.add(new ItemStack(FItems.ICICLE_BANNER_PATTERN));
+                        entries.add(new ItemStack(FItems.FROSTOLOGY_BANNER_PATTERN));
 
                         entries.add(new ItemStack(FItems.ICICLE));
                         entries.add(new ItemStack(FItems.GLACIAL_ARROW));

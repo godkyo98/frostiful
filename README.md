@@ -32,9 +32,7 @@ Many other patches that are also relevant for Scorchful are provided by the stan
 
 # Additional Credits
 
-* [NerjalNosk](https://github.com/NerjalNosk) - Health Overlay compatibility.
-* [YeoXuHang](https://github.com/YeoXuHang) - Assistance with the Frost Wand 3D model redesign
-* [freesound.org and pixabay] - Various sounds, see [CREDITS.md](./CREDITS.md)
+Thanks to everyone who has contributed to Frostiful, no matter how big or small! See the [Credits](./CREDITS.md) for the full list of contributors.
 
 # LTS Policy
 

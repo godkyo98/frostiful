@@ -22,33 +22,30 @@ public class CombatConfigGroup implements ConfigData {
 
     int frostologerHeatDrainPerTick = 30;
 
+    int frostologerCoolingFromFrostWandHit = 6300 / 6;
+
     int packedSnowballFreezeAmount = 500;
 
     float packedSnowballDamage = 2.0f;
 
     float packedSnowballVulnerableTypesDamage = 5.0f;
 
-    int frostologerPassiveFreezingPerTick = 2;
-
-    float frostologerMaxPassiveFreezing = 0.5f;
-
     int biterFrostBiteMaxAmplifier = 2;
 
     float chillagerFireDamageMultiplier = 1.5f;
 
-    int frostologerIntolerableHeat = 9;
+    float frostologerFireDamageMultiplier = 2.0f;
 
     @ConfigEntry.Gui.RequiresRestart
-    float furUpgradeTemplateGenerateChance = 0.5f;
-
-    @ConfigEntry.Gui.RequiresRestart
-    float skateUpgradeTemplateGenerateChance = 0.33f;
+    float skateUpgradeTemplateIglooGenerateChance = 0.75f;
 
     @ConfigEntry.Gui.RequiresRestart
     double veryProtectiveFrostResistanceMultiplier = 1.0;
 
     @ConfigEntry.Gui.RequiresRestart
     double protectiveFrostResistanceMultiplier = 0.5;
+
+    double iceBreakFallbackDamage = 3.0;
 
 
     public boolean doChillagerPatrols() {
@@ -76,6 +73,10 @@ public class CombatConfigGroup implements ConfigData {
         return 2 * frostologerHeatDrainPerTick;
     }
 
+    public int getFrostologerCoolingFromFrostWandHit() {
+        return frostologerCoolingFromFrostWandHit;
+    }
+
     public int getPackedSnowballFreezeAmount() {
         return packedSnowballFreezeAmount;
     }
@@ -88,14 +89,6 @@ public class CombatConfigGroup implements ConfigData {
         return packedSnowballVulnerableTypesDamage;
     }
 
-    public int getFrostologerPassiveFreezingPerTick() {
-        return frostologerPassiveFreezingPerTick;
-    }
-
-    public float getFrostologerMaxPassiveFreezing() {
-        return frostologerMaxPassiveFreezing;
-    }
-
     public int getBiterFrostBiteMaxAmplifier() {
         return Math.max(0, this.biterFrostBiteMaxAmplifier);
     }
@@ -104,16 +97,12 @@ public class CombatConfigGroup implements ConfigData {
         return chillagerFireDamageMultiplier;
     }
 
-    public int getFrostologerIntolerableHeat() {
-        return frostologerIntolerableHeat;
+    public float getFrostologerFireDamageMultiplier() {
+        return frostologerFireDamageMultiplier;
     }
 
-    public float getFurUpgradeTemplateGenerateChance() {
-        return MathHelper.clamp(furUpgradeTemplateGenerateChance, 0f, 1f);
-    }
-
-    public float getSkateUpgradeTemplateGenerateChance() {
-        return MathHelper.clamp(skateUpgradeTemplateGenerateChance, 0f, 1f);
+    public float getSkateUpgradeTemplateIglooGenerateChance() {
+        return MathHelper.clamp(skateUpgradeTemplateIglooGenerateChance, 0f, 1f);
     }
 
     public double getVeryProtectiveFrostResistanceMultiplier() {
@@ -130,5 +119,15 @@ public class CombatConfigGroup implements ConfigData {
 
     public double getHarmfulFrostResistanceMultiplier() {
         return -protectiveFrostResistanceMultiplier;
+    }
+
+    public double getIceBreakFallbackDamage() {
+        return iceBreakFallbackDamage;
+    }
+
+    @Override
+    public void validatePostLoad() throws ValidationException {
+        ConfigData.super.validatePostLoad();
+        this.iceBreakFallbackDamage = Math.max(0, this.iceBreakFallbackDamage);
     }
 }

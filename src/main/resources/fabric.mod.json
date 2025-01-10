@@ -3,13 +3,24 @@
     "id": "frostiful",
     "version": "${version}",
     "name": "Frostiful",
-    "description": "A Frosty Vanilla+ Survival Experience. Also try Scorchful!",
+    "description": "A Vanilla+ Freezing Temperature Mod. Also try Scorchful!",
     "authors": [
-        "TheDeathlyCow"
+        {
+            "name": "TheDeathlyCow",
+            "contact": {
+                "homepage": "https://github.com/TheDeathlyCow/"
+            }
+        }
     ],
     "contributors": [
         "NerjalNosk (Various compatibility patches)",
-        "YeoXuHang (Assistance with the Frost Wand 3D model redesign)"
+        "YeoXuHang (Assistance with the Frost Wand 3D model redesign)",
+        "Terrails (Crash fix for Colorful Hearts)",
+        "godkyo98 (Vietnamese Translation)",
+        "noawx (Finnish Translation)",
+        "Tefnya (Russian Translation)",
+        "unroman (Ukrainian Translation)",
+        "Nezila (Ukrainian Translation)"
     ],
     "contact": {
         "homepage": "https://github.com/TheDeathlyCow/frostiful/wiki",
@@ -54,13 +65,15 @@
         "java": ">=21"
     },
     "suggests": {
-        "scorchful": "*"
+        "scorchful": "*",
+        "thermoo-patches": "*"
     },
     "accessWidener": "frostiful.accesswidener",
     "custom": {
         "cardinal-components": [
             "frostiful:living_entity",
-            "frostiful:brushable"
+            "frostiful:brushable",
+            "frostiful:frost_wand_root"
         ],
         "modmenu": {
             "links": {

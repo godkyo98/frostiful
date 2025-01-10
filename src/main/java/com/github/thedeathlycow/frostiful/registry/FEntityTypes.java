@@ -2,6 +2,7 @@ package com.github.thedeathlycow.frostiful.registry;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
 import com.github.thedeathlycow.frostiful.entity.*;
+import com.github.thedeathlycow.frostiful.entity.frostologer.FrostologerEntity;
 import net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.Entity;
@@ -28,7 +29,7 @@ public class FEntityTypes {
                             BiterEntity::new,
                             SpawnGroup.MONSTER
                     )
-                    .dimensions(1.0f, 2.0f)
+                    .dimensions(1.0f, 1.5f)
                     .maxTrackingRange(8)
     );
 

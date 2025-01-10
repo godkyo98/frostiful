@@ -2,7 +2,9 @@ package com.github.thedeathlycow.frostiful;
 
 import com.github.thedeathlycow.frostiful.compat.FrostifulIntegrations;
 import com.github.thedeathlycow.frostiful.config.FrostifulConfig;
+import com.github.thedeathlycow.frostiful.entity.component.FrostWandRootComponent;
 import com.github.thedeathlycow.frostiful.entity.loot.StrayLootTableModifier;
+import com.github.thedeathlycow.frostiful.item.FrostedBanner;
 import com.github.thedeathlycow.frostiful.item.cloak.AbstractFrostologyCloakItem;
 import com.github.thedeathlycow.frostiful.item.event.FrostResistanceProvider;
 import com.github.thedeathlycow.frostiful.registry.*;
@@ -18,6 +20,7 @@ import me.shedaniel.autoconfig.ConfigHolder;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.util.TriState;
@@ -49,6 +52,7 @@ public class Frostiful implements ModInitializer {
                     (dispatcher, registryAccess, environment) -> {
                         RootCommand.register(dispatcher);
                         WindCommand.register(dispatcher);
+                        FrostedBanner.registerCommand(dispatcher);
                     });
         }
 
@@ -67,6 +71,10 @@ public class Frostiful implements ModInitializer {
         FLootConditionTypes.initialize();
         FFeatures.initialize();
         FPlacedFeatures.initialize();
+        FEntityAttributes.initialize();
+        FCriteria.initialize();
+
+        ServerLivingEntityEvents.AFTER_DAMAGE.register(FrostWandRootComponent::afterDamage);
 
         this.registerThermooEventListeners();
         PayloadTypeRegistry.playS2C().register(
