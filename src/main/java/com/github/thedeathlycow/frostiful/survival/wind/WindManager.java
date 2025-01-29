@@ -54,6 +54,10 @@ public final class WindManager {
         }
 
         RegistryEntry<Biome> biome = world.getBiome(spawnPos);
+        if (biome.isIn(FBiomeTags.FREEZING_WIND_NEVER_SPAWNS)) {
+            return;
+        }
+
         boolean canSpawnOnGround = (world.isRaining() && biome.isIn(FBiomeTags.FREEZING_WIND_SPAWNS_IN_STORMS))
                 || biome.isIn(FBiomeTags.FREEZING_WIND_ALWAYS_SPAWNS);
 
