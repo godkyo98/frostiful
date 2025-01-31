@@ -7,6 +7,7 @@
 * [NerjalNosk](https://github.com/NerjalNosk) - Health Overlay compatibility.
 * [YeoXuHang](https://github.com/YeoXuHang) - Assistance with the Frost Wand 3D model redesign
 * [Terrails](https://github.com/terrails) - Crash fix for Colorful Hearts
+* [bravely-beep](https://github.com/bravely-beep) - Advancement fix
 
 # Translations
 
