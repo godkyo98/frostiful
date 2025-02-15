@@ -2,7 +2,7 @@
     "biomes": "#frostiful:climate/is_cold",
     "provider": {
         "type": "thermoo:reduce_sequence",
-        "modifiers": "#frostiful:cool_modifiers",
+        "modifiers": "#frostiful:cold_modifiers",
         "base": {
             "type": "thermoo:seasonal/temperate",
             "fallback_season": "spring",
