@@ -1,79 +1,47 @@
 package com.github.thedeathlycow.frostiful.test.damage;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
-import com.github.thedeathlycow.thermoo.api.temperature.EnvironmentControllerDecorator;
-import com.github.thedeathlycow.thermoo.api.temperature.EnvironmentManager;
 import com.github.thedeathlycow.thermoo.api.temperature.TemperatureAware;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.VillagerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.test.AfterBatch;
-import net.minecraft.test.BeforeBatch;
 import net.minecraft.test.GameTest;
 import net.minecraft.test.TestContext;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 @SuppressWarnings("unused")
 public class HotFloorTests {
+    @GameTest(templateName = "frostiful-test:magma_block_test")
+    public void villager_on_magma_heated_more_than_villager_on_stone(TestContext context) {
+        int temperatureChange = Frostiful.getConfig().freezingConfig.getHeatFromHotFloor();
 
-    @BeforeBatch(batchId = "hotFloorTests")
-    public void mockController(ServerWorld serverWorld) {
-        EnvironmentManager.INSTANCE.addController(
-                controller ->
-                        new EnvironmentControllerDecorator(controller) {
-                            @Override
-                            public int getLocalTemperatureChange(World world, BlockPos pos) {
-                                return 0;
-                            }
+        final BlockPos stonePos = new BlockPos(2, 3, 3);
+        final BlockPos magmaPos = new BlockPos(4, 3, 3);
+        final int initialTemperature = -1000;
 
-                            @Override
-                            public int getHeatAtLocation(World world, BlockPos pos) {
-                                return 0;
-                            }
+        final VillagerEntity magmaVillager = context.spawnMob(EntityType.VILLAGER, magmaPos);
+        final VillagerEntity stoneVillager = context.spawnMob(EntityType.VILLAGER, stonePos);
 
-                            @Override
-                            public int getTemperatureEffectsChange(LivingEntity entity) {
-                                return 0;
-                            }
-                        }
+        stoneVillager.thermoo$setTemperature(initialTemperature);
+        magmaVillager.thermoo$setTemperature(initialTemperature);
+        context.expectEntityWithData(
+                magmaPos, EntityType.VILLAGER,
+                TemperatureAware::thermoo$getTemperature, initialTemperature
         );
-    }
-
-    @AfterBatch(batchId = "hotFloorTests")
-    public void resetController(ServerWorld serverWorld) {
-        EnvironmentManager.INSTANCE.peelController();
-    }
-
-    @GameTest(batchId = "hotFloorTests", templateName = "frostiful-test:sun_lichen_tests.platform")
-    public void when_villager_standing_on_magma_block_then_villager_is_heated(TestContext context) {
-        int temperatureChange =  Frostiful.getConfig().freezingConfig.getHeatFromHotFloor();
-
-        final BlockPos pos = new BlockPos(1, 3, 1);
-        final int initialFreeze = -1000;
-
-        final VillagerEntity entity = context.spawnMob(EntityType.VILLAGER, pos);
-
-        entity.thermoo$setTemperature(initialFreeze);
-        context.expectEntityWithData(pos, EntityType.VILLAGER, TemperatureAware::thermoo$getTemperature, initialFreeze);
-
-        context.setBlockState(pos.down(), Blocks.MAGMA_BLOCK.getDefaultState());
+        context.expectEntityWithData(
+                stonePos, EntityType.VILLAGER,
+                TemperatureAware::thermoo$getTemperature, initialTemperature
+        );
         context.waitAndRun(
-                5, () -> {
-                    context.addInstantFinalTask(() -> {
-
-                                context.assertTrue(
-                                        entity.thermoo$getTemperature() > initialFreeze,
-                                        String.format(
-                                                "Villager temperature of %d is not greater than %d",
-                                                entity.thermoo$getTemperature(),
-                                                initialFreeze
-                                        )
-                                );
-                            }
+                20L, () -> {
+                    context.assertTrue(
+                            magmaVillager.thermoo$getTemperature() > stoneVillager.thermoo$getTemperature(),
+                            String.format(
+                                    "Magma Villager temperature of %d is not greater than Stone Villager temperature of %d",
+                                    magmaVillager.thermoo$getTemperature(),
+                                    stoneVillager.thermoo$getTemperature()
+                            )
                     );
+                    context.complete();
                 }
         );
     }
