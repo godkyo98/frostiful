@@ -5,6 +5,7 @@ import com.github.thedeathlycow.frostiful.block.SunLichenBlock;
 import com.github.thedeathlycow.frostiful.config.FrostifulConfig;
 import com.github.thedeathlycow.frostiful.registry.tag.FBlockTags;
 import com.github.thedeathlycow.frostiful.registry.tag.FEnchantmentTags;
+import com.github.thedeathlycow.thermoo.api.temperature.event.LivingEntityTemperatureTickEvents;
 import com.github.thedeathlycow.thermoo.api.temperature.event.TemperatureTickContext;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -15,14 +16,9 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.LightType;
 
-public class LivingEntityEnvironmentTickListeners {
-
-    private static int getActiveChange(TemperatureTickContext<LivingEntity> context) {
-        if (context.affected().thermoo$getTemperature() > 0) {
-            return 0; // don't touch scorchful's effects
-        }
-
-        return 0;
+public final class PassiveTemperatureEffects {
+    public static void initialize() {
+        LivingEntityTemperatureTickEvents.GET_PASSIVE_TEMPERATURE_CHANGE.register(PassiveTemperatureEffects::getPassiveChange);
     }
 
     private static int getPassiveChange(TemperatureTickContext<LivingEntity> context) {
@@ -71,5 +67,9 @@ public class LivingEntityEnvironmentTickListeners {
         }
 
         return warmth;
+    }
+
+    private PassiveTemperatureEffects() {
+
     }
 }

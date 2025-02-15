@@ -15,6 +15,8 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.MathHelper;
 
 public final class ServerPlayerEnvironmentTickListeners {
+    public static final double WETNESS_MULTIPLIER = 2.0;
+
     public static void initialize() {
         ServerPlayerEnvironmentTickEvents.GET_TEMPERATURE_CHANGE.register(ServerPlayerEnvironmentTickListeners::getTemperatureChange);
         ServerPlayerEnvironmentTickEvents.ALLOW_TEMPERATURE_CHANGE.register(ServerPlayerEnvironmentTickListeners::allowTemperatureChange);
@@ -33,7 +35,17 @@ public final class ServerPlayerEnvironmentTickListeners {
         if (temperatureC > 10.0) {
             return 0;
         }
-        return MathHelper.ceil((temperatureC / 10.0) - 2);
+        int total = MathHelper.ceil((temperatureC / 10.0) - 2);
+
+        if (total < 0 && context.affected().thermoo$isWet()) {
+            total = (int) (total * WETNESS_MULTIPLIER);
+        }
+
+        if (context.affected().age % 20 == 0 && Frostiful.LOGGER.isDebugEnabled()) {
+            Frostiful.LOGGER.debug("Adding {} temperature to {}", total, context.affected().getNameForScoreboard());
+        }
+
+        return total;
     }
 
     private static TriState allowTemperatureChange(EnvironmentTickContext<ServerPlayerEntity> context, int temperatureChange) {

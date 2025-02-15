@@ -36,48 +36,4 @@ public class EntityTemperatureController extends EnvironmentControllerDecorator 
 
         return base;
     }
-
-    @Override
-    public int getTemperatureEffectsChange(LivingEntity entity) {
-        if (!entity.thermoo$isCold()) {
-            return controller.getTemperatureEffectsChange(entity);
-        }
-
-        int warmth = 0;
-        FrostifulConfig config = Frostiful.getConfig();
-
-        if (entity.isOnFire()) {
-            int onFireRate = config.environmentConfig.getOnFireWarmRate();
-
-            if (entity.getType() == FEntityTypes.FROSTOLOGER) {
-                onFireRate /= 2;
-            }
-
-            warmth += onFireRate;
-        }
-
-        if (entity.wasInPowderSnow) {
-            warmth -= config.environmentConfig.getPowderSnowFreezeRate();
-        }
-
-        return warmth;
-    }
-
-    @Override
-    public int getEnvironmentTemperatureForPlayer(PlayerEntity player, int localTemperature) {
-        if (localTemperature > 0) {
-            return controller.getEnvironmentTemperatureForPlayer(player, localTemperature);
-        }
-
-        float modifier = getWetnessFreezeModifier(player);
-        return MathHelper.ceil(localTemperature * (1 + modifier));
-    }
-
-    private static float getWetnessFreezeModifier(Soakable soakable) {
-        if (soakable.thermoo$ignoresFrigidWater()) {
-            return 0.0f;
-        }
-        FreezingConfigGroup config = Frostiful.getConfig().freezingConfig;
-        return config.getPassiveFreezingWetnessScaleMultiplier() * soakable.thermoo$getSoakedScale();
-    }
 }

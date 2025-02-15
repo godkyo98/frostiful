@@ -84,6 +84,8 @@ public class Frostiful implements ModInitializer {
 
     private void registerThermooEventListeners() {
         ServerPlayerEnvironmentTickListeners.initialize();
+        PassiveTemperatureEffects.initialize();
+        ActiveTemperatureEffects.initialize();
         ArmorMaterialEvents.GET_FROST_RESISTANCE.register(new FrostResistanceProvider());
 
         EnvironmentControllerInitializeEvent.EVENT.register(EntityTemperatureController::new);
