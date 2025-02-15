@@ -1,0 +1,21 @@
+{
+    "biomes": "#frostiful:climate/nether/is_hell",
+    "exclude_biomes": "#frostiful:climate/nether/is_not_hell",
+    "provider": {
+        "type": "thermoo:reduce_constant",
+        "components": {
+            "thermoo:temperature": 45.0
+        }
+    },
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:not",
+            "value": {
+                "condition": "fabric:all_mods_loaded",
+                "values": [
+                    "scorchful"
+                ]
+            }
+        }
+    ]
+}

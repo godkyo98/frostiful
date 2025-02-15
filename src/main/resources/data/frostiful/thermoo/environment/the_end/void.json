@@ -1,0 +1,10 @@
+{
+    "biomes": "#frostiful:climate/the_end/is_void",
+    "exclude_biomes": "#frostiful:climate/the_end/is_not_void",
+    "provider": {
+        "type": "thermoo:reduce_constant",
+        "components": {
+            "thermoo:temperature": 15.0
+        }
+    }
+}
