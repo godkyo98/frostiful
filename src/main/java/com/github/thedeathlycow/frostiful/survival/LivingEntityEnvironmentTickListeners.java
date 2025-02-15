@@ -1,0 +1,75 @@
+package com.github.thedeathlycow.frostiful.survival;
+
+import com.github.thedeathlycow.frostiful.Frostiful;
+import com.github.thedeathlycow.frostiful.block.SunLichenBlock;
+import com.github.thedeathlycow.frostiful.config.FrostifulConfig;
+import com.github.thedeathlycow.frostiful.registry.tag.FBlockTags;
+import com.github.thedeathlycow.frostiful.registry.tag.FEnchantmentTags;
+import com.github.thedeathlycow.thermoo.api.temperature.event.TemperatureTickContext;
+import net.minecraft.block.BlockState;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.LightType;
+
+public class LivingEntityEnvironmentTickListeners {
+
+    private static int getActiveChange(TemperatureTickContext<LivingEntity> context) {
+        if (context.affected().thermoo$getTemperature() > 0) {
+            return 0; // don't touch scorchful's effects
+        }
+
+        return 0;
+    }
+
+    private static int getPassiveChange(TemperatureTickContext<LivingEntity> context) {
+        LivingEntity entity = context.affected();
+
+        // don't touch scorchful's effects
+        if (entity.isSpectator() || entity.thermoo$getTemperature() > 0) {
+            return 0;
+        }
+
+        int total = 0;
+
+        FrostifulConfig config = Frostiful.getConfig();
+        total += getHotFloorTemperatureChange(context, config);
+        total += getBlockLightTemperatureChange(context, config);
+
+        return total;
+    }
+
+    private static int getHotFloorTemperatureChange(TemperatureTickContext<LivingEntity> context, FrostifulConfig config) {
+        LivingEntity entity = context.affected();
+        BlockState steppingState = entity.getSteppingBlockState();
+
+        if (steppingState.isIn(FBlockTags.HOT_FLOOR)) {
+            ItemStack footStack = entity.getEquippedStack(EquipmentSlot.FEET);
+
+            if (!EnchantmentHelper.hasAnyEnchantmentsIn(footStack, FEnchantmentTags.IS_FROSTY)) {
+                SunLichenBlock.createFireParticles(context.world(), entity.getBlockPos());
+                return config.freezingConfig.getHeatFromHotFloor();
+            }
+        }
+
+        return 0;
+    }
+
+    private static int getBlockLightTemperatureChange(TemperatureTickContext<LivingEntity> context, FrostifulConfig config) {
+        ServerWorld world = context.world();
+        BlockPos pos = context.pos();
+
+        int lightLevel = world.getLightLevel(LightType.BLOCK, pos);
+        int minLightLevel = config.environmentConfig.getMinLightForWarmth();
+
+        int warmth = 0;
+        if (lightLevel >= minLightLevel) {
+            warmth = config.environmentConfig.getWarmthPerLightLevel() * (lightLevel - minLightLevel);
+        }
+
+        return warmth;
+    }
+}
