@@ -5,7 +5,7 @@ import com.github.thedeathlycow.frostiful.config.FrostifulConfig;
 import com.github.thedeathlycow.frostiful.entity.component.FrostWandRootComponent;
 import com.github.thedeathlycow.frostiful.entity.loot.StrayLootTableModifier;
 import com.github.thedeathlycow.frostiful.item.FrostedBanner;
-import com.github.thedeathlycow.frostiful.item.event.FrostResistanceProvider;
+import com.github.thedeathlycow.frostiful.item.attribute.FrostResistanceProvider;
 import com.github.thedeathlycow.frostiful.registry.*;
 import com.github.thedeathlycow.frostiful.server.command.RootCommand;
 import com.github.thedeathlycow.frostiful.server.command.WindCommand;
@@ -89,6 +89,8 @@ public class Frostiful implements ModInitializer {
         ServerPlayerEnvironmentTickListeners.initialize();
         PassiveTemperatureEffects.initialize();
         ActiveTemperatureEffects.initialize();
+
+        // kept so that existing datapacks will still work even though it kinda sucks
         ArmorMaterialEvents.GET_FROST_RESISTANCE.register(new FrostResistanceProvider());
 
         EnvironmentControllerInitializeEvent.EVENT.register(

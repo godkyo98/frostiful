@@ -1,4 +1,4 @@
-package com.github.thedeathlycow.frostiful.item.event;
+package com.github.thedeathlycow.frostiful.item.attribute;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
 import com.github.thedeathlycow.frostiful.config.group.CombatConfigGroup;
@@ -16,17 +16,17 @@ public class FrostResistanceProvider implements ArmorMaterialEvents.GetResistanc
 
     @Override
     public double getValue(RegistryEntry<ArmorMaterial> armorMaterial, ArmorItem.Type armorType) {
-        FrostResistanceLevel level = FrostResistanceLevel.forMaterial(armorMaterial);
+        ProtectionLevel level = ProtectionLevel.forMaterial(armorMaterial);
 
-        FrostResistanceArmorType type = FrostResistanceArmorType.forArmorType(armorType);
+        FArmorType type = FArmorType.forArmorType(armorType);
 
         CombatConfigGroup config = Frostiful.getConfig().combatConfig;
-        return level != FrostResistanceLevel.DEFAULT
-                ? type.getFrostResistance(level.getFrostResistanceMultiplier(config))
+        return level != ProtectionLevel.DEFAULT
+                ? type.getBaseFrostResistance() * level.getFrostResistanceMultiplier(config)
                 : Double.NaN;
     }
 
-    public enum FrostResistanceLevel {
+    public enum ProtectionLevel {
         VERY_PROTECTIVE(ArmorMaterialTags.VERY_RESISTANT_TO_COLD, CombatConfigGroup::getVeryProtectiveFrostResistanceMultiplier),
         PROTECTIVE(ArmorMaterialTags.RESISTANT_TO_COLD, CombatConfigGroup::getProtectiveFrostResistanceMultiplier),
         HARMFUL(ArmorMaterialTags.WEAK_TO_COLD, CombatConfigGroup::getHarmfulFrostResistanceMultiplier),
@@ -37,11 +37,11 @@ public class FrostResistanceProvider implements ArmorMaterialEvents.GetResistanc
 
         private final ToDoubleFunction<CombatConfigGroup> frostResistanceProvider;
 
-        FrostResistanceLevel(TagKey<ArmorMaterial> tag, ToDoubleFunction<CombatConfigGroup> frostResistanceProvider) {
+        ProtectionLevel(TagKey<ArmorMaterial> tag, ToDoubleFunction<CombatConfigGroup> frostResistanceProvider) {
             this(material -> material.isIn(tag), frostResistanceProvider);
         }
 
-        FrostResistanceLevel(Predicate<RegistryEntry<ArmorMaterial>> predicate, ToDoubleFunction<CombatConfigGroup> frostResistanceProvider) {
+        ProtectionLevel(Predicate<RegistryEntry<ArmorMaterial>> predicate, ToDoubleFunction<CombatConfigGroup> frostResistanceProvider) {
             this.predicate = predicate;
             this.frostResistanceProvider = frostResistanceProvider;
         }
@@ -54,8 +54,8 @@ public class FrostResistanceProvider implements ArmorMaterialEvents.GetResistanc
             return this.predicate.test(material);
         }
 
-        public static FrostResistanceLevel forMaterial(RegistryEntry<ArmorMaterial> material) {
-            for (FrostResistanceLevel level : values()) {
+        public static ProtectionLevel forMaterial(RegistryEntry<ArmorMaterial> material) {
+            for (ProtectionLevel level : values()) {
                 if (level.appliesToMaterial(material)) {
                     return level;
                 }
