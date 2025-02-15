@@ -1,0 +1,9 @@
+{
+    "replace": false,
+    "values": [
+        "#frostiful:freezing_blacklist_biomes",
+        "#frostiful:climate/overworld/is_cool",
+        "#frostiful:climate/overworld/is_cold",
+        "#frostiful:climate/overworld/is_freezing"
+    ]
+}

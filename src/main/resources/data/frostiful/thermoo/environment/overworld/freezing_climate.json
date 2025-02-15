@@ -1,9 +1,9 @@
 {
-    "biomes": "#frostiful:climate/is_cool",
-    "exclude_biomes": "#frostiful:climate/is_not_cool",
+    "biomes": "#frostiful:climate/overworld/is_freezing",
+    "exclude_biomes": "#frostiful:climate/overworld/is_not_freezing",
     "provider": {
         "type": "thermoo:reduce_sequence",
-        "modifiers": "#frostiful:cool_modifiers",
+        "modifiers": "#frostiful:freezing_modifiers",
         "base": {
             "type": "thermoo:seasonal/temperate",
             "fallback_season": "spring",
@@ -11,25 +11,25 @@
                 "spring": {
                     "type": "thermoo:reduce_constant",
                     "components": {
-                        "thermoo:temperature": 5.0
+                        "thermoo:temperature": -10.0
                     }
                 },
                 "summer": {
                     "type": "thermoo:reduce_constant",
                     "components": {
-                        "thermoo:temperature": 20.0
+                        "thermoo:temperature": 10.0
                     }
                 },
                 "autumn": {
                     "type": "thermoo:reduce_constant",
                     "components": {
-                        "thermoo:temperature": 5.0
+                        "thermoo:temperature": -10.0
                     }
                 },
                 "winter": {
                     "type": "thermoo:reduce_constant",
                     "components": {
-                        "thermoo:temperature": -10.0
+                        "thermoo:temperature": -30.0
                     }
                 }
             }
