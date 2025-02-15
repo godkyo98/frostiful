@@ -88,11 +88,6 @@ public class Frostiful implements ModInitializer {
         ActiveTemperatureEffects.initialize();
         ArmorMaterialEvents.GET_FROST_RESISTANCE.register(new FrostResistanceProvider());
 
-        EnvironmentControllerInitializeEvent.EVENT.register(EntityTemperatureController::new);
-        EnvironmentControllerInitializeEvent.EVENT.register(
-                EnvironmentControllerInitializeEvent.MODIFY_PHASE,
-                ModifyTemperatureController::new
-        );
         EnvironmentControllerInitializeEvent.EVENT.register(
                 controller -> FrostifulIntegrations.isModLoaded(FrostifulIntegrations.SCORCHFUL_ID)
                         ? controller
