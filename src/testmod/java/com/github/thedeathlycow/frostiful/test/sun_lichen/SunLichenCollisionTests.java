@@ -3,8 +3,6 @@ package com.github.thedeathlycow.frostiful.test.sun_lichen;
 import com.github.thedeathlycow.frostiful.registry.FBlocks;
 import com.github.thedeathlycow.frostiful.test.FrostifulGameTest;
 import com.github.thedeathlycow.thermoo.api.ThermooAttributes;
-import com.github.thedeathlycow.thermoo.api.temperature.EnvironmentControllerDecorator;
-import com.github.thedeathlycow.thermoo.api.temperature.EnvironmentManager;
 import com.github.thedeathlycow.thermoo.api.temperature.TemperatureAware;
 import net.fabricmc.fabric.api.gametest.v1.FabricGameTest;
 import net.minecraft.block.Block;
@@ -15,43 +13,14 @@ import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.VillagerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.test.AfterBatch;
-import net.minecraft.test.BeforeBatch;
 import net.minecraft.test.GameTest;
 import net.minecraft.test.TestContext;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 import java.util.function.Function;
 
 @SuppressWarnings("unused")
 public final class SunLichenCollisionTests implements FabricGameTest {
-
-    @BeforeBatch(batchId = "sunLichenCollision")
-    public void mockController(ServerWorld serverWorld) {
-        EnvironmentManager.INSTANCE.addController(
-                controller ->
-                        new EnvironmentControllerDecorator(controller) {
-                            @Override
-                            public int getLocalTemperatureChange(World world, BlockPos pos) {
-                                return 0;
-                            }
-
-                            @Override
-                            public int getHeatAtLocation(World world, BlockPos pos) {
-                                return 0;
-                            }
-                        }
-        );
-    }
-
-    @AfterBatch(batchId = "sunLichenCollision")
-    public void resetController(ServerWorld serverWorld) {
-        EnvironmentManager.INSTANCE.peelController();
-    }
-
-
     @GameTest(batchId = "sunLichenCollision", templateName = "frostiful-test:sun_lichen_tests.platform")
     public void cool_lichen_does_not_damage(TestContext context) {
         final BlockPos pos = new BlockPos(1, 2, 1);
