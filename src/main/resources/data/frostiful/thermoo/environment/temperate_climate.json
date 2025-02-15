@@ -1,5 +1,6 @@
 {
     "biomes": "#frostiful:climate/is_temperate",
+    "exclude_biomes": "#frostiful:never_cold/overworld",
     "provider": {
         "type": "thermoo:seasonal/temperate",
         "seasons": {
