@@ -1,15 +1,14 @@
 package com.github.thedeathlycow.frostiful.entity.component;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
-import com.github.thedeathlycow.thermoo.api.temperature.EnvironmentController;
-import com.github.thedeathlycow.thermoo.api.temperature.EnvironmentManager;
+import com.github.thedeathlycow.frostiful.registry.FComponents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Heightmap;
+import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import org.ladysnake.cca.api.v3.component.Component;
@@ -27,16 +26,15 @@ public class SnowAccumulationComponent implements Component, ServerTickingCompon
         this.provider = provider;
     }
 
+    public static SnowAccumulationComponent get(LivingEntity provider) {
+        return FComponents.SNOW_ACCUMULATION.get(provider);
+    }
+
     @Override
     public void serverTick() {
         if (this.isBeingSnowedOn()) {
             this.addSnowAccumulation();
         } else {
-            this.meltSnowAccumulation();
-        }
-
-        EnvironmentController controller = EnvironmentManager.INSTANCE.getController();
-        if (controller.isAreaHeated(this.provider.getWorld(), this.provider.getBlockPos())) {
             this.meltSnowAccumulation();
         }
     }
@@ -73,16 +71,16 @@ public class SnowAccumulationComponent implements Component, ServerTickingCompon
         }
     }
 
-    private void addSnowAccumulation() {
-        if (this.snowAccumulation < Frostiful.getConfig().environmentConfig.getMaxSnowAccumulationTicks()) {
-            this.snowAccumulation++;
-        }
-    }
-
-    private void meltSnowAccumulation() {
+    public void meltSnowAccumulation() {
         if (this.snowAccumulation > 0) {
             this.snowAccumulation--;
             this.provider.thermoo$addWetTicks(2);
+        }
+    }
+
+    private void addSnowAccumulation() {
+        if (this.snowAccumulation < Frostiful.getConfig().environmentConfig.getMaxSnowAccumulationTicks()) {
+            this.snowAccumulation++;
         }
     }
 }

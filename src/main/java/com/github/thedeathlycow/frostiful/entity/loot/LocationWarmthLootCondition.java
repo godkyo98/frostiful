@@ -1,7 +1,7 @@
 package com.github.thedeathlycow.frostiful.entity.loot;
 
 import com.github.thedeathlycow.frostiful.registry.FLootConditionTypes;
-import com.github.thedeathlycow.thermoo.api.temperature.EnvironmentManager;
+import com.github.thedeathlycow.frostiful.survival.PassiveTemperatureEffects;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.loot.condition.LootCondition;
@@ -37,7 +37,7 @@ public record LocationWarmthLootCondition(
         World world = lootContext.getWorld();
         BlockPos pos = BlockPos.ofFloored(Objects.requireNonNull(lootContext.get(LootContextParameters.ORIGIN)));
 
-        int areaWarmth = EnvironmentManager.INSTANCE.getController().getHeatAtLocation(world, pos);
+        int areaWarmth = PassiveTemperatureEffects.getBlockLightTemperatureChange(world, pos);
         return this.value.test(areaWarmth);
     }
 
