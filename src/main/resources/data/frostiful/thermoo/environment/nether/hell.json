@@ -4,7 +4,8 @@
     "provider": {
         "type": "thermoo:reduce_constant",
         "components": {
-            "thermoo:temperature": 45.0
+            "thermoo:temperature": 45.0,
+            "thermoo:relative_humidity": 0.01
         }
     },
     "fabric:load_conditions": [
