@@ -29,7 +29,7 @@
                 "winter": {
                     "type": "thermoo:reduce_constant",
                     "components": {
-                        "thermoo:temperature": -30.0
+                        "thermoo:temperature": -35.0
                     }
                 }
             }
