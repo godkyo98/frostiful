@@ -6,6 +6,10 @@
         {
             "required": false,
             "id": "#frostiful:freezing_biomes"
+        },
+        {
+            "required": false,
+            "id": "#frostiful:temperature/spring/freezing"
         }
     ]
 }

@@ -4,6 +4,9 @@
         "#c:is_plains",
         "#c:is_temperate",
         "#c:is_hill",
-        "#frostiful:temperature/winter/cold"
+        {
+            "required": false,
+            "id": "#frostiful:temperature/winter/cool"
+        }
     ]
 }

@@ -1,0 +1,10 @@
+{
+    "replace": false,
+    "values": [
+        "#c:is_dry/overworld",
+        {
+            "required": false,
+            "id": "#frostiful:dry_biomes"
+        }
+    ]
+}
