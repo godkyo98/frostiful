@@ -15,7 +15,6 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.MathHelper;
 
 public final class ServerPlayerEnvironmentTickListeners {
-    public static final double WETNESS_MULTIPLIER = 2.0;
 
     public static void initialize() {
         ServerPlayerEnvironmentTickEvents.GET_TEMPERATURE_CHANGE.register(ServerPlayerEnvironmentTickListeners::getTemperatureChange);
@@ -38,7 +37,7 @@ public final class ServerPlayerEnvironmentTickListeners {
         int total = MathHelper.ceil((temperatureC / 10.0) - 2);
 
         if (total < 0 && context.affected().thermoo$isWet()) {
-            total = (int) (total * WETNESS_MULTIPLIER);
+            total = (int) (total * Frostiful.getConfig().environmentConfig.getEnvironmentFreezingSoakedMultiplier());
         }
 
         if (context.affected().age % 20 == 0 && Frostiful.LOGGER.isDebugEnabled()) {

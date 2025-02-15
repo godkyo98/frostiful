@@ -6,46 +6,16 @@ import me.shedaniel.autoconfig.annotation.Config;
 
 @Config(name = Frostiful.MODID + ".environment_config")
 public class EnvironmentConfigGroup implements ConfigData {
-
-    boolean doDryBiomeNightFreezing = true;
-
-    int nightTemperatureShift = -1;
-    int coldBiomeTemperatureChange = -1;
-    int freezingBiomeTemperatureChange = -3;
-
     int rainWetnessIncrease = 1;
     int touchingWaterWetnessIncrease = 5;
     int dryRate = 1;
     int onFireDryDate = 50;
-
     int onFireWarmRate = 50;
-
     int powderSnowFreezeRate = 30;
-
     int warmthPerLightLevel = 2;
     int minLightForWarmth = 5;
-
-    int ultrawarmWarmRate = 15;
-
     int maxSnowAccumulationTicks = 100;
-
-    boolean enableSeasonsIntegration = true;
-
-    public boolean doDryBiomeNightFreezing() {
-        return doDryBiomeNightFreezing;
-    }
-
-    public int getNightTemperatureShift() {
-        return nightTemperatureShift;
-    }
-
-    public int getColdBiomeTemperatureChange() {
-        return coldBiomeTemperatureChange;
-    }
-
-    public int getFreezingBiomeTemperatureChange() {
-        return freezingBiomeTemperatureChange;
-    }
+    float environmentFreezingSoakedMultiplier = 2.0f;
 
     public int getRainWetnessIncrease() {
         return rainWetnessIncrease;
@@ -79,16 +49,12 @@ public class EnvironmentConfigGroup implements ConfigData {
         return minLightForWarmth;
     }
 
-    public int getUltrawarmWarmRate() {
-        return ultrawarmWarmRate;
-    }
-
     public int getMaxSnowAccumulationTicks() {
         return maxSnowAccumulationTicks;
     }
 
-    public boolean enableSeasonsIntegration() {
-        return enableSeasonsIntegration;
+    public float getEnvironmentFreezingSoakedMultiplier() {
+        return environmentFreezingSoakedMultiplier;
     }
 
     @Override
