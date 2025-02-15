@@ -1,0 +1,37 @@
+{
+    "biomes": "#frostiful:climate/is_cold",
+    "provider": {
+        "type": "thermoo:reduce_sequence",
+        "modifiers": "#frostiful:cool_modifiers",
+        "base": {
+            "type": "thermoo:seasonal/temperate",
+            "fallback_season": "spring",
+            "seasons": {
+                "spring": {
+                    "type": "thermoo:reduce_constant",
+                    "components": {
+                        "thermoo:temperature": 0.0
+                    }
+                },
+                "summer": {
+                    "type": "thermoo:reduce_constant",
+                    "components": {
+                        "thermoo:temperature": 15.0
+                    }
+                },
+                "autumn": {
+                    "type": "thermoo:reduce_constant",
+                    "components": {
+                        "thermoo:temperature": 0.0
+                    }
+                },
+                "winter": {
+                    "type": "thermoo:reduce_constant",
+                    "components": {
+                        "thermoo:temperature": -15.0
+                    }
+                }
+            }
+        }
+    }
+}

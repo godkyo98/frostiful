@@ -1,0 +1,19 @@
+{
+    "biomes": "#frostiful:climate/is_temperate",
+    "provider": {
+        "type": "thermoo:reduce_sequence",
+        "modifiers": "#frostiful:cool_modifiers",
+        "base": {
+            "type": "thermoo:seasonal/temperate",
+            "fallback_season": "spring",
+            "seasons": {
+                "winter": {
+                    "type": "thermoo:reduce_constant",
+                    "components": {
+                        "thermoo:temperature": 10.0
+                    }
+                }
+            }
+        }
+    }
+}
