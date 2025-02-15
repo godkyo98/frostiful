@@ -1,7 +1,7 @@
 package com.github.thedeathlycow.frostiful.item.attribute;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
-import com.github.thedeathlycow.frostiful.registry.FItems;
+import com.github.thedeathlycow.frostiful.registry.FArmorMaterials;
 import com.github.thedeathlycow.thermoo.api.ThermooAttributes;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.minecraft.component.ComponentMap;
@@ -10,44 +10,43 @@ import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.item.ArmorItem;
+import net.minecraft.item.ArmorMaterial;
+import net.minecraft.item.ArmorMaterials;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
+import net.minecraft.registry.RegistryKey;
 
-import java.util.Set;
+import java.util.function.ToDoubleFunction;
 
 public final class ResistanceComponentBuilder {
     public static void initialize() {
         DefaultItemComponentEvents.MODIFY.register(context -> {
-            Set<Item> netheriteItems = Set.of(
-                    Items.NETHERITE_HELMET,
-                    Items.NETHERITE_CHESTPLATE,
-                    Items.NETHERITE_LEGGINGS,
-                    Items.NETHERITE_BOOTS
-            );
+            modify(context, armor -> {
+                RegistryKey<ArmorMaterial> itemMaterial = armor.getMaterial().getKey().orElse(null);
 
-            Set<Item> furItems = Set.of(
-                    FItems.FUR_HELMET,
-                    FItems.FUR_CHESTPLATE,
-                    FItems.FUR_LEGGINGS,
-                    FItems.FUR_BOOTS,
-                    FItems.FUR_PADDED_CHAINMAIL_HELMET,
-                    FItems.FUR_PADDED_CHAINMAIL_CHESTPLATE,
-                    FItems.FUR_PADDED_CHAINMAIL_LEGGINGS,
-                    FItems.FUR_PADDED_CHAINMAIL_BOOTS
-            );
+                return itemMaterial != null && itemMaterial == ArmorMaterials.NETHERITE.getKey().orElse(null)
+                        ? Frostiful.getConfig().combatConfig.getProtectiveFrostResistanceMultiplier()
+                        : 0;
+            });
+            modify(context, armor -> {
+                RegistryKey<ArmorMaterial> itemMaterial = armor.getMaterial().getKey().orElse(null);
 
-            modify(context, netheriteItems, Frostiful.getConfig().combatConfig.getProtectiveFrostResistanceMultiplier());
-            modify(context, furItems, Frostiful.getConfig().combatConfig.getVeryProtectiveFrostResistanceMultiplier());
+                boolean isFurMaterial = itemMaterial == FArmorMaterials.FUR.getKey().orElse(null)
+                        || itemMaterial == FArmorMaterials.FUR_LINED_CHAINMAIL.getKey().orElse(null);
+
+                return itemMaterial != null && isFurMaterial
+                        ? Frostiful.getConfig().combatConfig.getVeryProtectiveFrostResistanceMultiplier()
+                        : 0;
+            });
         });
     }
 
-    private static void modify(DefaultItemComponentEvents.ModifyContext context, Set<Item> items, double multiplier) {
+    private static void modify(DefaultItemComponentEvents.ModifyContext context, ToDoubleFunction<ArmorItem> multiplier) {
         context.modify(
-                items,
+                ArmorItem.class::isInstance,
                 (builder, item) -> {
                     if (item instanceof ArmorItem armor) {
                         AttributeModifiersComponent component = getOrDefault(builder, item);
-                        component = build(armor, component, multiplier);
+                        component = build(armor, component, multiplier.applyAsDouble(armor));
                         builder.add(DataComponentTypes.ATTRIBUTE_MODIFIERS, component);
                     }
                 }
@@ -59,6 +58,10 @@ public final class ResistanceComponentBuilder {
             AttributeModifiersComponent component,
             double multiplier
     ) {
+        if (multiplier == 0) {
+            return component;
+        }
+
         AttributeModifierSlot slot = AttributeModifierSlot.forEquipmentSlot(item.getSlotType());
         FArmorType type = FArmorType.forArmorType(item.getType());
 
