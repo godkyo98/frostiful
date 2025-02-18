@@ -1,6 +1,7 @@
 {
     "replace": false,
     "values": [
+        "#c:is_aquatic_icy",
         "#c:is_snowy",
         "#c:is_snowy_plains",
         "#c:is_mountain/slope",
