@@ -10,10 +10,7 @@ import com.github.thedeathlycow.frostiful.registry.*;
 import com.github.thedeathlycow.frostiful.server.command.RootCommand;
 import com.github.thedeathlycow.frostiful.server.command.WindCommand;
 import com.github.thedeathlycow.frostiful.server.network.PointWindSpawnPacket;
-import com.github.thedeathlycow.frostiful.survival.ActiveTemperatureEffects;
-import com.github.thedeathlycow.frostiful.survival.PassiveTemperatureEffects;
-import com.github.thedeathlycow.frostiful.survival.ServerPlayerEnvironmentTickListeners;
-import com.github.thedeathlycow.frostiful.survival.SoakingController;
+import com.github.thedeathlycow.frostiful.survival.*;
 import com.github.thedeathlycow.thermoo.api.armor.material.ArmorMaterialEvents;
 import com.github.thedeathlycow.thermoo.api.temperature.event.EnvironmentControllerInitializeEvent;
 import me.shedaniel.autoconfig.AutoConfig;
@@ -89,15 +86,10 @@ public class Frostiful implements ModInitializer {
         ServerPlayerEnvironmentTickListeners.initialize();
         PassiveTemperatureEffects.initialize();
         ActiveTemperatureEffects.initialize();
+        SoakingEffects.initialize();
 
         // kept so that existing datapacks will still work even though it kinda sucks
         ArmorMaterialEvents.GET_FROST_RESISTANCE.register(new FrostResistanceProvider());
-
-        EnvironmentControllerInitializeEvent.EVENT.register(
-                controller -> FrostifulIntegrations.isModLoaded(FrostifulIntegrations.SCORCHFUL_ID)
-                        ? controller
-                        : new SoakingController(controller)
-        );
     }
 
     public static FrostifulConfig getConfig() {

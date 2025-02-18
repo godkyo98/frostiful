@@ -7,7 +7,7 @@ import com.github.thedeathlycow.frostiful.entity.component.SnowAccumulationCompo
 import com.github.thedeathlycow.frostiful.registry.tag.FBlockTags;
 import com.github.thedeathlycow.frostiful.registry.tag.FEnchantmentTags;
 import com.github.thedeathlycow.thermoo.api.temperature.event.LivingEntityTemperatureTickEvents;
-import com.github.thedeathlycow.thermoo.api.temperature.event.TemperatureTickContext;
+import com.github.thedeathlycow.thermoo.api.temperature.event.TickContext;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EquipmentSlot;
@@ -22,7 +22,7 @@ public final class PassiveTemperatureEffects {
         LivingEntityTemperatureTickEvents.GET_PASSIVE_TEMPERATURE_CHANGE.register(PassiveTemperatureEffects::getPassiveChange);
     }
 
-    private static int getPassiveChange(TemperatureTickContext<LivingEntity> context) {
+    private static int getPassiveChange(TickContext<LivingEntity> context) {
         LivingEntity entity = context.affected();
 
         // don't touch scorchful's effects
@@ -39,7 +39,7 @@ public final class PassiveTemperatureEffects {
         return total;
     }
 
-    private static int getHotFloorTemperatureChange(TemperatureTickContext<LivingEntity> context, FrostifulConfig config) {
+    private static int getHotFloorTemperatureChange(TickContext<LivingEntity> context, FrostifulConfig config) {
         LivingEntity entity = context.affected();
         BlockState steppingState = entity.getSteppingBlockState();
 
@@ -55,7 +55,7 @@ public final class PassiveTemperatureEffects {
         return 0;
     }
 
-    private static int getAndUpdateBlockLightTemperatureChange(TemperatureTickContext<LivingEntity> context) {
+    private static int getAndUpdateBlockLightTemperatureChange(TickContext<LivingEntity> context) {
         int warmthFromLight = getBlockLightTemperatureChange(context.world(), context.pos());
         if (warmthFromLight > 0) {
             SnowAccumulationComponent.get(context.affected()).meltSnowAccumulation();

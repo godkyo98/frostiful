@@ -6,7 +6,7 @@ import com.github.thedeathlycow.frostiful.registry.FEntityTypes;
 import com.github.thedeathlycow.frostiful.registry.FItems;
 import com.github.thedeathlycow.thermoo.api.ThermooTags;
 import com.github.thedeathlycow.thermoo.api.temperature.event.LivingEntityTemperatureTickEvents;
-import com.github.thedeathlycow.thermoo.api.temperature.event.TemperatureTickContext;
+import com.github.thedeathlycow.thermoo.api.temperature.event.TickContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffects;
@@ -17,7 +17,7 @@ public final class ActiveTemperatureEffects {
         LivingEntityTemperatureTickEvents.GET_ACTIVE_TEMPERATURE_CHANGE.register(ActiveTemperatureEffects::getActiveChange);
     }
 
-    private static int getActiveChange(TemperatureTickContext<LivingEntity> context) {
+    private static int getActiveChange(TickContext<LivingEntity> context) {
         LivingEntity entity = context.affected();
 
         // don't touch scorchful's effects
