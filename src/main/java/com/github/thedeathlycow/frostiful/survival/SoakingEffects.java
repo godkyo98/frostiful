@@ -21,6 +21,10 @@ public final class SoakingEffects {
     }
 
     private static int getSoakingChange(TickContext<LivingEntity> context) {
+        if (context.affected().isSpectator()) {
+            return 0;
+        }
+
         EntityInvoker invoker = (EntityInvoker) context.affected();
         FrostifulConfig config = Frostiful.getConfig();
         int total = 0;
