@@ -2,7 +2,7 @@
     "replace": false,
     "values": [
         "#c:is_taiga",
-        "#c:is_cold",
+        "#c:is_cold/overworld",
         "#c:is_hill",
         {
             "required": false,
