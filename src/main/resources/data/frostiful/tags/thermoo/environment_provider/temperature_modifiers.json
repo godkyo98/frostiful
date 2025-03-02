@@ -1,6 +1,6 @@
 {
     "replace": false,
     "values": [
-        "#frostiful:base_modifiers"
+        "frostiful:modifier/sun_light"
     ]
 }

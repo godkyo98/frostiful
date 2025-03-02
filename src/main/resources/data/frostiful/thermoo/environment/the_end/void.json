@@ -2,7 +2,7 @@
     "biomes": "#frostiful:climate/the_end/is_void",
     "exclude_biomes": "#frostiful:climate/the_end/is_not_void",
     "provider": {
-        "type": "thermoo:reduce_constant",
+        "type": "thermoo:constant",
         "components": {
             "thermoo:temperature": 15.0,
             "thermoo:relative_humidity": 0.15

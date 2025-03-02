@@ -7,8 +7,8 @@ import com.github.thedeathlycow.frostiful.registry.FGameRules;
 import com.github.thedeathlycow.frostiful.registry.FItems;
 import com.github.thedeathlycow.thermoo.api.environment.component.EnvironmentComponentTypes;
 import com.github.thedeathlycow.thermoo.api.environment.component.TemperatureRecordComponent;
-import com.github.thedeathlycow.thermoo.api.environment.event.EnvironmentTickContext;
 import com.github.thedeathlycow.thermoo.api.environment.event.ServerPlayerEnvironmentTickEvents;
+import com.github.thedeathlycow.thermoo.api.temperature.event.EnvironmentTickContext;
 import com.github.thedeathlycow.thermoo.api.util.TemperatureUnit;
 import net.fabricmc.fabric.api.util.TriState;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -28,7 +28,6 @@ public final class ServerPlayerEnvironmentTickListeners {
 
         double temperatureC = context.components()
                 .getOrDefault(EnvironmentComponentTypes.TEMPERATURE, TemperatureRecordComponent.DEFAULT)
-                .temperature()
                 .valueInUnit(TemperatureUnit.CELSIUS);
 
         if (temperatureC > 10.0) {

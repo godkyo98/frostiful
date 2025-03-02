@@ -122,8 +122,7 @@ public class PackedSnowBlock extends Block {
 
         TemperatureRecord temperature = EnvironmentLookup.getInstance()
                 .findEnvironmentComponents(world, pos)
-                .getOrDefault(EnvironmentComponentTypes.TEMPERATURE, TemperatureRecordComponent.DEFAULT)
-                .temperature();
+                .getOrDefault(EnvironmentComponentTypes.TEMPERATURE, TemperatureRecordComponent.DEFAULT);
 
         float meltChance = FREEZING_POINT.compareTo(temperature) > 0
                 ? MELT_CHANCE

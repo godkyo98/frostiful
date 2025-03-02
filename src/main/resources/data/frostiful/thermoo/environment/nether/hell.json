@@ -2,7 +2,7 @@
     "biomes": "#frostiful:climate/nether/is_hell",
     "exclude_biomes": "#frostiful:climate/nether/is_not_hell",
     "provider": {
-        "type": "thermoo:reduce_constant",
+        "type": "thermoo:constant",
         "components": {
             "thermoo:temperature": 45.0,
             "thermoo:relative_humidity": 0.01

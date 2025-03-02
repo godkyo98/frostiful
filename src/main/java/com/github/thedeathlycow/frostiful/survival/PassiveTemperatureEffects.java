@@ -6,8 +6,8 @@ import com.github.thedeathlycow.frostiful.config.FrostifulConfig;
 import com.github.thedeathlycow.frostiful.entity.component.SnowAccumulationComponent;
 import com.github.thedeathlycow.frostiful.registry.tag.FBlockTags;
 import com.github.thedeathlycow.frostiful.registry.tag.FEnchantmentTags;
+import com.github.thedeathlycow.thermoo.api.temperature.event.EnvironmentTickContext;
 import com.github.thedeathlycow.thermoo.api.temperature.event.LivingEntityTemperatureTickEvents;
-import com.github.thedeathlycow.thermoo.api.temperature.event.TickContext;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EquipmentSlot;
@@ -22,7 +22,7 @@ public final class PassiveTemperatureEffects {
         LivingEntityTemperatureTickEvents.GET_PASSIVE_TEMPERATURE_CHANGE.register(PassiveTemperatureEffects::getPassiveChange);
     }
 
-    private static int getPassiveChange(TickContext<LivingEntity> context) {
+    private static int getPassiveChange(EnvironmentTickContext<LivingEntity> context) {
         LivingEntity entity = context.affected();
 
         // don't touch scorchful's effects
@@ -39,7 +39,7 @@ public final class PassiveTemperatureEffects {
         return total;
     }
 
-    private static int getHotFloorTemperatureChange(TickContext<LivingEntity> context, FrostifulConfig config) {
+    private static int getHotFloorTemperatureChange(EnvironmentTickContext<LivingEntity> context, FrostifulConfig config) {
         LivingEntity entity = context.affected();
         BlockState steppingState = entity.getSteppingBlockState();
 
@@ -47,6 +47,7 @@ public final class PassiveTemperatureEffects {
             ItemStack footStack = entity.getEquippedStack(EquipmentSlot.FEET);
 
             if (!EnchantmentHelper.hasAnyEnchantmentsIn(footStack, FEnchantmentTags.IS_FROSTY)) {
+                // TODO: fix fire particles
                 SunLichenBlock.createFireParticles(context.world(), entity.getBlockPos());
                 return config.freezingConfig.getHeatFromHotFloor();
             }
@@ -55,7 +56,7 @@ public final class PassiveTemperatureEffects {
         return 0;
     }
 
-    private static int getAndUpdateBlockLightTemperatureChange(TickContext<LivingEntity> context) {
+    private static int getAndUpdateBlockLightTemperatureChange(EnvironmentTickContext<LivingEntity> context) {
         int warmthFromLight = getBlockLightTemperatureChange(context.world(), context.pos());
         if (warmthFromLight > 0) {
             SnowAccumulationComponent.get(context.affected()).meltSnowAccumulation();

@@ -4,8 +4,8 @@ import com.github.thedeathlycow.frostiful.Frostiful;
 import com.github.thedeathlycow.frostiful.compat.FrostifulIntegrations;
 import com.github.thedeathlycow.frostiful.config.FrostifulConfig;
 import com.github.thedeathlycow.frostiful.mixins.entity.EntityInvoker;
+import com.github.thedeathlycow.thermoo.api.temperature.event.EnvironmentTickContext;
 import com.github.thedeathlycow.thermoo.api.temperature.event.LivingEntitySoakingTickEvents;
-import com.github.thedeathlycow.thermoo.api.temperature.event.TickContext;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.LightType;
@@ -20,7 +20,7 @@ public final class SoakingEffects {
         }
     }
 
-    private static int getSoakingChange(TickContext<LivingEntity> context) {
+    private static int getSoakingChange(EnvironmentTickContext<LivingEntity> context) {
         if (context.affected().isSpectator()) {
             return 0;
         }
@@ -47,26 +47,26 @@ public final class SoakingEffects {
                 : 0;
     }
 
-    private static int getTouchingWaterChange(TickContext<LivingEntity> context, FrostifulConfig config) {
+    private static int getTouchingWaterChange(EnvironmentTickContext<LivingEntity> context, FrostifulConfig config) {
         LivingEntity entity = context.affected();
         return entity.isTouchingWater() || entity.getBlockStateAtPos().isOf(Blocks.WATER_CAULDRON)
                 ? config.environmentConfig.getTouchingWaterWetnessIncrease()
                 : 0;
     }
 
-    private static int getSubmerged(TickContext<LivingEntity> context, EntityInvoker invoker) {
+    private static int getSubmerged(EnvironmentTickContext<LivingEntity> context, EntityInvoker invoker) {
         LivingEntity entity = context.affected();
         return entity.isSubmergedInWater() || invoker.frostiful$invokeIsInsideBubbleColumn()
                 ? entity.thermoo$getMaxWetTicks()
                 : 0;
     }
 
-    private static int getLightDrying(TickContext<LivingEntity> context) {
+    private static int getLightDrying(EnvironmentTickContext<LivingEntity> context) {
         int blockLightLevel = context.world().getLightLevel(LightType.BLOCK, context.pos());
         return blockLightLevel / 4;
     }
 
-    private static int getOnFireDrying(TickContext<LivingEntity> context, FrostifulConfig config) {
+    private static int getOnFireDrying(EnvironmentTickContext<LivingEntity> context, FrostifulConfig config) {
         return context.affected().isOnFire()
                 ? config.environmentConfig.getOnFireDryDate()
                 : 0;

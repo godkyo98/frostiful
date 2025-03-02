@@ -5,10 +5,10 @@
         "type": "thermoo:seasonal/temperate",
         "seasons": {
             "winter": {
-                "type": "thermoo:reduce_sequence",
-                "modifiers": "#frostiful:temperate_modifiers",
+                "type": "thermoo:modify",
+                "modifiers": "#frostiful:temperature_modifiers",
                 "base": {
-                    "type": "thermoo:reduce_constant",
+                    "type": "thermoo:constant",
                     "components": {
                         "thermoo:temperature": 0.0
                     }
