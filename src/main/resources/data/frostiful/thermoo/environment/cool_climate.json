@@ -1,6 +1,6 @@
 {
-    "biomes": "#frostiful:climate/overworld/is_cool",
-    "exclude_biomes": "#frostiful:climate/overworld/is_not_cool",
+    "biomes": "#frostiful:is_climate/cool",
+    "exclude_biomes": "#frostiful:is_not_climate/cool",
     "provider": {
         "type": "thermoo:modify",
         "modifiers": "#frostiful:temperature_modifiers",

@@ -1,6 +1,6 @@
 {
-    "biomes": "#frostiful:climate/nether/is_hell",
-    "exclude_biomes": "#frostiful:climate/nether/is_not_hell",
+    "biomes": "#frostiful:is_climate/hell",
+    "exclude_biomes": "#frostiful:is_not_climate/hell",
     "provider": {
         "type": "thermoo:constant",
         "components": {

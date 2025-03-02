@@ -2,6 +2,7 @@
     "replace": false,
     "values": [
         "#frostiful:freezing_blacklist_biomes",
-        "#frostiful:climate/overworld/is_freezing"
+        "#frostiful:is_climate/cold",
+        "#frostiful:is_climate/freezing"
     ]
 }

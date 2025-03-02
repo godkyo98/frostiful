@@ -1,6 +1,6 @@
 {
-    "biomes": "#frostiful:climate/the_end/is_void",
-    "exclude_biomes": "#frostiful:climate/the_end/is_not_void",
+    "biomes": "#frostiful:is_climate/void",
+    "exclude_biomes": "#frostiful:is_not_climate/void",
     "provider": {
         "type": "thermoo:constant",
         "components": {
