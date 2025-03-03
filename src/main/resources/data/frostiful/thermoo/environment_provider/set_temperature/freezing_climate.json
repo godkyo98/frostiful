@@ -5,25 +5,25 @@
         "spring": {
             "type": "thermoo:constant",
             "components": {
-                "thermoo:temperature": -10.0
+                "thermoo:temperature": -15.0
             }
         },
         "summer": {
             "type": "thermoo:constant",
             "components": {
-                "thermoo:temperature": 10.0
+                "thermoo:temperature": -5.0
             }
         },
         "autumn": {
             "type": "thermoo:constant",
             "components": {
-                "thermoo:temperature": -10.0
+                "thermoo:temperature": -15.0
             }
         },
         "winter": {
             "type": "thermoo:constant",
             "components": {
-                "thermoo:temperature": -35.0
+                "thermoo:temperature": -25.0
             }
         }
     }
