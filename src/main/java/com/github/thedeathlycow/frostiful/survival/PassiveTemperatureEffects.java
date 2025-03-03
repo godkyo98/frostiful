@@ -22,7 +22,7 @@ public final class PassiveTemperatureEffects {
         LivingEntityTemperatureTickEvents.GET_PASSIVE_TEMPERATURE_CHANGE.register(PassiveTemperatureEffects::getPassiveChange);
     }
 
-    private static int getPassiveChange(EnvironmentTickContext<LivingEntity> context) {
+    private static int getPassiveChange(EnvironmentTickContext<? extends LivingEntity> context) {
         LivingEntity entity = context.affected();
 
         // don't touch scorchful's effects
@@ -39,7 +39,7 @@ public final class PassiveTemperatureEffects {
         return total;
     }
 
-    private static int getHotFloorTemperatureChange(EnvironmentTickContext<LivingEntity> context, FrostifulConfig config) {
+    private static int getHotFloorTemperatureChange(EnvironmentTickContext<? extends LivingEntity> context, FrostifulConfig config) {
         LivingEntity entity = context.affected();
         BlockState steppingState = entity.getSteppingBlockState();
 
@@ -56,7 +56,7 @@ public final class PassiveTemperatureEffects {
         return 0;
     }
 
-    private static int getAndUpdateBlockLightTemperatureChange(EnvironmentTickContext<LivingEntity> context) {
+    private static int getAndUpdateBlockLightTemperatureChange(EnvironmentTickContext<? extends LivingEntity> context) {
         int warmthFromLight = getBlockLightTemperatureChange(context.world(), context.pos());
         if (warmthFromLight > 0) {
             SnowAccumulationComponent.get(context.affected()).meltSnowAccumulation();

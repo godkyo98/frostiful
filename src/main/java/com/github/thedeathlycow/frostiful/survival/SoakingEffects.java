@@ -20,7 +20,7 @@ public final class SoakingEffects {
         }
     }
 
-    private static int getSoakingChange(EnvironmentTickContext<LivingEntity> context) {
+    private static int getSoakingChange(EnvironmentTickContext<? extends LivingEntity> context) {
         if (context.affected().isSpectator()) {
             return 0;
         }
@@ -47,26 +47,26 @@ public final class SoakingEffects {
                 : 0;
     }
 
-    private static int getTouchingWaterChange(EnvironmentTickContext<LivingEntity> context, FrostifulConfig config) {
+    private static int getTouchingWaterChange(EnvironmentTickContext<? extends LivingEntity> context, FrostifulConfig config) {
         LivingEntity entity = context.affected();
         return entity.isTouchingWater() || entity.getBlockStateAtPos().isOf(Blocks.WATER_CAULDRON)
                 ? config.environmentConfig.getTouchingWaterWetnessIncrease()
                 : 0;
     }
 
-    private static int getSubmerged(EnvironmentTickContext<LivingEntity> context, EntityInvoker invoker) {
+    private static int getSubmerged(EnvironmentTickContext<? extends LivingEntity> context, EntityInvoker invoker) {
         LivingEntity entity = context.affected();
         return entity.isSubmergedInWater() || invoker.frostiful$invokeIsInsideBubbleColumn()
                 ? entity.thermoo$getMaxWetTicks()
                 : 0;
     }
 
-    private static int getLightDrying(EnvironmentTickContext<LivingEntity> context) {
+    private static int getLightDrying(EnvironmentTickContext<? extends LivingEntity> context) {
         int blockLightLevel = context.world().getLightLevel(LightType.BLOCK, context.pos());
         return blockLightLevel / 4;
     }
 
-    private static int getOnFireDrying(EnvironmentTickContext<LivingEntity> context, FrostifulConfig config) {
+    private static int getOnFireDrying(EnvironmentTickContext<? extends LivingEntity> context, FrostifulConfig config) {
         return context.affected().isOnFire()
                 ? config.environmentConfig.getOnFireDryDate()
                 : 0;
