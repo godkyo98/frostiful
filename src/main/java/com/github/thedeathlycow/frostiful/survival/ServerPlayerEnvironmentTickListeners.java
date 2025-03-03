@@ -9,6 +9,7 @@ import com.github.thedeathlycow.thermoo.api.environment.component.EnvironmentCom
 import com.github.thedeathlycow.thermoo.api.environment.component.TemperatureRecordComponent;
 import com.github.thedeathlycow.thermoo.api.environment.event.ServerPlayerEnvironmentTickEvents;
 import com.github.thedeathlycow.thermoo.api.temperature.event.EnvironmentTickContext;
+import com.github.thedeathlycow.thermoo.api.util.TemperatureRecord;
 import com.github.thedeathlycow.thermoo.api.util.TemperatureUnit;
 import net.fabricmc.fabric.api.util.TriState;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -26,14 +27,10 @@ public final class ServerPlayerEnvironmentTickListeners {
             return 0;
         }
 
-        double temperatureC = context.components()
-                .getOrDefault(EnvironmentComponentTypes.TEMPERATURE, TemperatureRecordComponent.DEFAULT)
-                .valueInUnit(TemperatureUnit.CELSIUS);
+        TemperatureRecord temperature = context.components()
+                .getOrDefault(EnvironmentComponentTypes.TEMPERATURE, TemperatureRecordComponent.DEFAULT);
 
-        if (temperatureC > 10.0) {
-            return 0;
-        }
-        int total = MathHelper.ceil((temperatureC / 10.0) - 2);
+        int total = envTemperatureToTemperaturePoint(temperature);
 
         if (total < 0 && context.affected().thermoo$isWet()) {
             total = (int) (total * Frostiful.getConfig().environmentConfig.getEnvironmentFreezingSoakedMultiplier());
@@ -76,6 +73,16 @@ public final class ServerPlayerEnvironmentTickListeners {
                     )
             );
         }
+    }
+
+    static int envTemperatureToTemperaturePoint(TemperatureRecord temperature) {
+        double temperatureC = temperature
+                .valueInUnit(TemperatureUnit.CELSIUS);
+
+        if (temperatureC > 0.0) {
+            return 0;
+        }
+        return MathHelper.ceil((temperatureC / 10.0) - 1);
     }
 
     private ServerPlayerEnvironmentTickListeners() {
