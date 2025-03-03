@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class ServerPlayerEnvironmentTickListenersTest {
     @ParameterizedTest
     @ValueSource(doubles = {
-            -9.99, -9.0, -5.0, -0.01, 0.0
+            0.01, 1.0, 5.0, 9.99, 10.0
     })
     void coolTemperatureRangeIsNegativeOne(double temperatureC) {
         int tempChange = ServerPlayerEnvironmentTickListeners.envTemperatureToTemperaturePoint(new TemperatureRecord(temperatureC));
@@ -17,7 +17,7 @@ class ServerPlayerEnvironmentTickListenersTest {
 
     @ParameterizedTest
     @ValueSource(doubles = {
-            -19.99, -19.0, -15.0, -10.01, -10.0
+            -9.99, -9.0, -5.0, -0.01, 0.0
     })
     void coldTemperatureRangeIsNegativeTwo(double temperatureC) {
         int tempChange = ServerPlayerEnvironmentTickListeners.envTemperatureToTemperaturePoint(new TemperatureRecord(temperatureC));
@@ -26,7 +26,7 @@ class ServerPlayerEnvironmentTickListenersTest {
 
     @ParameterizedTest
     @ValueSource(doubles = {
-            -29.99, -29.0, -25.0, -20.01, -20.0
+            -19.99, -19.0, -15.0, -10.01, -10.0
     })
     void freezingTemperatureRangeIsNegativeThree(double temperatureC) {
         int tempChange = ServerPlayerEnvironmentTickListeners.envTemperatureToTemperaturePoint(new TemperatureRecord(temperatureC));
@@ -35,7 +35,7 @@ class ServerPlayerEnvironmentTickListenersTest {
 
     @ParameterizedTest
     @ValueSource(doubles = {
-            -39.99, -39.0, -35.0, -30.01, -30.0
+            -29.99, -29.0, -25.0, -20.01, -20.0
     })
     void extremeFreezingTemperatureRangeIsNegativeFour(double temperatureC) {
         int tempChange = ServerPlayerEnvironmentTickListeners.envTemperatureToTemperaturePoint(new TemperatureRecord(temperatureC));
@@ -44,7 +44,7 @@ class ServerPlayerEnvironmentTickListenersTest {
 
     @ParameterizedTest
     @ValueSource(doubles = {
-            0.01, 1.0, 5.0, 10.0, 20.0, 30.0, 100.0, Double.MAX_VALUE
+            10.01, 15.0, 20.0, 30.0, 100.0, Double.MAX_VALUE
     })
     void neutralTemperatureRangeIsZero(double temperatureC) {
         int tempChange = ServerPlayerEnvironmentTickListeners.envTemperatureToTemperaturePoint(new TemperatureRecord(temperatureC));

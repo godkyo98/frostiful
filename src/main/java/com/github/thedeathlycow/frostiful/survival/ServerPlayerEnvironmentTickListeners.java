@@ -79,10 +79,10 @@ public final class ServerPlayerEnvironmentTickListeners {
         double temperatureC = temperature
                 .valueInUnit(TemperatureUnit.CELSIUS);
 
-        if (temperatureC > 0.0) {
+        if (temperatureC > 10.0) {
             return 0;
         }
-        return MathHelper.ceil((temperatureC / 10.0) - 1);
+        return MathHelper.ceil((temperatureC / 10.0) - 2);
     }
 
     private ServerPlayerEnvironmentTickListeners() {
