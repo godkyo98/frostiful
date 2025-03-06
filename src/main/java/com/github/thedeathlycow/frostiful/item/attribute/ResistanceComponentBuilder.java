@@ -1,10 +1,13 @@
 package com.github.thedeathlycow.frostiful.item.attribute;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
+import com.github.thedeathlycow.frostiful.item.component.FrostResistanceLevelComponent;
 import com.github.thedeathlycow.frostiful.registry.FArmorMaterials;
+import com.github.thedeathlycow.frostiful.registry.FDataComponentTypes;
 import com.github.thedeathlycow.thermoo.api.ThermooAttributes;
 import com.github.thedeathlycow.thermoo.api.item.ModifyItemAttributeModifiersCallback;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.component.ComponentMap;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.AttributeModifierSlot;
@@ -21,8 +24,14 @@ import java.util.function.ToDoubleFunction;
 public final class ResistanceComponentBuilder {
     public static void initialize() {
         ModifyItemAttributeModifiersCallback.EVENT.register((stack, builder) -> {
+            if (stack.isIn(ConventionalItemTags.ARMORS) && stack.contains(FDataComponentTypes.FROST_RESISTANCE_LEVEL)) {
+                FrostResistanceLevelComponent level = stack.getOrDefault(FDataComponentTypes.FROST_RESISTANCE_LEVEL, FrostResistanceLevelComponent.NEUTRAL);
 
+
+            }
         });
+
+
         DefaultItemComponentEvents.MODIFY.register(context -> {
             modify(context, armor -> {
                 RegistryKey<ArmorMaterial> itemMaterial = armor.getMaterial().getKey().orElse(null);
