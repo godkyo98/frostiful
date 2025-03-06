@@ -3,6 +3,7 @@ package com.github.thedeathlycow.frostiful.item.attribute;
 import com.github.thedeathlycow.frostiful.Frostiful;
 import com.github.thedeathlycow.frostiful.registry.FArmorMaterials;
 import com.github.thedeathlycow.thermoo.api.ThermooAttributes;
+import com.github.thedeathlycow.thermoo.api.item.ModifyItemAttributeModifiersCallback;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.minecraft.component.ComponentMap;
 import net.minecraft.component.DataComponentTypes;
@@ -19,6 +20,9 @@ import java.util.function.ToDoubleFunction;
 
 public final class ResistanceComponentBuilder {
     public static void initialize() {
+        ModifyItemAttributeModifiersCallback.EVENT.register((stack, builder) -> {
+
+        });
         DefaultItemComponentEvents.MODIFY.register(context -> {
             modify(context, armor -> {
                 RegistryKey<ArmorMaterial> itemMaterial = armor.getMaterial().getKey().orElse(null);
