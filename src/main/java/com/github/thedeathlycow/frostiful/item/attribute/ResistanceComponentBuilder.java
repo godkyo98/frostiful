@@ -109,7 +109,7 @@ public final class ResistanceComponentBuilder {
             context.modify(
                     Items.TURTLE_HELMET,
                     builder -> {
-                        builder.add(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.HARMFUL);
+                        builder.add(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.VERY_HARMFUL);
                     }
             );
         });
