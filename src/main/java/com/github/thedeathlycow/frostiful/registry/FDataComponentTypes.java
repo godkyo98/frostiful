@@ -1,7 +1,7 @@
 package com.github.thedeathlycow.frostiful.registry;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
-import com.github.thedeathlycow.frostiful.item.attribute.FrostResistanceLevelComponent;
+import com.github.thedeathlycow.frostiful.item.attribute.FrostResistanceComponent;
 import net.minecraft.component.ComponentType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -9,11 +9,11 @@ import net.minecraft.registry.Registry;
 import java.util.function.UnaryOperator;
 
 public final class FDataComponentTypes {
-    public static final ComponentType<FrostResistanceLevelComponent> FROST_RESISTANCE_LEVEL = register(
-            "frost_resistance_level",
+    public static final ComponentType<FrostResistanceComponent> FROST_RESISTANCE = register(
+            "frost_resistance",
             builder -> builder
-                    .codec(FrostResistanceLevelComponent.CODEC)
-                    .packetCodec(FrostResistanceLevelComponent.PACKET_CODEC)
+                    .codec(FrostResistanceComponent.CODEC)
+                    .packetCodec(FrostResistanceComponent.PACKET_CODEC)
                     .cache()
     );
 
