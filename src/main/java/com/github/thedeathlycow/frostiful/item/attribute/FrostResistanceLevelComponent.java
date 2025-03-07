@@ -1,4 +1,4 @@
-package com.github.thedeathlycow.frostiful.item.component;
+package com.github.thedeathlycow.frostiful.item.attribute;
 
 import com.github.thedeathlycow.frostiful.config.FrostifulConfig;
 import com.github.thedeathlycow.frostiful.registry.tag.FItemTags;

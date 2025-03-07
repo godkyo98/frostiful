@@ -1,7 +1,7 @@
 package com.github.thedeathlycow.frostiful.registry;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
-import com.github.thedeathlycow.frostiful.item.component.FrostResistanceLevelComponent;
+import com.github.thedeathlycow.frostiful.item.attribute.FrostResistanceLevelComponent;
 import net.minecraft.component.ComponentType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;

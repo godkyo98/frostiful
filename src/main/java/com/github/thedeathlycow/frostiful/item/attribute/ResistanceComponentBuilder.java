@@ -1,7 +1,6 @@
 package com.github.thedeathlycow.frostiful.item.attribute;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
-import com.github.thedeathlycow.frostiful.item.component.FrostResistanceLevelComponent;
 import com.github.thedeathlycow.frostiful.registry.FArmorMaterials;
 import com.github.thedeathlycow.frostiful.registry.FDataComponentTypes;
 import com.github.thedeathlycow.thermoo.api.ThermooAttributes;
@@ -26,11 +25,8 @@ public final class ResistanceComponentBuilder {
         ModifyItemAttributeModifiersCallback.EVENT.register((stack, builder) -> {
             if (stack.isIn(ConventionalItemTags.ARMORS) && stack.contains(FDataComponentTypes.FROST_RESISTANCE_LEVEL)) {
                 FrostResistanceLevelComponent level = stack.getOrDefault(FDataComponentTypes.FROST_RESISTANCE_LEVEL, FrostResistanceLevelComponent.NEUTRAL);
-
-
             }
         });
-
 
         DefaultItemComponentEvents.MODIFY.register(context -> {
             modify(context, armor -> {
