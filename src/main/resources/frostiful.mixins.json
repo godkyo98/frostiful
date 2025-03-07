@@ -26,6 +26,7 @@
         "item.ArmorTrimPatternsMixin",
         "item.ConsumeItemCriterionMixin",
         "item.EnchantmentEntityEffectMixin",
+        "item.ItemStackMixin",
         "powder_snow_effects.EntityPowderSnowRedirect",
         "powder_snow_effects.LivingEntityPowderSnowDisabler",
         "world.IcicleGrowthMixin",

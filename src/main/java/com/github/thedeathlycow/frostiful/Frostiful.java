@@ -1,18 +1,17 @@
 package com.github.thedeathlycow.frostiful;
 
-import com.github.thedeathlycow.frostiful.compat.FrostifulIntegrations;
 import com.github.thedeathlycow.frostiful.config.FrostifulConfig;
 import com.github.thedeathlycow.frostiful.entity.component.FrostWandRootComponent;
 import com.github.thedeathlycow.frostiful.entity.loot.StrayLootTableModifier;
 import com.github.thedeathlycow.frostiful.item.FrostedBanner;
-import com.github.thedeathlycow.frostiful.item.attribute.FrostResistanceProvider;
 import com.github.thedeathlycow.frostiful.registry.*;
 import com.github.thedeathlycow.frostiful.server.command.RootCommand;
 import com.github.thedeathlycow.frostiful.server.command.WindCommand;
 import com.github.thedeathlycow.frostiful.server.network.PointWindSpawnPacket;
-import com.github.thedeathlycow.frostiful.survival.*;
-import com.github.thedeathlycow.thermoo.api.armor.material.ArmorMaterialEvents;
-import com.github.thedeathlycow.thermoo.api.temperature.event.EnvironmentControllerInitializeEvent;
+import com.github.thedeathlycow.frostiful.survival.ActiveTemperatureEffects;
+import com.github.thedeathlycow.frostiful.survival.PassiveTemperatureEffects;
+import com.github.thedeathlycow.frostiful.survival.ServerPlayerEnvironmentTickListeners;
+import com.github.thedeathlycow.frostiful.survival.SoakingEffects;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigHolder;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
@@ -87,9 +86,6 @@ public class Frostiful implements ModInitializer {
         PassiveTemperatureEffects.initialize();
         ActiveTemperatureEffects.initialize();
         SoakingEffects.initialize();
-
-        // kept so that existing datapacks will still work even though it kinda sucks
-        ArmorMaterialEvents.GET_FROST_RESISTANCE.register(new FrostResistanceProvider());
     }
 
     public static FrostifulConfig getConfig() {

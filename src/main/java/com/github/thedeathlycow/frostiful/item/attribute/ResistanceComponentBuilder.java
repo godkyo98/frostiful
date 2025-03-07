@@ -4,6 +4,7 @@ import com.github.thedeathlycow.frostiful.Frostiful;
 import com.github.thedeathlycow.frostiful.registry.FArmorMaterials;
 import com.github.thedeathlycow.frostiful.registry.FDataComponentTypes;
 import com.github.thedeathlycow.thermoo.api.ThermooAttributes;
+import com.github.thedeathlycow.thermoo.api.armor.material.ArmorMaterialTags;
 import com.github.thedeathlycow.thermoo.api.item.ModifyItemAttributeModifiersCallback;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.minecraft.component.ComponentMap;
@@ -14,6 +15,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.item.*;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 
 import java.util.EnumMap;
@@ -28,6 +30,21 @@ public final class ResistanceComponentBuilder {
     public static void initialize() {
         initializeComponentModifiers();
         initializeItemModifiers();
+    }
+
+    public static void applyLegacyArmorMaterialTags(ItemStack stack) {
+        if (!stack.contains(FDataComponentTypes.FROST_RESISTANCE) && stack.getItem() instanceof ArmorItem armor) {
+            RegistryEntry<ArmorMaterial> material = armor.getMaterial();
+            if (material.isIn(ArmorMaterialTags.VERY_RESISTANT_TO_COLD)) {
+                stack.set(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.VERY_PROTECTIVE);
+            } else if (material.isIn(ArmorMaterialTags.RESISTANT_TO_COLD)) {
+                stack.set(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.PROTECTIVE);
+            } else if (material.isIn(ArmorMaterialTags.VERY_WEAK_TO_COLD)) {
+                stack.set(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.VERY_HARMFUL);
+            } else if (material.isIn(ArmorMaterialTags.WEAK_TO_COLD)) {
+                stack.set(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.HARMFUL);
+            }
+        }
     }
 
     private static void initializeItemModifiers() {
@@ -59,7 +76,7 @@ public final class ResistanceComponentBuilder {
 
                 if (resistance.environmentFrostResistanceMultiplier() != 0) {
                     builder.add(
-                            ThermooAttributes.FROST_RESISTANCE,
+                            ThermooAttributes.ENVIRONMENT_FROST_RESISTANCE,
                             new EntityAttributeModifier(
                                     ENVIRONMENT_SLOT_IDS.computeIfAbsent(
                                             slot,
