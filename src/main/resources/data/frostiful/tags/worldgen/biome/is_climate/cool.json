@@ -1,0 +1,16 @@
+{
+    "replace": false,
+    "values": [
+        "#c:is_taiga",
+        "#c:is_cold/overworld",
+        "#c:is_hill",
+        {
+            "required": false,
+            "id": "#frostiful:cool_biomes"
+        },
+        {
+            "required": false,
+            "id": "#frostiful:temperature/spring/cool"
+        }
+    ]
+}

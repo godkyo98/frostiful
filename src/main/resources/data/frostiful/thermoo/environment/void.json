@@ -1,0 +1,11 @@
+{
+    "biomes": "#frostiful:is_climate/void",
+    "exclude_biomes": "#frostiful:is_not_climate/void",
+    "provider": {
+        "type": "thermoo:constant",
+        "components": {
+            "thermoo:temperature": 15.0,
+            "thermoo:relative_humidity": 0.15
+        }
+    }
+}

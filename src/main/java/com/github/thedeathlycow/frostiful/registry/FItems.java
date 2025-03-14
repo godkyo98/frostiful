@@ -2,6 +2,8 @@ package com.github.thedeathlycow.frostiful.registry;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
 import com.github.thedeathlycow.frostiful.item.*;
+import com.github.thedeathlycow.frostiful.item.attribute.FrostResistanceComponent;
+import com.github.thedeathlycow.frostiful.item.attribute.ResistanceComponentBuilder;
 import com.github.thedeathlycow.frostiful.item.cloak.AbstractFrostologyCloakItem;
 import com.github.thedeathlycow.frostiful.item.cloak.FrostologyCloakItem;
 import com.github.thedeathlycow.frostiful.item.cloak.InertFrostologyCloakItem;
@@ -23,6 +25,7 @@ public class FItems {
                     ArmorItem.Type.HELMET,
                     new Item.Settings()
                             .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(5))
+                            .component(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.VERY_PROTECTIVE)
             )
     );
     public static final Item FUR_CHESTPLATE = register(
@@ -32,6 +35,7 @@ public class FItems {
                     ArmorItem.Type.CHESTPLATE,
                     new Item.Settings()
                             .maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(5))
+                            .component(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.VERY_PROTECTIVE)
             )
     );
     public static final Item FUR_LEGGINGS = register(
@@ -41,6 +45,7 @@ public class FItems {
                     ArmorItem.Type.LEGGINGS,
                     new Item.Settings()
                             .maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(5))
+                            .component(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.VERY_PROTECTIVE)
             )
     );
     public static final Item FUR_BOOTS = register(
@@ -50,6 +55,7 @@ public class FItems {
                     ArmorItem.Type.BOOTS,
                     new Item.Settings()
                             .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(5))
+                            .component(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.VERY_PROTECTIVE)
             )
     );
 
@@ -78,6 +84,7 @@ public class FItems {
                     ArmorItem.Type.HELMET,
                     new Item.Settings()
                             .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(15))
+                            .component(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.VERY_PROTECTIVE)
             )
     );
     public static final Item FUR_PADDED_CHAINMAIL_CHESTPLATE = register(
@@ -87,6 +94,7 @@ public class FItems {
                     ArmorItem.Type.CHESTPLATE,
                     new Item.Settings()
                             .maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(15))
+                            .component(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.VERY_PROTECTIVE)
             )
     );
     public static final Item FUR_PADDED_CHAINMAIL_LEGGINGS = register(
@@ -96,6 +104,7 @@ public class FItems {
                     ArmorItem.Type.LEGGINGS,
                     new Item.Settings()
                             .maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(15))
+                            .component(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.VERY_PROTECTIVE)
             )
     );
     public static final Item FUR_PADDED_CHAINMAIL_BOOTS = register(
@@ -105,6 +114,7 @@ public class FItems {
                     ArmorItem.Type.BOOTS,
                     new Item.Settings()
                             .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(15))
+                            .component(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.VERY_PROTECTIVE)
             )
     );
 
@@ -144,6 +154,7 @@ public class FItems {
                     ArmorItem.Type.BOOTS,
                     new Item.Settings()
                             .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(5))
+                            .component(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.VERY_PROTECTIVE)
             )
     );
 
@@ -154,6 +165,7 @@ public class FItems {
                     ArmorItem.Type.BOOTS,
                     new Item.Settings()
                             .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(15))
+                            .component(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.VERY_PROTECTIVE)
             )
     );
 
@@ -367,6 +379,7 @@ public class FItems {
     public static void initialize() {
         Frostiful.LOGGER.debug("Initialized Frostiful items");
         FSmithingTemplateItem.addTemplatesToLoot();
+        ResistanceComponentBuilder.initialize();
     }
 
     private static Item register(String id, Item item) {

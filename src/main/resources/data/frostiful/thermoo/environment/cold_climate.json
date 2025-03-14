@@ -1,0 +1,9 @@
+{
+    "biomes": "#frostiful:is_climate/cold",
+    "exclude_biomes": "#frostiful:is_not_climate/cold",
+    "provider": {
+        "type": "thermoo:modify",
+        "modifiers": "#frostiful:temperature_modifiers",
+        "base": "frostiful:set_temperature/cold_climate"
+    }
+}

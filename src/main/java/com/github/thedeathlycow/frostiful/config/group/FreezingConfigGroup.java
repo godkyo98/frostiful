@@ -15,12 +15,12 @@ public class FreezingConfigGroup implements ConfigData {
     boolean spawnWindInAir = true;
     boolean windDestroysTorches = true;
     boolean doSnowPacking = true;
+    boolean applyEnvironmentPenaltyWhenWet = true;
     int passiveFreezingTickInterval = 1;
     int windSpawnCapPerSecond = 15;
     int windSpawnRarity = 750;
     int windSpawnRarityThunder = 500;
     float maxPassiveFreezingPercent = 1.0f;
-    float passiveFreezingWetnessScaleMultiplier = 2.1f;
     float soakPercentFromWaterPotion = 0.5f;
     int sunLichenHeatPerLevel = 500;
     int sunLichenBurnTime = 3 * 20;
@@ -76,10 +76,6 @@ public class FreezingConfigGroup implements ConfigData {
 
     public float getMaxPassiveFreezingPercent() {
         return maxPassiveFreezingPercent;
-    }
-
-    public float getPassiveFreezingWetnessScaleMultiplier() {
-        return passiveFreezingWetnessScaleMultiplier;
     }
 
     public float getSoakPercentFromWaterPotion() {

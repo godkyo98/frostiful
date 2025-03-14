@@ -3,48 +3,36 @@ package com.github.thedeathlycow.frostiful.config.group;
 import com.github.thedeathlycow.frostiful.Frostiful;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
+import me.shedaniel.autoconfig.annotation.ConfigEntry;
+import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 
 @Config(name = Frostiful.MODID + ".environment_config")
 public class EnvironmentConfigGroup implements ConfigData {
-
-    boolean doDryBiomeNightFreezing = true;
-
-    int nightTemperatureShift = -1;
-    int coldBiomeTemperatureChange = -1;
-    int freezingBiomeTemperatureChange = -3;
-
+    @ConfigEntry.Gui.Tooltip
+    double maxTemperatureForColdC = 10.0;
+    @ConfigEntry.Gui.Tooltip
+    double degreesCPerTemperatureDecrease = 10.0;
+    boolean applyEnvironmentPenaltyWhenWet = true;
     int rainWetnessIncrease = 1;
     int touchingWaterWetnessIncrease = 5;
-    int dryRate = 1;
     int onFireDryDate = 50;
-
     int onFireWarmRate = 50;
-
     int powderSnowFreezeRate = 30;
-
     int warmthPerLightLevel = 2;
     int minLightForWarmth = 5;
-
-    int ultrawarmWarmRate = 15;
-
     int maxSnowAccumulationTicks = 100;
+    float environmentFreezingSoakedMultiplier = 2.0f;
 
-    boolean enableSeasonsIntegration = true;
-
-    public boolean doDryBiomeNightFreezing() {
-        return doDryBiomeNightFreezing;
+    public double getMaxTemperatureForColdC() {
+        return maxTemperatureForColdC;
     }
 
-    public int getNightTemperatureShift() {
-        return nightTemperatureShift;
+    public double getDegreesCPerTemperatureDecrease() {
+        return degreesCPerTemperatureDecrease;
     }
 
-    public int getColdBiomeTemperatureChange() {
-        return coldBiomeTemperatureChange;
-    }
-
-    public int getFreezingBiomeTemperatureChange() {
-        return freezingBiomeTemperatureChange;
+    public boolean applyEnvironmentPenaltyWhenWet() {
+        return applyEnvironmentPenaltyWhenWet;
     }
 
     public int getRainWetnessIncrease() {
@@ -53,10 +41,6 @@ public class EnvironmentConfigGroup implements ConfigData {
 
     public int getTouchingWaterWetnessIncrease() {
         return touchingWaterWetnessIncrease;
-    }
-
-    public int getDryRate() {
-        return dryRate;
     }
 
     public int getOnFireDryDate() {
@@ -79,21 +63,25 @@ public class EnvironmentConfigGroup implements ConfigData {
         return minLightForWarmth;
     }
 
-    public int getUltrawarmWarmRate() {
-        return ultrawarmWarmRate;
-    }
-
     public int getMaxSnowAccumulationTicks() {
         return maxSnowAccumulationTicks;
     }
 
-    public boolean enableSeasonsIntegration() {
-        return enableSeasonsIntegration;
+    public float getEnvironmentFreezingSoakedMultiplier() {
+        return environmentFreezingSoakedMultiplier;
     }
 
     @Override
     public void validatePostLoad() throws ValidationException {
         ConfigData.super.validatePostLoad();
         this.maxSnowAccumulationTicks = Math.max(0, this.maxSnowAccumulationTicks);
+
+        if (this.maxTemperatureForColdC > 15) {
+            this.maxTemperatureForColdC = 15;
+        }
+
+        if (this.degreesCPerTemperatureDecrease <= 0) {
+            throw new ValidationException("Degrees C Per Temperature Decrease must be positive!");
+        }
     }
 }

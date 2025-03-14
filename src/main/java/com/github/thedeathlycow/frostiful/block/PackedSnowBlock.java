@@ -1,5 +1,10 @@
 package com.github.thedeathlycow.frostiful.block;
 
+import com.github.thedeathlycow.thermoo.api.environment.EnvironmentLookup;
+import com.github.thedeathlycow.thermoo.api.environment.component.EnvironmentComponentTypes;
+import com.github.thedeathlycow.thermoo.api.environment.component.TemperatureRecordComponent;
+import com.github.thedeathlycow.thermoo.api.util.TemperatureRecord;
+import com.github.thedeathlycow.thermoo.api.util.TemperatureUnit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -45,7 +50,8 @@ public class PackedSnowBlock extends Block {
             Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 16.0, 16.0)
     };
     private static final float MELT_CHANCE = 128f / 1125f;
-
+    private static final float MELT_CHANCE_WHEN_WARM = 0.75f;
+    private static final TemperatureRecord FREEZING_POINT = new TemperatureRecord(0f, TemperatureUnit.CELSIUS);
 
     public PackedSnowBlock(Settings settings) {
         super(settings);
@@ -114,7 +120,15 @@ public class PackedSnowBlock extends Block {
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         super.randomTick(state, world, pos, random);
 
-        if (random.nextFloat() < MELT_CHANCE) {
+        TemperatureRecord temperature = EnvironmentLookup.getInstance()
+                .findEnvironmentComponents(world, pos)
+                .getOrDefault(EnvironmentComponentTypes.TEMPERATURE, TemperatureRecordComponent.DEFAULT);
+
+        float meltChance = FREEZING_POINT.compareTo(temperature) > 0
+                ? MELT_CHANCE
+                : MELT_CHANCE_WHEN_WARM;
+
+        if (random.nextFloat() < meltChance) {
             world.setBlockState(pos, Blocks.SNOW.getDefaultState());
         }
     }
