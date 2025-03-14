@@ -117,20 +117,29 @@ This config contains all of the values associated with environmental temperature
 These reflect the removed config options from Frostiful, and their replacements (starting from Frostiful 2.2).
 
 * Passive freezing wetness scale multiplier `passiveFreezingWetnessScaleMultiplier`: Increases passive freezing when wet
+    - Removed in 2.2
     - Replaced with `environmentConfig/environmentFreezingSoakedMultiplier`
 * Very protective Frost Resistance multiplier `veryProtectiveFrostResistanceMultiplier`: Multiplies the base frost resistance of very protective armour materials
+    - Removed in 2.2
     - Replaced with the [Frost Resistance Item Component](./components.md#frost-resistance) 
 * Protective Frost Resistance multiplier `protectiveFrostResistanceMultiplier`: Multiplies the base frost resistance of protective armour materials
+    - Removed in 2.2
     - Replaced with the [Frost Resistance Item Component](./components.md#frost-resistance) 
 * Do dry biome night freezing `doDryBiomeNightFreezing`: Whether dry biomes, like deserts, should be cold at night.
+    - Removed in 2.2
     - Feature is now defined by [Scorchful](https://github.com/TheDeathlyCow/scorchful)'s `scorchful:set_humidity/arid_climate` [environment provider](https://thermoo.thedeathlycow.com/datapacks/environment_provider_definition/)
 * Cold biome base temperature change `coldBiomeTemperatureChange`: The base ambient temperature change per tick of snowy biomes that are not freezing. See [Temperature System](https://github.com/TheDeathlyCow/frostiful/wiki/Temperature-System).
+    - Removed in 2.2
     - Replaced by the `frostiful:cold_climate` [environment](https://thermoo.thedeathlycow.com/datapacks/environment_definition/).
 * Freezing biome base temperature change `freezingBiomeTemperatureChange`: The base ambient temperature change per tick of freezing biomes. See [Temperature System](https://github.com/TheDeathlyCow/frostiful/wiki/Temperature-System).
+    - Removed in 2.2
     - Replaced by the `frostiful:freezing_climate` [environment](https://thermoo.thedeathlycow.com/datapacks/environment_definition/).
 * Night time temperature shift `nightTemperatureShift`: Ambient temperature per tick shift in dark areas of cold or cool biomes. *This will also apply in dark places during the day.*
+    - Removed in 2.2
     - Replaced by the `frostiful:modifier/sun_light` [environment provider](https://thermoo.thedeathlycow.com/datapacks/environment_provider_definition/).
 * Dry rate `dryRate`: How many points of wetness to remove each tick when not touching water in any way.
+    - Removed in 2.2
     - No replacement, hardcoded to be handled by Thermoo directly.
 * Enable seasons integration `enableSeasonsIntegration`: Allows the passive temperature of biomes to change depending on the Season. Requires a Seasons mod like Fabric Seasons or Serene Seasons and [Thermoo Patches](https://modrinth.com/mod/thermoo-patches) to have any effect. If disabled, then the Season will always be treated as being like Spring.
+    - Removed in 2.2
     - Replaced by the `thermoo:seasonal/temperate` [environment provider types](https://thermoo.thedeathlycow.com/datapacks/environment_provider_definition/#temperate-seasonal), and used in the `frostiful:temperate_climate`, `frostiful:cool_climate`, `frostiful:cold_climate`, and `frostiful:freezing_climate` [environments](https://thermoo.thedeathlycow.com/datapacks/environment_definition/). 

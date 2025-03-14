@@ -145,6 +145,8 @@ Location: `data/frostiful/tags/thermoo/environment_provider`.
 
 ## Removed Tags
 
+Starting from Frostiful 2.2, removed tags will be documented here.
+
 ### Biome Tags
 
 | Tag ID                    | Description                                   | Removed version | Replacement                                                                 |
