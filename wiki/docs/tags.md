@@ -67,12 +67,10 @@ Location: `data/frostiful/tags/worldgen/biome`.
 | `#frostiful:has_feature/brittle_ice`             | Biomes that brittle ice sheets generate in                              | Frozen ocean                                                                                                                    |
 | `#frostiful:has_structure/chillager_outpost`     | Biomes that the [Chillager Outpost](./chillager-outpost) generates in   | Snowy plains, ice spikes                                                                                                        |
 | `#frostiful:has_structure/frostologer_castle`    | Biomes that the [Frostologer Castle](./frostologer-castle) generates in | Snowy plains, ice spikes                                                                                                        |
-| `#frostiful:dry_biomes`                          | Biomes that are cold at night                                           | Desert, savanna, badlands                                                                                                       |
 | :star: `#frostiful:freezing_blacklist_biomes`    | Biomes that can never be cold                                           | Nether and End biomes                                                                                                           |
 | `#frostiful:freezing_wind_always_spawns`         | Biomes where freezing wind will always appear on the ground             | Mountains and windswept biomes                                                                                                  |
 | `#frostiful:freezing_wind_spawns_in_storms`      | Biomes where freezing wind will appear on the ground in storms          | Snowy and hilly biomes                                                                                                          |
 | `#frostiful:freezing_wind_never_spawns`          | Biomes that freezing wind will never spawn in                           | Nether and End biomes                                                                                                           |
-| Seasonal temperature tags                        | Categorizes biome temperature based on season                           | See the [Temperature System page](https://github.com/TheDeathlyCow/frostiful/wiki/Temperature-System#seasonal-temperature-tags) |
 
 ## Damage Types
 
@@ -134,4 +132,22 @@ Location: `data/frostiful/tags/trim_pattern`.
 |------------------------------|------------------------------------------------------|-----------------------------|
 | `#frostiful:custom_patterns` | The custom patterns of Frostiful, used for rendering | Glacial, snow man, frosty   |
 
+## Environment Providers
+
+Location: `data/frostiful/tags/thermoo/environment_provider`.
+
+[Environment Provider](https://thermoo.thedeathlycow.com/datapacks/environment_provider_definition/) is a custom registry, defined in Thermoo.
+
+
+| Tag ID                             | Description                         | Default values (summarized) |
+|------------------------------------|-------------------------------------|-----------------------------|
+| `#frostiful:temperature_modifiers` | Modifies temperature in cold biomes | Add Sun light modifier      |
+
 ## Removed Tags
+
+### Biome Tags
+
+| Tag ID                    | Description                                   | Removed version | Replacement                                                                 |
+|---------------------------|-----------------------------------------------|-----------------|-----------------------------------------------------------------------------|
+| Seasonal temperature tags | Categorizes biome temperature based on season | 2.2             | `#frostiful:is_climate/*` and `#frostiful:is_not_climate/*` tags            |
+| `#frostiful:dry_biomes`   | Biomes that are cold at night                 | 2.2             | Feature moved to Scorchful (Frostiful still required for freezing to apply) |
