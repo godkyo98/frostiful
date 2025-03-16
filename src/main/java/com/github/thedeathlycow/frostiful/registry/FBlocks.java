@@ -11,12 +11,14 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 
+import java.util.function.Function;
+
 public class FBlocks {
 
     public static final Block ICICLE = register(
             "icicle",
-            new IcicleBlock(
-                    AbstractBlock.Settings.create()
+            settings -> new IcicleBlock(
+                    settings
                             .mapColor(MapColor.CYAN)
                             .nonOpaque()
                             .sounds(BlockSoundGroup.GLASS)
@@ -31,9 +33,9 @@ public class FBlocks {
 
     public static final Block COLD_SUN_LICHEN = register(
             "cold_sun_lichen",
-            new SunLichenBlock(
+            settings -> new SunLichenBlock(
                     SunLichenBlock.COLD_LEVEL,
-                    AbstractBlock.Settings.create()
+                    settings
                             .replaceable()
                             .mapColor(MapColor.RED)
                             .pistonBehavior(PistonBehavior.DESTROY)
@@ -47,9 +49,9 @@ public class FBlocks {
     );
     public static final Block COOL_SUN_LICHEN = register(
             "cool_sun_lichen",
-            new SunLichenBlock(
+            settings -> new SunLichenBlock(
                     SunLichenBlock.COOL_LEVEL,
-                    AbstractBlock.Settings.create()
+                    settings
                             .replaceable()
                             .mapColor(MapColor.RED)
                             .pistonBehavior(PistonBehavior.DESTROY)
@@ -63,9 +65,9 @@ public class FBlocks {
     );
     public static final Block WARM_SUN_LICHEN = register(
             "warm_sun_lichen",
-            new SunLichenBlock(
+            settings -> new SunLichenBlock(
                     SunLichenBlock.WARM_LEVEL,
-                    AbstractBlock.Settings.create()
+                    settings
                             .replaceable()
                             .mapColor(MapColor.RED)
                             .pistonBehavior(PistonBehavior.DESTROY)
@@ -79,9 +81,9 @@ public class FBlocks {
     );
     public static final Block HOT_SUN_LICHEN = register(
             "hot_sun_lichen",
-            new SunLichenBlock(
+            settings -> new SunLichenBlock(
                     SunLichenBlock.HOT_LEVEL,
-                    AbstractBlock.Settings.create()
+                    settings
                             .replaceable()
                             .mapColor(MapColor.RED)
                             .pistonBehavior(PistonBehavior.DESTROY)
@@ -96,8 +98,8 @@ public class FBlocks {
 
     public static final Block FROZEN_TORCH = register(
             "frozen_torch",
-            new FrozenTorchBlock(
-                    AbstractBlock.Settings.create()
+            settings -> new FrozenTorchBlock(
+                    settings
                             .noCollision()
                             .breakInstantly()
                             .pistonBehavior(PistonBehavior.DESTROY)
@@ -107,16 +109,17 @@ public class FBlocks {
 
     public static final Block FROZEN_WALL_TORCH = register(
             "frozen_wall_torch",
-            new FrozenWallTorchBlock(
-                    AbstractBlock.Settings.copy(FROZEN_TORCH)
+            settings -> new FrozenWallTorchBlock(
+                    settings
                             .dropsLike(FROZEN_TORCH)
-            )
+            ),
+            AbstractBlock.Settings.copy(FROZEN_TORCH)
     );
 
     public static final Block PACKED_SNOW = register(
             "packed_snow",
-            new PackedSnowBlock(
-                    AbstractBlock.Settings.create()
+            settings -> new PackedSnowBlock(
+                    settings
                             .mapColor(MapColor.WHITE)
                             .replaceable()
                             .notSolid()
@@ -133,8 +136,8 @@ public class FBlocks {
 
     public static final Block PACKED_SNOW_BLOCK = register(
             "packed_snow_block",
-            new Block(
-                    AbstractBlock.Settings.create()
+            settings -> new Block(
+                    settings
                             .mapColor(MapColor.WHITE_GRAY)
                             .requiresTool()
                             .strength(1.5f, 6.0f)
@@ -144,8 +147,8 @@ public class FBlocks {
 
     public static final Block PACKED_SNOW_BRICKS = register(
             "packed_snow_bricks",
-            new Block(
-                    AbstractBlock.Settings.create()
+            settings -> new Block(
+                    settings
                             .mapColor(MapColor.WHITE_GRAY)
                             .requiresTool()
                             .strength(1.5f, 6.0f)
@@ -155,26 +158,29 @@ public class FBlocks {
 
     public static final Block PACKED_SNOW_BRICK_STAIRS = register(
             "packed_snow_brick_stairs",
-            new StairsBlock(
+            settings -> new StairsBlock(
                     PACKED_SNOW_BRICKS.getDefaultState(),
-                    AbstractBlock.Settings.copy(PACKED_SNOW_BRICKS)
-            )
+                    settings
+            ),
+            AbstractBlock.Settings.copy(PACKED_SNOW_BRICKS)
     );
 
     public static final Block PACKED_SNOW_BRICK_SLAB = register(
             "packed_snow_brick_slab",
-            new SlabBlock(AbstractBlock.Settings.copy(PACKED_SNOW_BRICKS))
+            settings -> new SlabBlock(settings),
+            AbstractBlock.Settings.copy(PACKED_SNOW_BRICKS)
     );
 
     public static final Block PACKED_SNOW_BRICK_WALL = register(
             "packed_snow_brick_wall",
-            new WallBlock(AbstractBlock.Settings.copy(PACKED_SNOW_BRICKS))
+            settings -> new WallBlock(settings),
+            AbstractBlock.Settings.copy(PACKED_SNOW_BRICKS)
     );
 
     public static final Block ICE_PANE = register(
             "ice_pane",
-            new IcePaneBlock(
-                    AbstractBlock.Settings.create()
+            settings -> new IcePaneBlock(
+                    settings
                             .mapColor(MapColor.PALE_PURPLE)
                             .strength(0.5f)
                             .ticksRandomly()
@@ -187,8 +193,8 @@ public class FBlocks {
 
     public static final Block CUT_PACKED_ICE = register(
             "cut_packed_ice",
-            new Block(
-                    AbstractBlock.Settings.create()
+            settings -> new Block(
+                    settings
                             .mapColor(MapColor.PALE_PURPLE)
                             .instrument(NoteBlockInstrument.CHIME)
                             .slipperiness(0.98f)
@@ -200,55 +206,62 @@ public class FBlocks {
 
     public static final Block CUT_PACKED_ICE_STAIRS = register(
             "cut_packed_ice_stairs",
-            new StairsBlock(
+            settings -> new StairsBlock(
                     CUT_PACKED_ICE.getDefaultState(),
-                    AbstractBlock.Settings.copy(CUT_PACKED_ICE)
-            )
+                    settings
+            ),
+            AbstractBlock.Settings.copy(CUT_PACKED_ICE)
     );
 
     public static final Block CUT_PACKED_ICE_SLAB = register(
             "cut_packed_ice_slab",
-            new SlabBlock(AbstractBlock.Settings.copy(CUT_PACKED_ICE))
+            settings -> new SlabBlock(settings),
+            AbstractBlock.Settings.copy(CUT_PACKED_ICE)
     );
 
     public static final Block CUT_PACKED_ICE_WALL = register(
             "cut_packed_ice_wall",
-            new WallBlock(AbstractBlock.Settings.copy(CUT_PACKED_ICE))
+            settings -> new WallBlock(settings),
+            AbstractBlock.Settings.copy(CUT_PACKED_ICE)
     );
 
     public static final Block CUT_BLUE_ICE = register(
             "cut_blue_ice",
-            new Block(AbstractBlock.Settings.create()
-                    .mapColor(MapColor.PALE_PURPLE)
-                    .slipperiness(0.989f)
-                    .strength(2.8f)
-                    .requiresTool()
-                    .sounds(BlockSoundGroup.GLASS)
+            settings -> new Block(
+                    settings
+                            .mapColor(MapColor.PALE_PURPLE)
+                            .slipperiness(0.989f)
+                            .strength(2.8f)
+                            .requiresTool()
+                            .sounds(BlockSoundGroup.GLASS)
             )
     );
 
     public static final Block CUT_BLUE_ICE_STAIRS = register(
             "cut_blue_ice_stairs",
-            new StairsBlock(
+            settings -> new StairsBlock(
                     CUT_BLUE_ICE.getDefaultState(),
-                    AbstractBlock.Settings.copy(CUT_BLUE_ICE)
-            )
+                    settings
+            ),
+            AbstractBlock.Settings.copy(CUT_BLUE_ICE)
     );
 
     public static final Block CUT_BLUE_ICE_SLAB = register(
             "cut_blue_ice_slab",
-            new SlabBlock(AbstractBlock.Settings.copy(CUT_BLUE_ICE))
+            settings -> new SlabBlock(settings),
+            AbstractBlock.Settings.copy(CUT_BLUE_ICE)
     );
 
     public static final Block CUT_BLUE_ICE_WALL = register(
             "cut_blue_ice_wall",
-            new WallBlock(AbstractBlock.Settings.copy(CUT_BLUE_ICE))
+            settings -> new WallBlock(settings),
+            AbstractBlock.Settings.copy(CUT_BLUE_ICE)
     );
 
     public static final Block ICY_TRIAL_SPAWNER = register(
             "icy_trial_spawner",
-            new TrialSpawnerBlock(
-                    AbstractBlock.Settings.create()
+            settings -> new TrialSpawnerBlock(
+                    settings
                             .mapColor(MapColor.DARK_AQUA)
                             .instrument(NoteBlockInstrument.BASEDRUM)
                             .luminance(state -> state.get(TrialSpawnerBlock.TRIAL_SPAWNER_STATE).getLuminance())
@@ -260,8 +273,8 @@ public class FBlocks {
     );
     public static final Block ICY_VAULT = register(
             "icy_vault",
-            new VaultBlock(
-                    AbstractBlock.Settings.create()
+            settings -> new VaultBlock(
+                    settings
                             .mapColor(MapColor.DARK_AQUA)
                             .instrument(NoteBlockInstrument.BASEDRUM)
                             .nonOpaque()
@@ -274,8 +287,8 @@ public class FBlocks {
 
     public static final Block BRITTLE_ICE = register(
             "brittle_ice",
-            new BrittleIceBlock(
-                    AbstractBlock.Settings.create()
+            settings -> new BrittleIceBlock(
+                    settings
                             .mapColor(MapColor.PALE_PURPLE)
                             .slipperiness(0.98f)
                             .ticksRandomly()
@@ -295,7 +308,12 @@ public class FBlocks {
         BlockEntityType.VAULT.addSupportedBlock(ICY_VAULT);
     }
 
-    private static Block register(String id, Block block) {
+    private static Block register(String id, Function<AbstractBlock.Settings, Block> blockFactory) {
+        return register(id, blockFactory, AbstractBlock.Settings.create());
+    }
+
+    private static Block register(String id, Function<AbstractBlock.Settings, Block> blockFactory, AbstractBlock.Settings settings) {
+        Block block = blockFactory.apply(settings);
         return Registry.register(Registries.BLOCK, Frostiful.id(id), block);
     }
 

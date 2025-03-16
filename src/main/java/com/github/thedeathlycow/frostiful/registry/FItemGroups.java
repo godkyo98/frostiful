@@ -11,8 +11,6 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 
 public class FItemGroups {
-
-
     public static final ItemGroup FROSTIFUL = Registry.register(
             Registries.ITEM_GROUP,
             Frostiful.id("main"),
