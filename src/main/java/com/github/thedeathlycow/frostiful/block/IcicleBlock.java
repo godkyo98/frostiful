@@ -21,7 +21,6 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.hit.BlockHitResult;
@@ -38,6 +37,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.tick.ScheduledTickView;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
@@ -55,7 +55,7 @@ public class IcicleBlock extends Block implements LandingBlock, Waterloggable {
     /**
      * Icicles can point up and down
      */
-    public static final DirectionProperty VERTICAL_DIRECTION = Properties.VERTICAL_DIRECTION;
+    public static final EnumProperty<Direction> VERTICAL_DIRECTION = Properties.VERTICAL_DIRECTION;
     /**
      * Icicles have varying levels of thickness
      */
@@ -117,7 +117,7 @@ public class IcicleBlock extends Block implements LandingBlock, Waterloggable {
     @Override
     public void onProjectileHit(World world, BlockState state, BlockHitResult hit, ProjectileEntity projectile) {
         BlockPos blockPos = hit.getBlockPos();
-        if (!world.isClient && projectile.canModifyAt(world, blockPos) && projectile.getVelocity().length() > 0.6D) {
+        if (world instanceof ServerWorld serverWorld && projectile.canModifyAt(serverWorld, blockPos) && projectile.getVelocity().length() > 0.6D) {
             world.breakBlock(blockPos, true);
         }
     }
@@ -194,22 +194,31 @@ public class IcicleBlock extends Block implements LandingBlock, Waterloggable {
      * @return Returns the updated {@link BlockState} of the icicle
      */
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+    public BlockState getStateForNeighborUpdate(
+            BlockState state,
+            WorldView world,
+            ScheduledTickView tickView,
+            BlockPos pos,
+            Direction direction,
+            BlockPos neighborPos,
+            BlockState neighborState,
+            Random random
+    ) {
         if (state.get(WATERLOGGED)) {
-            world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+            tickView.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
 
         if (direction != Direction.UP && direction != Direction.DOWN) {
             return state;
         } else {
             Direction pointingIn = state.get(VERTICAL_DIRECTION);
-            if (pointingIn == Direction.DOWN && world.getBlockTickScheduler().isQueued(pos, this)) {
+            if (pointingIn == Direction.DOWN && tickView.getBlockTickScheduler().isQueued(pos, this)) {
                 return state;
             } else if (direction == pointingIn.getOpposite() && !this.canPlaceAt(state, world, pos)) {
                 if (pointingIn == Direction.DOWN) {
-                    world.scheduleBlockTick(pos, this, 2);
+                    tickView.scheduleBlockTick(pos, this, 2);
                 } else {
-                    world.scheduleBlockTick(pos, this, 1);
+                    tickView.scheduleBlockTick(pos, this, 1);
                 }
 
                 return state;
@@ -270,7 +279,7 @@ public class IcicleBlock extends Block implements LandingBlock, Waterloggable {
     }
 
     @Override
-    public VoxelShape getCullingShape(BlockState state, BlockView world, BlockPos pos) {
+    public VoxelShape getCullingShape(BlockState state) {
         return VoxelShapes.empty();
     }
 
@@ -294,7 +303,7 @@ public class IcicleBlock extends Block implements LandingBlock, Waterloggable {
             voxelShape = MIDDLE_SHAPE;
         }
 
-        Vec3d vec3d = state.getModelOffset(world, pos);
+        Vec3d vec3d = state.getModelOffset(pos);
         return voxelShape.offset(vec3d.x, 0.0D, vec3d.z);
     }
 
@@ -438,7 +447,7 @@ public class IcicleBlock extends Block implements LandingBlock, Waterloggable {
 
         if (world.isRaining()) {
             Biome biome = world.getBiome(anchorPos).value();
-            return biome.isCold(anchorPos);
+            return biome.isCold(anchorPos, world.getSeaLevel());
         }
 
         return anchorState.isIn(FBlockTags.ICICLE_GROWABLE);
