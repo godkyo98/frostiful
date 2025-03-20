@@ -20,6 +20,7 @@ public final class FItemTags {
     public static final TagKey<Item> FROSTOLOGY_CLOAKS = register("frostology_cloaks");
     public static final TagKey<Item> REPAIRS_FUR_ARMOR = register("repairs_fur_armor");
     public static final TagKey<Item> REPAIRS_FUR_LINED_CHAINMAIL_ARMOR = register("repairs_fur_lined_chainmail_armor");
+    public static final TagKey<Item> REPAIRS_FROST_WAND = register("repairs_frost_wand");
 
     private static TagKey<Item> register(String id) {
         return TagKey.of(RegistryKeys.ITEM, Frostiful.id(id));

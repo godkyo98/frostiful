@@ -4,7 +4,6 @@ import com.github.thedeathlycow.frostiful.Frostiful;
 import com.github.thedeathlycow.frostiful.config.FrostifulConfig;
 import com.github.thedeathlycow.frostiful.entity.FrostSpellEntity;
 import com.github.thedeathlycow.frostiful.registry.FComponents;
-import com.github.thedeathlycow.frostiful.registry.FItems;
 import com.github.thedeathlycow.frostiful.registry.FSoundEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.component.type.AttributeModifierSlot;
@@ -19,11 +18,11 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.consume.UseAction;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.stat.Stats;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -39,7 +38,7 @@ public class FrostWandItem extends Item {
     public static AttributeModifiersComponent createAttributeModifiers() {
         return AttributeModifiersComponent.builder()
                 .add(
-                        EntityAttributes.GENERIC_ATTACK_DAMAGE,
+                        EntityAttributes.ATTACK_DAMAGE,
                         new EntityAttributeModifier(
                                 BASE_ATTACK_DAMAGE_MODIFIER_ID,
                                 5.0,
@@ -48,7 +47,7 @@ public class FrostWandItem extends Item {
                         AttributeModifierSlot.MAINHAND
                 )
                 .add(
-                        EntityAttributes.GENERIC_ATTACK_SPEED,
+                        EntityAttributes.ATTACK_SPEED,
                         new EntityAttributeModifier(
                                 BASE_ATTACK_SPEED_MODIFIER_ID,
                                 -2.9f,
@@ -75,17 +74,12 @@ public class FrostWandItem extends Item {
     }
 
     @Override
-    public boolean canRepair(ItemStack stack, ItemStack ingredient) {
-        return ingredient.isOf(FItems.FROZEN_ROD);
-    }
-
-    @Override
     public float getBonusAttackDamage(Entity target, float baseAttackDamage, DamageSource damageSource) {
         Entity attacker = damageSource.getAttacker();
         boolean resetCooldown = target instanceof LivingEntity livingEntity
                 && FComponents.FROST_WAND_ROOT_COMPONENT.get(livingEntity).isRooted();
         if (attacker instanceof PlayerEntity player && resetCooldown) {
-            player.getItemCooldownManager().set(this, 0);
+            player.getItemCooldownManager().set(this.getDefaultStack(), 0);
         }
 
         return super.getBonusAttackDamage(target, baseAttackDamage, damageSource);
@@ -107,11 +101,13 @@ public class FrostWandItem extends Item {
     }
 
     @Override
-    public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
+    public boolean onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
         int useTime = this.getMaxUseTime(stack, user) - remainingUseTicks;
         if (useTime > 10 && !world.isClient) {
             fireFrostSpell(stack, world, user);
+            return true;
         }
+        return false;
     }
 
     public static void fireFrostSpell(ItemStack frostWandStack, World world, LivingEntity user) {
@@ -133,15 +129,15 @@ public class FrostWandItem extends Item {
         if (user instanceof PlayerEntity player) {
             frostWandStack.damage(1, player, LivingEntity.getSlotForHand(player.getActiveHand()));
             player.incrementStat(Stats.USED.getOrCreateStat(frostWandStack.getItem()));
-            player.getItemCooldownManager().set(frostWandStack.getItem(), config.combatConfig.getFrostWandCooldown());
+            player.getItemCooldownManager().set(frostWandStack, config.combatConfig.getFrostWandCooldown());
         }
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+    public ActionResult use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
         if (itemStack.getDamage() >= itemStack.getMaxDamage() - 1) {
-            return TypedActionResult.fail(itemStack);
+            return ActionResult.FAIL;
         } else {
             if (!world.isClient) {
                 world.playSound(
@@ -153,7 +149,7 @@ public class FrostWandItem extends Item {
                 );
             }
             user.setCurrentHand(hand);
-            return TypedActionResult.consume(itemStack);
+            return ActionResult.SUCCESS;
         }
     }
 
@@ -164,11 +160,6 @@ public class FrostWandItem extends Item {
         }
 
         return true;
-    }
-
-    @Override
-    public int getEnchantability() {
-        return 15;
     }
 
 //    @Override

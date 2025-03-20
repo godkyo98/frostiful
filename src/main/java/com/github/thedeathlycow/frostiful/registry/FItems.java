@@ -8,6 +8,7 @@ import com.github.thedeathlycow.frostiful.item.cloak.AbstractFrostologyCloakItem
 import com.github.thedeathlycow.frostiful.item.cloak.FrostologyCloakItem;
 import com.github.thedeathlycow.frostiful.item.cloak.InertFrostologyCloakItem;
 import com.github.thedeathlycow.frostiful.registry.tag.FBannerPatternTags;
+import com.github.thedeathlycow.frostiful.registry.tag.FItemTags;
 import net.minecraft.block.Block;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.*;
@@ -191,6 +192,8 @@ public final class FItems {
                             .attributeModifiers(FrostWandItem.createAttributeModifiers())
                             .component(DataComponentTypes.TOOL, FrostWandItem.createToolComponent())
                             .rarity(Rarity.RARE)
+                            .repairable(FItemTags.REPAIRS_FROST_WAND)
+                            .enchantable(15)
             )
     );
     public static final Item GLACIAL_ARROW = register(
