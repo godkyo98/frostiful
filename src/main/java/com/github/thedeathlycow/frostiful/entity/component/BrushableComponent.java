@@ -60,7 +60,7 @@ public class BrushableComponent implements Component, AutoSyncedComponent {
             if (!animal.getWorld().isClient) {
                 heldItem.damage(16, player, LivingEntity.getSlotForHand(hand));
             }
-            return ActionResult.success(animal.getWorld().isClient);
+            return ActionResult.SUCCESS;
         }
 
         return ActionResult.PASS;

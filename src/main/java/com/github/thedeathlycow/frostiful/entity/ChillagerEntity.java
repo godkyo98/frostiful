@@ -32,13 +32,13 @@ public class ChillagerEntity extends PillagerEntity {
     }
 
     @Override
-    public boolean damage(DamageSource source, float amount) {
+    public boolean damage(ServerWorld world, DamageSource source, float amount) {
         if (source.isIn(DamageTypeTags.IS_FIRE)) {
             FrostifulConfig config = Frostiful.getConfig();
             amount *= config.combatConfig.getChillagerFireDamageMultiplier();
         }
 
-        return super.damage(source, amount);
+        return super.damage(world, source, amount);
     }
 
     @Override

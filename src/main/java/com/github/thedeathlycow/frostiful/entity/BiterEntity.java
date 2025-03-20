@@ -21,6 +21,7 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.raid.RaiderEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
@@ -50,8 +51,8 @@ public class BiterEntity extends HostileEntity {
 
     public static DefaultAttributeContainer.Builder createBiterAttributes() {
         return HostileEntity.createHostileAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 14.0)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 7.0)
+                .add(EntityAttributes.MAX_HEALTH, 14.0)
+                .add(EntityAttributes.ATTACK_DAMAGE, 7.0)
                 .add(ThermooAttributes.MIN_TEMPERATURE, 45.0)
                 .add(FEntityAttributes.ICE_BREAK_DAMAGE, 5.0);
     }
@@ -68,9 +69,9 @@ public class BiterEntity extends HostileEntity {
     }
 
     @Override
-    public boolean tryAttack(Entity target) {
+    public boolean tryAttack(ServerWorld world, Entity target) {
         this.attackTicks = ATTACK_TIME;
-        this.getWorld().sendEntityStatus(this, EntityStatuses.PLAY_ATTACK_SOUND);
+        world.sendEntityStatus(this, EntityStatuses.PLAY_ATTACK_SOUND);
         this.playAttackSound();
         if (target instanceof LivingEntity livingTarget && FComponents.FROST_WAND_ROOT_COMPONENT.get(livingTarget).isRooted()) {
             int maxAmplifier = Frostiful.getConfig().combatConfig.getBiterFrostBiteMaxAmplifier() + 1;
@@ -84,7 +85,7 @@ public class BiterEntity extends HostileEntity {
                     this
             );
         }
-        return super.tryAttack(target);
+        return super.tryAttack(world, target);
     }
 
     @Override
@@ -189,6 +190,7 @@ public class BiterEntity extends HostileEntity {
             this.setControls(EnumSet.of(Control.MOVE));
         }
 
+        @Override
         public boolean canStart() {
             LivingEntity target = BiterEntity.this.getTarget();
 
@@ -204,6 +206,7 @@ public class BiterEntity extends HostileEntity {
             }
         }
 
+        @Override
         public boolean shouldContinue() {
             return BiterEntity.this.getMoveControl().isMoving()
                     && BiterEntity.this.isCharging()
@@ -211,6 +214,7 @@ public class BiterEntity extends HostileEntity {
                     && BiterEntity.this.getTarget().isAlive();
         }
 
+        @Override
         public void start() {
             LivingEntity target = BiterEntity.this.getTarget();
             if (target != null) {
@@ -222,21 +226,24 @@ public class BiterEntity extends HostileEntity {
             BiterEntity.this.playSound(SoundEvents.ENTITY_VEX_CHARGE, 1.0f, 1.0f);
         }
 
+        @Override
         public void stop() {
             BiterEntity.this.setCharging(false);
         }
 
+        @Override
         public boolean shouldRunEveryTick() {
             return true;
         }
 
+        @Override
         public void tick() {
             LivingEntity target = BiterEntity.this.getTarget();
             if (target != null) {
 
                 double distanceToTarget = BiterEntity.this.squaredDistanceTo(target);
                 if (distanceToTarget < 1.5) {
-                    BiterEntity.this.tryAttack(target);
+                    BiterEntity.this.tryAttack(getServerWorld(target), target);
                     BiterEntity.this.setCharging(false);
                 } else if (distanceToTarget < 9.0) {
                     Vec3d targetPos = target.getEyePos();

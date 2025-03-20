@@ -566,7 +566,7 @@ public class IcicleBlock extends Block implements LandingBlock, Waterloggable {
     }
 
     private static void createUnstableParticle(World world, BlockPos pos, BlockState state) {
-        Vec3d vec3d = state.getModelOffset(world, pos);
+        Vec3d vec3d = state.getModelOffset(pos);
         double xOffset = (double) pos.getX() + 0.5D + vec3d.x;
         double yOffset = (double) ((float) (pos.getY() + 1) - 0.6875F) - 0.0625D;
         double zOffset = (double) pos.getZ() + 0.5D + vec3d.z;

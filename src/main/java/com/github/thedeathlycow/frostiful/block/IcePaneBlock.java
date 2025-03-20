@@ -15,7 +15,7 @@ public class IcePaneBlock extends PaneBlock {
     }
 
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (world.getLightLevel(LightType.BLOCK, pos) > 11 - state.getOpacity(world, pos)) {
+        if (world.getLightLevel(LightType.BLOCK, pos) > 11 - state.getOpacity()) {
             world.removeBlock(pos, false);
         }
     }

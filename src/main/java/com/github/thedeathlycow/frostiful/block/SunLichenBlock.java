@@ -52,7 +52,7 @@ public class SunLichenBlock extends GlowLichenBlock implements Heatable {
 
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (entity instanceof LivingEntity livingEntity) {
+        if (entity instanceof LivingEntity livingEntity && world instanceof ServerWorld serverWorld) {
             if (this.heatLevel > COLD_LEVEL && this.canBurnEntity(livingEntity)) {
                 FrostifulConfig config = Frostiful.getConfig();
 
@@ -69,7 +69,7 @@ public class SunLichenBlock extends GlowLichenBlock implements Heatable {
                     }
                 }
 
-                entity.damage(world.getDamageSources().hotFloor(), 1);
+                entity.damage(serverWorld, world.getDamageSources().hotFloor(), 1);
                 if (livingEntity instanceof ServerPlayerEntity player) {
                     FCriteria.SUN_LICHEN_DISCHARGE.trigger(player, heatToDischarge);
                 }
