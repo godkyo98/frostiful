@@ -2,7 +2,6 @@ package com.github.thedeathlycow.frostiful.item.attribute;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.Util;
 
@@ -20,14 +19,14 @@ public enum FArmorType implements StringIdentifiable {
             FArmorType::values
     );
 
-    private static final Map<ArmorItem.Type, FArmorType> ARMOR_TYPE_TO_FROST_RESISTANCE = Util.make(
-            new EnumMap<>(ArmorItem.Type.class),
+    private static final Map<EquipmentSlot, FArmorType> ARMOR_TYPE_TO_FROST_RESISTANCE = Util.make(
+            new EnumMap<>(EquipmentSlot.class),
             map -> {
-                map.put(ArmorItem.Type.HELMET, FArmorType.HELMET);
-                map.put(ArmorItem.Type.CHESTPLATE, FArmorType.CHESTPLATE);
-                map.put(ArmorItem.Type.LEGGINGS, FArmorType.LEGGINGS);
-                map.put(ArmorItem.Type.BOOTS, FArmorType.BOOTS);
-                map.put(ArmorItem.Type.BODY, FArmorType.BODY);
+                map.put(EquipmentSlot.HEAD, FArmorType.HELMET);
+                map.put(EquipmentSlot.CHEST, FArmorType.CHESTPLATE);
+                map.put(EquipmentSlot.LEGS, FArmorType.LEGGINGS);
+                map.put(EquipmentSlot.FEET, FArmorType.BOOTS);
+                map.put(EquipmentSlot.BODY, FArmorType.BODY);
             }
     );
 
@@ -43,7 +42,7 @@ public enum FArmorType implements StringIdentifiable {
         this.baseEnvironmentFrostResistance = baseEnvironmentFrostResistance;
     }
 
-    public static FArmorType forArmorType(ArmorItem.Type armorType) {
+    public static FArmorType forEquipmentSlot(EquipmentSlot armorType) {
         return ARMOR_TYPE_TO_FROST_RESISTANCE.getOrDefault(armorType, BODY);
     }
 
