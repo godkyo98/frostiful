@@ -8,6 +8,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MovementType;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
@@ -17,11 +18,13 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.profiler.Profiler;
+import net.minecraft.util.profiler.Profilers;
 import net.minecraft.world.World;
 
 import java.util.function.Predicate;
@@ -49,26 +52,28 @@ public class WindEntity extends Entity {
         this.moveTickOffset = world.random.nextBetween(1, 10) - 1;
     }
 
+
+
     @Override
     public boolean shouldSave() {
         return false;
     }
 
-    @Override
-    public void baseTick() {
-        World world = getWorld();
-        Profiler profiler = world.getProfiler();
-        profiler.push("entityBaseTick");
-
-        this.attemptTickInVoid();
-
-        this.prevHorizontalSpeed = this.horizontalSpeed;
-        this.prevPitch = this.getPitch();
-        this.prevYaw = this.getYaw();
-
-        this.firstUpdate = false;
-        profiler.pop();
-    }
+//    @Override
+//    public void baseTick() {
+//        World world = getWorld();
+//        Profiler profiler = world.getProfiler();
+//        profiler.push("entityBaseTick");
+//
+//        this.attemptTickInVoid();
+//
+//        this.prevHorizontalSpeed = this.horizontalSpeed;
+//        this.prevPitch = this.getPitch();
+//        this.prevYaw = this.getYaw();
+//
+//        this.firstUpdate = false;
+//        profiler.pop();
+//    }
 
     @Override
     public void tick() {
@@ -79,7 +84,7 @@ public class WindEntity extends Entity {
         }
 
         World world = getWorld();
-        var profiler = world.getProfiler();
+        var profiler = Profilers.get();
         profiler.push("windTick");
 
         if (this.isOnFire()) {
@@ -155,6 +160,11 @@ public class WindEntity extends Entity {
         return true;
     }
 
+    @Override
+    public boolean damage(ServerWorld world, DamageSource source, float amount) {
+        return false;
+    }
+
     public float getWindSpeed() {
         return windSpeed;
     }
@@ -200,8 +210,8 @@ public class WindEntity extends Entity {
     }
 
     public static void pushEntity(LivingEntity entity, World world, Vec3d pos, double scale) {
-        Vec3d push = entity.isFallFlying() ? ELYTRA_PUSH : REGULAR_PUSH;
-        scale *= 1.0 - entity.getAttributeValue(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE);
+        Vec3d push = entity.isGliding() ? ELYTRA_PUSH : REGULAR_PUSH;
+        scale *= 1.0 - entity.getAttributeValue(EntityAttributes.KNOCKBACK_RESISTANCE);
 
         entity.addVelocity(push.x * scale, push.y * scale, push.z * scale);
         entity.velocityModified = true;

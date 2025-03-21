@@ -65,21 +65,11 @@ public final class FItems {
 
     public static final Item FUR_PADDING = register("fur_padding");
 
-    public static final Item FUR_UPGRADE_TEMPLATE = register(
-            "fur_upgrade_template",
-            settings -> FurSmithingUpgradeTemplate.createItem()
-    );
+    public static final Item FUR_UPGRADE_TEMPLATE = register("fur_upgrade_template", FurSmithingUpgradeTemplate::createItem);
 
+    public static final Item ICE_SKATE_UPGRADE_TEMPLATE = register("ice_skate_upgrade_template", IceSkateUpgradeTemplate::createItem);
 
-    public static final Item ICE_SKATE_UPGRADE_TEMPLATE = register(
-            "ice_skate_upgrade_template",
-            settings -> IceSkateUpgradeTemplate.createItem()
-    );
-
-    public static final Item FROSTY_ARMOR_TRIM_SMITHING_TEMPLATE = register(
-            "frosty_armor_trim_smithing_template",
-            settings -> SmithingTemplateItem.of(settings)
-    );
+    public static final Item FROSTY_ARMOR_TRIM_SMITHING_TEMPLATE = register("frosty_armor_trim_smithing_template", SmithingTemplateItem::of);
 
     public static final Item FUR_PADDED_CHAINMAIL_HELMET = register(
             "fur_padded_chainmail_helmet",

@@ -59,7 +59,7 @@ public final class FrostedBanner {
                                         RegistryEntryLookup<BannerPattern> lookup = context.getSource()
                                                 .getServer()
                                                 .getRegistryManager()
-                                                .getWrapperOrThrow(RegistryKeys.BANNER_PATTERN);
+                                                .getOrThrow(RegistryKeys.BANNER_PATTERN);
                                         ItemStack stack = FrostedBanner.createItem(lookup);
                                         player.getInventory().insertStack(stack);
                                     }

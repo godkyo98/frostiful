@@ -9,6 +9,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SnowBlock;
 import net.minecraft.entity.Entity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
@@ -31,7 +32,7 @@ public abstract class SnowPackingMixin {
                 && entity.getType().isIn(FEntityTypeTags.HEAVY_ENTITY_TYPES)
                 && !world.isClient
                 && Frostiful.getConfig().freezingConfig.doSnowPacking()
-                && world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)
+                && ((ServerWorld) world).getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)
                 && isEntityWalkingOn(pos, entity);
 
         if (maySmushSnow) {

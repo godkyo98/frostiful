@@ -109,11 +109,8 @@ public class FBlocks {
 
     public static final Block FROZEN_WALL_TORCH = register(
             "frozen_wall_torch",
-            settings -> new FrozenWallTorchBlock(
-                    settings
-                            .dropsLike(FROZEN_TORCH)
-            ),
-            AbstractBlock.Settings.copy(FROZEN_TORCH)
+            FrozenWallTorchBlock::new,
+            dropsLike(FROZEN_TORCH, true)
     );
 
     public static final Block PACKED_SNOW = register(
@@ -315,6 +312,15 @@ public class FBlocks {
     private static Block register(String id, Function<AbstractBlock.Settings, Block> blockFactory, AbstractBlock.Settings settings) {
         Block block = blockFactory.apply(settings);
         return Registry.register(Registries.BLOCK, Frostiful.id(id), block);
+    }
+
+    private static AbstractBlock.Settings dropsLike(Block block, boolean copyTranslationKey) {
+        AbstractBlock.Settings settings = AbstractBlock.Settings.copy(block).lootTable(block.getLootTableKey());
+        if (copyTranslationKey) {
+            settings = settings.overrideTranslationKey(block.getTranslationKey());
+        }
+
+        return settings;
     }
 
     private FBlocks() {

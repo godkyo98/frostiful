@@ -44,7 +44,7 @@ public final class IcicleWeatherGenerator {
                 world.getRandomPosInChunk(chunkPos.getStartX(), 0, chunkPos.getStartZ(), 15)
         );
 
-        if (world.getBiome(startPos).value().doesNotSnow(startPos)) {
+        if (world.getBiome(startPos).value().doesNotSnow(startPos, world.getSeaLevel())) {
             return;
         }
 

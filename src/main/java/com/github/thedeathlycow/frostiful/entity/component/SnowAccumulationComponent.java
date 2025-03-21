@@ -79,7 +79,7 @@ public class SnowAccumulationComponent implements Component, ServerTickingCompon
             return false;
         } else {
             Biome biome = world.getBiome(pos).value();
-            return biome.getPrecipitation(pos) == Biome.Precipitation.SNOW;
+            return biome.getPrecipitation(pos, world.getSeaLevel()) == Biome.Precipitation.SNOW;
         }
     }
 

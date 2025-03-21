@@ -22,7 +22,7 @@ public record SetItemCooldownEnchantmentEffect(
                     Registries.ITEM.getCodec()
                             .fieldOf("item")
                             .forGetter(SetItemCooldownEnchantmentEffect::item),
-                    Codecs.NONNEGATIVE_INT
+                    Codecs.NON_NEGATIVE_INT
                             .fieldOf("duration_ticks")
                             .forGetter(SetItemCooldownEnchantmentEffect::durationTicks)
             ).apply(instance, SetItemCooldownEnchantmentEffect::new)
@@ -31,7 +31,7 @@ public record SetItemCooldownEnchantmentEffect(
     @Override
     public void apply(ServerWorld world, int level, EnchantmentEffectContext context, Entity user, Vec3d pos) {
         if (context.owner() instanceof PlayerEntity player) {
-            player.getItemCooldownManager().set(this.item, this.durationTicks);
+            player.getItemCooldownManager().set(context.stack(), this.durationTicks);
         }
     }
 

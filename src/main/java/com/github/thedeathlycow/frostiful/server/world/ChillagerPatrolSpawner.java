@@ -32,7 +32,7 @@ public class ChillagerPatrolSpawner {
         } else if (!PatrolEntity.canSpawn(FEntityTypes.CHILLAGER, world, SpawnReason.PATROL, pos, random)) {
             return false;
         } else {
-            PatrolEntity patroller = FEntityTypes.CHILLAGER.create(world);
+            PatrolEntity patroller = FEntityTypes.CHILLAGER.create(world, SpawnReason.PATROL);
             if (patroller != null) {
                 if (captain) {
                     patroller.setPatrolLeader(true);

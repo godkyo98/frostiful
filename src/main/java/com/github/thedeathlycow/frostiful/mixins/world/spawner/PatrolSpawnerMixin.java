@@ -27,7 +27,7 @@ public class PatrolSpawnerMixin {
 
         var biome = world.getBiome(pos).value();
 
-        if (biome.isCold(pos)) {
+        if (biome.isCold(pos, world.getSeaLevel())) {
             cir.setReturnValue(ChillagerPatrolSpawner.spawnChillagerPatrol(world, pos, random, captain));
         }
     }

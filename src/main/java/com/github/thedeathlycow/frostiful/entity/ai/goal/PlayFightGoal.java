@@ -8,8 +8,8 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.loot.LootTable;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Hand;
-import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -92,8 +92,9 @@ public class PlayFightGoal<T extends PathAwareEntity> extends Goal {
             this.target.swingHand(Hand.MAIN_HAND);
 
             if (this.timer == this.getTickCount(MAX_FIGHT_TIME)) {
-                this.mob.damage(this.mob.getDamageSources().generic(), 0.0f);
-                this.target.damage(this.target.getDamageSources().generic(), 0.0f);
+                ServerWorld world = getServerWorld(this.mob);
+                this.mob.damage(world, this.mob.getDamageSources().generic(), 0.0f);
+                this.target.damage(world, this.target.getDamageSources().generic(), 0.0f);
             }
 
             this.dropFur();
@@ -122,7 +123,7 @@ public class PlayFightGoal<T extends PathAwareEntity> extends Goal {
      */
     @Nullable
     private T findTarget() {
-        World world = this.mob.getWorld();
+        ServerWorld world = getServerWorld(this.mob);
         List<? extends T> candidates = world.getTargets(this.type, VALID_PLAYFIGHT_PREDICATE, this.mob, this.mob.getBoundingBox().expand(8.0));
         double closestEntityDistance = Double.POSITIVE_INFINITY;
 

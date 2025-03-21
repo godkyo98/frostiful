@@ -26,12 +26,12 @@ public class PackedSnowballEntity extends ThrownItemEntity {
         super(entityType, world);
     }
 
-    public PackedSnowballEntity(World world, LivingEntity owner) {
-        super(FEntityTypes.PACKED_SNOWBALL, owner, world);
+    public PackedSnowballEntity(World world, LivingEntity owner, ItemStack stack) {
+        super(FEntityTypes.PACKED_SNOWBALL, owner, world, stack);
     }
 
-    public PackedSnowballEntity(World world, double x, double y, double z) {
-        super(FEntityTypes.PACKED_SNOWBALL, x, y, z, world);
+    public PackedSnowballEntity(World world, double x, double y, double z, ItemStack stack) {
+        super(FEntityTypes.PACKED_SNOWBALL, x, y, z, world, stack);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class PackedSnowballEntity extends ThrownItemEntity {
                 ? config.getPackedSnowballVulnerableTypesDamage()
                 : config.getPackedSnowballDamage();
 
-        target.damage(this.getDamageSources().thrown(this, this.getOwner()), damage);
+        target.serverDamage(this.getDamageSources().thrown(this, this.getOwner()), damage);
 
         if (target instanceof LivingEntity livingTarget) {
             livingTarget.thermoo$addTemperature(

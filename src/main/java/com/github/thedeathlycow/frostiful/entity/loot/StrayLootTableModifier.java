@@ -11,10 +11,12 @@ import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryWrapper;
+import org.jetbrains.annotations.Nullable;
 
 public class StrayLootTableModifier {
 
-    private static final RegistryKey<LootTable> STRAY_LOOT_TABLE_ID = EntityType.STRAY.getLootTableId();
+    @Nullable
+    private static final RegistryKey<LootTable> STRAY_LOOT_TABLE_ID = EntityType.STRAY.getLootTableKey().orElse(null);
 
     public static void addFrostTippedArrows(
             RegistryKey<LootTable> key,
@@ -22,7 +24,7 @@ public class StrayLootTableModifier {
             LootTableSource source,
             RegistryWrapper.WrapperLookup registries
     ) {
-        if (source.isBuiltin() && key.equals(STRAY_LOOT_TABLE_ID)) {
+        if (source.isBuiltin() && key == STRAY_LOOT_TABLE_ID) {
             LootPool.Builder builder = LootPool.builder()
                     .rolls(ConstantLootNumberProvider.create(1))
                     .with(

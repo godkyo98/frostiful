@@ -6,6 +6,8 @@ import com.github.thedeathlycow.frostiful.entity.damage.FDamageSources;
 import com.github.thedeathlycow.frostiful.registry.FComponents;
 import com.github.thedeathlycow.frostiful.registry.FSoundEvents;
 import com.github.thedeathlycow.frostiful.registry.tag.FItemTags;
+import com.llamalad7.mixinextras.sugar.Local;
+import com.llamalad7.mixinextras.sugar.ref.LocalFloatRef;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -16,8 +18,10 @@ import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.profiler.Profiler;
+import net.minecraft.util.profiler.Profilers;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Mixin;
@@ -102,7 +106,7 @@ public abstract class LivingEntityMovementMixin extends Entity implements IceSka
     private void updateIsIceSkating(CallbackInfo ci) {
 
         World world = this.getWorld();
-        Profiler profiler = world.getProfiler();
+        Profiler profiler = Profilers.get();
         profiler.push("frostiful.ice_skate_tick");
 
         BlockState velocityAffectingBlock = world.getBlockState(this.getVelocityAffectingPos());
@@ -125,24 +129,19 @@ public abstract class LivingEntityMovementMixin extends Entity implements IceSka
         profiler.pop();
     }
 
-    @ModifyVariable(
-            method = "travel",
-            at = @At(
-                    value = "INVOKE_ASSIGN",
-                    target = "Lnet/minecraft/entity/LivingEntity;isOnGround()Z"
-            ),
-            slice = @Slice(
-                    from = @At(
-                            value = "INVOKE",
-                            target = "Lnet/minecraft/block/Block;getSlipperiness()F"
-                    )
-            )
+    @Inject(
+            method = "applyMovementInput",
+            at = @At("HEAD")
     )
-    private float getSlipperinessForIceSkates(float slipperiness) {
+    private void setSlipperinessForIceSkates(
+            Vec3d movementInput,
+            float slipperiness,
+            CallbackInfoReturnable<Vec3d> cir,
+            @Local(ordinal = 0, argsOnly = true) LocalFloatRef slipperinessRef
+    ) {
         if (this.frostiful$isIceSkating()) {
-            slipperiness = IceSkater.frostiful$getSlipperinessForEntity(this);
+            slipperinessRef.set(IceSkater.frostiful$getSlipperinessForEntity(this));
         }
-        return slipperiness;
     }
 
     @Inject(
@@ -163,12 +162,12 @@ public abstract class LivingEntityMovementMixin extends Entity implements IceSka
             return;
         }
 
-        if (entity instanceof LivingEntity target) {
+        if (entity instanceof LivingEntity target && target.getWorld() instanceof ServerWorld world) {
             double attackerHeight = this.getPos().y;
             double targetEyeHeight = target.getEyePos().y;
             if (attackerHeight > targetEyeHeight) {
                 FDamageSources damageSources = FDamageSources.getDamageSources(this.getWorld());
-                target.damage(damageSources.frostiful$iceSkate(this), 1.0f);
+                target.damage(world, damageSources.frostiful$iceSkate(this), 1.0f);
             }
         }
     }

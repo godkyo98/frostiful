@@ -8,6 +8,7 @@ import com.github.thedeathlycow.frostiful.registry.tag.FBlockTags;
 import com.github.thedeathlycow.thermoo.api.temperature.EnvironmentManager;
 import net.minecraft.block.BlockState;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -82,7 +83,7 @@ public final class WindManager {
             return;
         }
 
-        if (!world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
+        if (!(world instanceof ServerWorld serverWorld) || !serverWorld.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
             return;
         }
 
@@ -130,7 +131,7 @@ public final class WindManager {
 
         boolean spawnInAir = world.random.nextBoolean();
         if (spawnInAir) {
-            int topY = world.getTopY();
+            int topY = world.getTopYInclusive();
             blockPos.setY(
                     spawnPos.getY() + (int) world.random.nextTriangular(
                             topY,

@@ -10,6 +10,7 @@ import com.github.thedeathlycow.thermoo.api.ThermooAttributes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
+import net.minecraft.entity.conversion.EntityConversionContext;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.PillagerEntity;
 import net.minecraft.item.ItemStack;
@@ -45,10 +46,13 @@ public class ChillagerEntity extends PillagerEntity {
     public void onStruckByLightning(ServerWorld world, LightningEntity lightning) {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Frostiful.LOGGER.info("Chillager {} was struck by lightning {}.", this, lightning);
-            FrostologerEntity frostologer = this.convertTo(FEntityTypes.FROSTOLOGER, false);
-            if (frostologer != null) {
-                frostologer.initEquipment(world.random, world.getLocalDifficulty(frostologer.getBlockPos()));
-            }
+            this.convertTo(
+                    FEntityTypes.FROSTOLOGER,
+                    EntityConversionContext.create(this, false, true) ,
+                    frostologer -> {
+                        frostologer.initEquipment(world.random, world.getLocalDifficulty(frostologer.getBlockPos()));
+                    }
+            );
         } else {
             super.onStruckByLightning(world, lightning);
         }

@@ -28,7 +28,7 @@ public interface IceSkater {
     }
 
     static void frostiful$updateSkateWalkPenalityModifier(LivingEntity entity, boolean shouldBeSlowed) {
-        EntityAttributeInstance movementSpeed = entity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
+        EntityAttributeInstance movementSpeed = entity.getAttributeInstance(EntityAttributes.MOVEMENT_SPEED);
         if (movementSpeed == null) {
             return;
         }

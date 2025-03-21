@@ -63,7 +63,7 @@ public final class ServerPlayerEnvironmentTickListeners {
         }
 
         boolean doPassiveFreezing = config.freezingConfig.doPassiveFreezing()
-                && player.getWorld().getGameRules().getBoolean(FGameRules.DO_PASSIVE_FREEZING);
+                && context.world().getGameRules().getBoolean(FGameRules.DO_PASSIVE_FREEZING);
 
         if (doPassiveFreezing) {
             return TriState.TRUE;

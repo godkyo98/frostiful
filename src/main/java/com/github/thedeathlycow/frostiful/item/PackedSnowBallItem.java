@@ -31,7 +31,7 @@ public class PackedSnowBallItem extends Item implements ProjectileItem {
         );
 
         if (!world.isClient) {
-            PackedSnowballEntity snowball = new PackedSnowballEntity(world, user);
+            PackedSnowballEntity snowball = new PackedSnowballEntity(world, user, itemStack);
             snowball.setItem(itemStack);
             snowball.setVelocity(user, user.getPitch(), user.getYaw(), 0.0f, 1.5f, 1.0f);
             world.spawnEntity(snowball);
@@ -45,7 +45,7 @@ public class PackedSnowBallItem extends Item implements ProjectileItem {
 
     @Override
     public ProjectileEntity createEntity(World world, Position pos, ItemStack stack, Direction direction) {
-        PackedSnowballEntity packedSnowball = new PackedSnowballEntity(world, pos.getX(), pos.getY(), pos.getZ());
+        PackedSnowballEntity packedSnowball = new PackedSnowballEntity(world, pos.getX(), pos.getY(), pos.getZ(), stack);
         packedSnowball.setItem(stack);
         return packedSnowball;
     }

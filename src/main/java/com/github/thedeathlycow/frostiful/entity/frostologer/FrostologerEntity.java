@@ -29,10 +29,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.mob.IllagerEntity;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.mob.SpellcastingIllagerEntity;
+import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -40,6 +37,7 @@ import net.minecraft.entity.raid.RaiderEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SnowballItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.DamageTypeTags;
@@ -98,9 +96,9 @@ public class FrostologerEntity extends SpellcastingIllagerEntity implements Rang
 
     public static DefaultAttributeContainer.Builder createFrostologerAttributes() {
         return HostileEntity.createHostileAttributes()
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.5)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0)
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 150.0)
+                .add(EntityAttributes.MOVEMENT_SPEED, 0.5)
+                .add(EntityAttributes.FOLLOW_RANGE, 32.0)
+                .add(EntityAttributes.MAX_HEALTH, 150.0)
                 .add(ThermooAttributes.MIN_TEMPERATURE, 45.0)
                 .add(ThermooAttributes.MAX_TEMPERATURE, 0.0)
                 .add(FEntityAttributes.ICE_BREAK_DAMAGE, 5.0);
@@ -174,14 +172,14 @@ public class FrostologerEntity extends SpellcastingIllagerEntity implements Rang
     }
 
     @Override
-    public boolean isInvulnerableTo(DamageSource damageSource) {
+    public boolean isInvulnerableTo(ServerWorld world, DamageSource damageSource) {
         if (damageSource.isIn(DamageTypeTags.IS_PROJECTILE) && this.isChanneling()) {
             return true;
         }
 
         return damageSource.isIn(DamageTypeTags.IS_FREEZING)
                 || damageSource.isIn(FDamageTypeTags.IS_ICICLE)
-                || super.isInvulnerableTo(damageSource);
+                || super.isInvulnerableTo(world, damageSource);
     }
 
     @Override
@@ -291,13 +289,13 @@ public class FrostologerEntity extends SpellcastingIllagerEntity implements Rang
     }
 
     @Override
-    public boolean damage(DamageSource source, float amount) {
+    public boolean damage(ServerWorld world, DamageSource source, float amount) {
         if (source.isIn(DamageTypeTags.IS_FIRE)) {
             FrostifulConfig config = Frostiful.getConfig();
             amount *= config.combatConfig.getFrostologerFireDamageMultiplier();
         }
 
-        return super.damage(source, amount);
+        return super.damage(world, source, amount);
     }
 
     @Override
@@ -326,14 +324,12 @@ public class FrostologerEntity extends SpellcastingIllagerEntity implements Rang
             // dont place snow if client
             return;
         }
+        ServerWorld serverWorld = (ServerWorld) world; // covered by isClient check above
 
         // do not place snow/destroy heat sources unless mobGriefing is on
-        if (!world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
+        if (!serverWorld.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
             return;
         }
-
-
-        ServerWorld serverWorld = (ServerWorld) world; // covered by isClient check above
 
         BlockPos frostologerPos = this.getBlockPos();
         BlockState snow = Blocks.SNOW.getDefaultState();
@@ -468,18 +464,15 @@ public class FrostologerEntity extends SpellcastingIllagerEntity implements Rang
     }
 
     @Override
-    public boolean isTeammate(@Nullable Entity other) {
-        if (other == null) {
-            return false;
-        } else if (other == this) {
+    public boolean isInSameTeam(@Nullable Entity other) {
+        if (other == this) {
             return true;
-        } else if (super.isTeammate(other)) {
+        } else if (super.isInSameTeam(other)) {
             return true;
-        } else if (other.getType() == FEntityTypes.BITER) {
-            return this.isTeammate(((BiterEntity) other).getOwner());
-        } else if (other instanceof LivingEntity otherEntity && otherEntity.getType().isIn(EntityTypeTags.ILLAGER_FRIENDS)) {
-            return this.getScoreboardTeam() == null && other.getScoreboardTeam() == null;
         } else {
+            if (other instanceof BiterEntity biter && biter.getOwner() != null) {
+                return this.isInSameTeam(biter.getOwner());
+            }
             return false;
         }
     }
@@ -570,7 +563,7 @@ public class FrostologerEntity extends SpellcastingIllagerEntity implements Rang
 
         @Override
         protected void castSpell() {
-            World world = getWorld();
+            ServerWorld world = castToServerWorld(getWorld());
             if (!world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
                 return;
             }
@@ -580,6 +573,8 @@ public class FrostologerEntity extends SpellcastingIllagerEntity implements Rang
 
             for (BlockPos pos : BlockPos.iterate(origin.subtract(distance), origin.add(distance))) {
                 BlockState state = world.getBlockState(pos);
+
+                // TODO: replace with updated system
                 if (EnvironmentManager.INSTANCE.getController().isHeatSource(state) && world instanceof ServerWorld serverWorld) {
                     FrostologerEntity.this.destroyHeatSource(serverWorld, state, pos);
                 }
@@ -663,7 +658,7 @@ public class FrostologerEntity extends SpellcastingIllagerEntity implements Rang
                                 -2 + FrostologerEntity.this.random.nextInt(5)
                         );
 
-                ThrownIcicleEntity icicle = FEntityTypes.THROWN_ICICLE.create(serverWorld);
+                ThrownIcicleEntity icicle = FEntityTypes.THROWN_ICICLE.create(serverWorld, SpawnReason.SPAWN_ITEM_USE);
 
                 if (icicle == null) {
                     return;
