@@ -4,9 +4,9 @@
     "package": "com.github.thedeathlycow.frostiful.client.mixin",
     "compatibilityLevel": "JAVA_21",
     "client": [
-        "ArmorFeatureRendererMixin",
         "CapeFeatureRendererMixin",
         "DrippingWetPlayerMixin",
+        "LivingEntityRenderStateMixin",
         "SplashTextResourceSupplierMixin",
         "SpriteAtlasManagerMixin",
         "entity_renderer.PolarBearShearedTextureMixin",

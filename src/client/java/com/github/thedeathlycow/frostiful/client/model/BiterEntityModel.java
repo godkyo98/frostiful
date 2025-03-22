@@ -5,11 +5,11 @@ import com.github.thedeathlycow.frostiful.entity.BiterEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.entity.model.SinglePartEntityModel;
+import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.util.math.MathHelper;
 
 @Environment(EnvType.CLIENT)
-public class BiterEntityModel extends SinglePartEntityModel<BiterEntity> {
+public class BiterEntityModel extends EntityModel<BiterEntity> {
 
 
     private final ModelPart modelPart;
