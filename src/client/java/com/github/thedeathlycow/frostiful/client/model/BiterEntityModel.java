@@ -1,7 +1,6 @@
 package com.github.thedeathlycow.frostiful.client.model;
 
-import com.github.thedeathlycow.frostiful.client.anim.BiterAnimations;
-import com.github.thedeathlycow.frostiful.entity.BiterEntity;
+import com.github.thedeathlycow.frostiful.client.render.state.BiterEntityRenderState;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.*;
@@ -9,9 +8,7 @@ import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.util.math.MathHelper;
 
 @Environment(EnvType.CLIENT)
-public class BiterEntityModel extends EntityModel<BiterEntity> {
-
-
+public class BiterEntityModel extends EntityModel<BiterEntityRenderState> {
     private final ModelPart modelPart;
 
     private final ModelPart head;
@@ -21,6 +18,7 @@ public class BiterEntityModel extends EntityModel<BiterEntity> {
     private final ModelPart rightArm;
 
     public BiterEntityModel(ModelPart modelPart) {
+        super(modelPart);
         this.modelPart = modelPart;
 
         ModelPart root = modelPart.getChild("root");
@@ -33,7 +31,6 @@ public class BiterEntityModel extends EntityModel<BiterEntity> {
 
         this.leftArm = root.getChild("leftArm");
         this.rightArm = root.getChild("rightArm");
-
     }
 
     public static TexturedModelData getTexturedModelData() {
@@ -68,25 +65,14 @@ public class BiterEntityModel extends EntityModel<BiterEntity> {
     }
 
     @Override
-    public ModelPart getPart() {
-        return this.modelPart;
-    }
+    public void setAngles(BiterEntityRenderState state) {
+        super.setAngles(state);
 
-    @Override
-    public void setAngles(
-            BiterEntity entity,
-            float limbAngle,
-            float limbDistance,
-            float animationProgress,
-            float headYaw,
-            float headPitch
-    ) {
-        this.getPart().traverse().forEach(ModelPart::resetTransform);
-        this.rightArm.pitch = -1.5F * MathHelper.wrap(limbAngle, 10.0F) * limbDistance;
-        this.leftArm.pitch = 1.5F * MathHelper.wrap(limbAngle, 10.0F) * limbDistance;
+        this.rightArm.pitch = -1.5F * MathHelper.wrap(state.limbFrequency, 10.0F) * state.limbAmplitudeMultiplier;
+        this.leftArm.pitch = 1.5F * MathHelper.wrap(state.limbFrequency, 10.0F) * state.limbAmplitudeMultiplier;
         this.rightArm.yaw = 0.0F;
         this.leftArm.yaw = 0.0F;
 
-        this.updateAnimation(entity.bitingAnimation, BiterAnimations.BITE, animationProgress);
+//        this.updateAnimation(entity.bitingAnimation, BiterAnimations.BITE, animationProgress);
     }
 }
