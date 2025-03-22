@@ -1,6 +1,8 @@
 package com.github.thedeathlycow.frostiful.client.render.feature;
 
 import com.github.thedeathlycow.frostiful.client.model.FrostologerEntityModel;
+import com.github.thedeathlycow.frostiful.client.render.entity.FrostologerEntityRenderer;
+import com.github.thedeathlycow.frostiful.client.render.state.FrostologerEntityRenderState;
 import com.github.thedeathlycow.frostiful.entity.frostologer.FrostologerEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -14,7 +16,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
-public class FrostologerEyesFeatureRenderer<T extends FrostologerEntity, M extends FrostologerEntityModel<T>> extends FeatureRenderer<T, M> {
+public class FrostologerEyesFeatureRenderer<T extends FrostologerEntityRenderState, M extends FrostologerEntityModel<T>> extends FeatureRenderer<T, M> {
 
     private final RenderLayer skin;
 
@@ -23,9 +25,15 @@ public class FrostologerEyesFeatureRenderer<T extends FrostologerEntity, M exten
         this.skin = RenderLayer.getEntityTranslucentEmissive(id);
     }
 
-    @Override
-    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-        if (entity.isAtMaxPower()) {
+    public void render(
+            MatrixStack matrices,
+            VertexConsumerProvider vertexConsumers,
+            int light,
+            T state,
+            float limbAngle,
+            float limbDistance
+    ) {
+        if (state.glowingEyes) {
             VertexConsumer vertexConsumer = vertexConsumers.getBuffer(this.skin);
             this.getContextModel()
                     .render(
@@ -36,5 +44,4 @@ public class FrostologerEyesFeatureRenderer<T extends FrostologerEntity, M exten
                     );
         }
     }
-
 }

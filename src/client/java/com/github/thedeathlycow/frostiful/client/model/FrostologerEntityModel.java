@@ -1,5 +1,6 @@
 package com.github.thedeathlycow.frostiful.client.model;
 
+import com.github.thedeathlycow.frostiful.client.render.state.FrostologerEntityRenderState;
 import com.github.thedeathlycow.frostiful.entity.frostologer.FrostologerEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -7,10 +8,11 @@ import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.IllagerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.util.Arm;
 import net.minecraft.util.math.ColorHelper;
 
 @Environment(EnvType.CLIENT)
-public class FrostologerEntityModel<F extends FrostologerEntity> extends IllagerEntityModel<F> {
+public class FrostologerEntityModel<F extends FrostologerEntityRenderState> extends IllagerEntityModel<F> {
 
 
     protected final ModelPart head;
@@ -26,8 +28,8 @@ public class FrostologerEntityModel<F extends FrostologerEntity> extends Illager
         ModelPart hat = this.getHead().getChild("hat");
         hat.visible = true;
         this.head = this.getHead();
-        this.rightArm = this.getPart().getChild("right_arm");
-        this.leftArm = this.getPart().getChild("left_arm");
+        this.rightArm = this.getRootPart().getChild("right_arm");
+        this.leftArm = this.getRootPart().getChild("left_arm");
 
         this.cloak = root.getChild("cloak");
         this.cloak.visible = false;
@@ -36,22 +38,22 @@ public class FrostologerEntityModel<F extends FrostologerEntity> extends Illager
 
     public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, int color, boolean applyColdOverlay) {
         if (this.rgColourMul < 1 && applyColdOverlay) {
-            float alpha = ColorHelper.Argb.getAlpha(color) / 255f;
-            float red = ColorHelper.Argb.getRed(color) / 255f * this.rgColourMul;
-            float green = ColorHelper.Argb.getGreen(color) / 255f * this.rgColourMul;
-            float blue = ColorHelper.Argb.getBlue(color) / 255f;
-            color = ColorHelper.Argb.fromFloats(alpha, red, green, blue);
+            float alpha = ColorHelper.getAlpha(color) / 255f;
+            float red = ColorHelper.getRed(color) / 255f * this.rgColourMul;
+            float green = ColorHelper.getGreen(color) / 255f * this.rgColourMul;
+            float blue = ColorHelper.getBlue(color) / 255f;
+            color = ColorHelper.fromFloats(alpha, red, green, blue);
         }
 
         super.render(matrices, vertices, light, overlay, color);
     }
 
-    @Override
-    public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, int color) {
-        this.render(matrices, vertices, light, overlay, color, true);
-    }
+//    @Override
+//    public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, int color) {
+//        this.render(matrices, vertices, light, overlay, color, true);
+//    }
 
-    public void forceRenderCloak(MatrixStack matrices, VertexConsumer vertices, int light, int overlay) {
+    public void renderCloak(MatrixStack matrices, VertexConsumer vertices, int light, int overlay) {
         this.cloak.visible = true;
         this.cloak.render(matrices, vertices, light, overlay);
         this.cloak.visible = false;
@@ -81,20 +83,11 @@ public class FrostologerEntityModel<F extends FrostologerEntity> extends Illager
     }
 
     @Override
-    public void setAngles(
-            F frostologer,
-            float limbAngle,
-            float limbDistance,
-            float animationProgress,
-            float headYaw,
-            float headPitch
-    ) {
-        super.setAngles(frostologer, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
+    public void setAngles(F state) {
+        super.setAngles(state);
 
-        this.rgColourMul = (0.625f * (frostologer.thermoo$getTemperatureScale() + 1f)) + 0.5f;
-
-        if (frostologer.isUsingFrostWand()) {
-            if (frostologer.isLeftHanded()) {
+        if (state.usingFrostWand) {
+            if (state.illagerMainArm == Arm.LEFT) {
                 this.leftArm.yaw = 0.1f + this.head.yaw;
                 this.leftArm.pitch = -1.57f + this.head.pitch;
             } else {

@@ -1,6 +1,7 @@
 package com.github.thedeathlycow.frostiful.client.render.feature;
 
 import com.github.thedeathlycow.frostiful.client.model.FrostologerEntityModel;
+import com.github.thedeathlycow.frostiful.client.render.state.FrostologerEntityRenderState;
 import com.github.thedeathlycow.frostiful.entity.frostologer.FrostologerEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -11,10 +12,10 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
-public class FrostologerFrostFeatureRenderer extends FeatureRenderer<FrostologerEntity, FrostologerEntityModel<FrostologerEntity>> {
+public class FrostologerFrostFeatureRenderer extends FeatureRenderer<FrostologerEntityRenderState, FrostologerEntityModel<FrostologerEntityRenderState>> {
 
     public FrostologerFrostFeatureRenderer(
-            FeatureRendererContext<FrostologerEntity, FrostologerEntityModel<FrostologerEntity>> context
+            FeatureRendererContext<FrostologerEntityRenderState, FrostologerEntityModel<FrostologerEntityRenderState>> context
     ) {
         super(context);
     }
@@ -24,29 +25,17 @@ public class FrostologerFrostFeatureRenderer extends FeatureRenderer<Frostologer
             MatrixStack matrices,
             VertexConsumerProvider vertexConsumers,
             int light,
-            FrostologerEntity frostologer,
-            float limbAngle, float limbDistance,
-            float tickDelta, float animationProgress,
-            float headYaw, float headPitch
+            FrostologerEntityRenderState state,
+            float limbAngle,
+            float limbDistance
     ) {
-        if (frostologer.isInvisible()) {
-            return;
-        }
-
-        FrostLayers layer = FrostLayers.fromFrostologer(frostologer);
-
-        if (layer == FrostLayers.NONE) {
-            return;
-        }
-
-        Identifier identifier = layer.getTexture();
         FeatureRenderer.renderModel(
                 this.getContextModel(),
-                identifier,
+                state.frostLayer.getTexture(),
                 matrices,
                 vertexConsumers,
                 light,
-                frostologer,
+                state,
                 -1
         );
     }
