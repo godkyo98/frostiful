@@ -1,6 +1,7 @@
 package com.github.thedeathlycow.frostiful.client.mixin;
 
 import com.github.thedeathlycow.frostiful.client.render.state.FBipedRenderState;
+import com.github.thedeathlycow.frostiful.client.render.state.FPlayerRendererState;
 import com.github.thedeathlycow.frostiful.item.cloak.AbstractFrostologyCloakItem;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
@@ -26,7 +27,7 @@ public class CapeFeatureRendererMixin {
             Operation<Identifier> original,
             @Local(argsOnly = true) PlayerEntityRenderState state
     ) {
-        if (((FBipedRenderState) state).frostiful$wearingFrostologyCape()) {
+        if (((FPlayerRendererState) state).frostiful$wearingFrostologyCape()) {
             return AbstractFrostologyCloakItem.MODEL_TEXTURE_ID;
         } else {
             return original.call(instance);

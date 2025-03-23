@@ -21,10 +21,9 @@ public abstract class BipedEntityRendererMixin<T extends MobEntity, S extends Bi
     )
     private void updateIceSkateRenderState(T mobEntity, S bipedEntityRenderState, float tickDelta, CallbackInfo ci) {
         boolean wearingSkates = mobEntity.getEquippedStack(EquipmentSlot.FEET).isIn(FItemTags.ICE_SKATES);
-        boolean wearingFrostologyCape = AbstractFrostologyCloakItem.isWearing(mobEntity, stack -> stack.isIn(FItemTags.FROSTOLOGY_CLOAKS));
 
         FBipedRenderState fState = ((FBipedRenderState) bipedEntityRenderState);
+
         fState.frostiful$wearingIceSkates(wearingSkates);
-        fState.frostiful$wearingFrostologyCape(wearingFrostologyCape);
     }
 }

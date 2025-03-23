@@ -2,6 +2,7 @@ package com.github.thedeathlycow.frostiful.client.mixin.entity_renderer;
 
 import com.github.thedeathlycow.frostiful.client.render.state.FLivingEntityRenderState;
 import com.github.thedeathlycow.frostiful.registry.FComponents;
+import com.github.thedeathlycow.frostiful.survival.SurvivalUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
@@ -23,7 +24,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LivingEntityRenderer.class)
 @Environment(EnvType.CLIENT)
-public class RootedEffectRenderer<T extends LivingEntity, S extends LivingEntityRenderState, M extends EntityModel<? super S>> {
+public class LivingEntityRendererMixin<T extends LivingEntity, S extends LivingEntityRenderState, M extends EntityModel<? super S>> {
     @Unique
     private BlockRenderManager frostiful$blockRenderManager;
 
@@ -39,11 +40,14 @@ public class RootedEffectRenderer<T extends LivingEntity, S extends LivingEntity
             method = "updateRenderState(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/client/render/entity/state/LivingEntityRenderState;F)V",
             at = @At("TAIL")
     )
-    private void updateRootedRenderState(T entity, S state, float f, CallbackInfo ci) {
+    private void updateRenderState(T entity, S state, float f, CallbackInfo ci) {
         int rootedTicks = FComponents.FROST_WAND_ROOT_COMPONENT.get(entity).getRootedTicks();
         ((FLivingEntityRenderState) state).frostiful$setRootedTicks(rootedTicks);
-    }
 
+        if (SurvivalUtils.isShiveringRender(entity)) {
+            state.shaking = true;
+        }
+    }
 
     @Inject(
             method = "render(Lnet/minecraft/client/render/entity/state/LivingEntityRenderState;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V",

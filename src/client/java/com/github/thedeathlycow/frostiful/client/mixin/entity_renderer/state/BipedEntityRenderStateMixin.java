@@ -10,9 +10,6 @@ public class BipedEntityRenderStateMixin implements FBipedRenderState {
     @Unique
     private boolean frostiful$wearingIceSkates = false;
 
-    @Unique
-    private boolean frostiful$wearingFrostologyCape = false;
-
     @Override
     @Unique
     public boolean frostiful$wearingIceSkates() {
@@ -22,15 +19,5 @@ public class BipedEntityRenderStateMixin implements FBipedRenderState {
     @Override
     public void frostiful$wearingIceSkates(boolean value) {
         this.frostiful$wearingIceSkates = value;
-    }
-
-    @Override
-    public boolean frostiful$wearingFrostologyCape() {
-        return frostiful$wearingFrostologyCape;
-    }
-
-    @Override
-    public void frostiful$wearingFrostologyCape(boolean value) {
-        this.frostiful$wearingFrostologyCape = value;
     }
 }

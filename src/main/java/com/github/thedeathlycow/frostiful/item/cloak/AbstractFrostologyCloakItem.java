@@ -22,7 +22,7 @@ public abstract class AbstractFrostologyCloakItem extends Item {
     public AbstractFrostologyCloakItem(Settings settings) {
         super(settings.component(
                 DataComponentTypes.EQUIPPABLE,
-                EquippableComponent.builder(EquipmentSlot.BODY)
+                EquippableComponent.builder(EquipmentSlot.CHEST)
                         .damageOnHurt(false)
                         .build()
         ));
