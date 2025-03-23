@@ -6,10 +6,11 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.ProjectileEntityRenderer;
+import net.minecraft.client.render.entity.state.ProjectileEntityRenderState;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
-public class GlacialArrowEntityRenderer extends ProjectileEntityRenderer<GlacialArrowEntity> {
+public class GlacialArrowEntityRenderer extends ProjectileEntityRenderer<GlacialArrowEntity, ProjectileEntityRenderState> {
 
     public static final Identifier TEXTURE = Frostiful.id("textures/entity/projectiles/glacial_arrow.png");
 
@@ -18,7 +19,12 @@ public class GlacialArrowEntityRenderer extends ProjectileEntityRenderer<Glacial
     }
 
     @Override
-    public Identifier getTexture(GlacialArrowEntity entity) {
+    public ProjectileEntityRenderState createRenderState() {
+        return new ProjectileEntityRenderState();
+    }
+
+    @Override
+    public Identifier getTexture(ProjectileEntityRenderState entity) {
         return TEXTURE;
     }
 }
