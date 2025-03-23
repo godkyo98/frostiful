@@ -18,11 +18,8 @@ public class FrostWandItemModel extends Model {
 
     private static final int FULL_BRIGHTNESS = (15 << 4) | (15 << 20); // packed lightmap coordinates are (block << 4) | (sky << 20)
 
-    private final ModelPart root;
-
     public FrostWandItemModel(ModelPart root) {
-        super(RenderLayer::getEntityTranslucent);
-        this.root = root;
+        super(root, RenderLayer::getEntityTranslucent);
     }
 
     public static TexturedModelData getTexturedModelData() {
@@ -61,10 +58,5 @@ public class FrostWandItemModel extends Model {
 
         ModelPartData north_r1 = sides.addChild("north_r1", ModelPartBuilder.create().uv(32, 16).cuboid(-3.0F, -6.0F, 0.0F, 6.0F, 9.0F, 0.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, -16.0F, -4.0F, 0.1745F, 0.0F, 0.0F));
         return TexturedModelData.of(modelData, 64, 64);
-    }
-
-    @Override
-    public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, int color) {
-        this.root.render(matrices, vertices, FULL_BRIGHTNESS, overlay, color);
     }
 }

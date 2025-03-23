@@ -12,9 +12,9 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.BakedModel;
-import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ModelTransformationMode;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 
@@ -58,7 +58,7 @@ public class FrostWandItemRenderer implements BuiltinItemRendererRegistry.Dynami
             matrices.push();
             matrices.scale(0.6F, -0.6F, -0.6F);
             matrices.translate(0f, 1f, 0f);
-            VertexConsumer vertexConsumer = ItemRenderer.getDirectItemGlintConsumer(
+            VertexConsumer vertexConsumer = ItemRenderer.getItemGlintConsumer(
                     vertexConsumers, this.model.getLayer(FrostWandItemModel.TEXTURE), false, stack.hasGlint()
             );
 
