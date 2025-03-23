@@ -21,6 +21,12 @@ public class BiterEntityRenderer extends MobEntityRenderer<BiterEntity, BiterEnt
     }
 
     @Override
+    public void updateRenderState(BiterEntity entity, BiterEntityRenderState state, float tickDelta) {
+        super.updateRenderState(entity, state, tickDelta);
+        state.biteAnimationState.copyFrom(entity.bitingAnimation);
+    }
+
+    @Override
     public BiterEntityRenderState createRenderState() {
         return new BiterEntityRenderState();
     }

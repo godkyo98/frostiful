@@ -1,10 +1,13 @@
 package com.github.thedeathlycow.frostiful.client.model;
 
+import com.github.thedeathlycow.frostiful.client.anim.BiterAnimations;
 import com.github.thedeathlycow.frostiful.client.render.state.BiterEntityRenderState;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.*;
+import net.minecraft.client.render.entity.animation.FrogAnimations;
 import net.minecraft.client.render.entity.model.EntityModel;
+import net.minecraft.client.render.entity.model.FrogEntityModel;
 import net.minecraft.util.math.MathHelper;
 
 @Environment(EnvType.CLIENT)
@@ -73,6 +76,6 @@ public class BiterEntityModel extends EntityModel<BiterEntityRenderState> {
         this.rightArm.yaw = 0.0F;
         this.leftArm.yaw = 0.0F;
 
-//        this.updateAnimation(entity.bitingAnimation, BiterAnimations.BITE, animationProgress);
+        this.animate(state.biteAnimationState, BiterAnimations.BITE, state.age);
     }
 }
