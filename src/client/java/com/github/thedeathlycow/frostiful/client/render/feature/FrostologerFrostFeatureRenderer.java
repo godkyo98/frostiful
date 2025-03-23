@@ -29,14 +29,17 @@ public class FrostologerFrostFeatureRenderer extends FeatureRenderer<Frostologer
             float limbAngle,
             float limbDistance
     ) {
-        FeatureRenderer.renderModel(
-                this.getContextModel(),
-                state.frostLayer.getTexture(),
-                matrices,
-                vertexConsumers,
-                light,
-                state,
-                -1
-        );
+        Identifier texture = state.frostLayer.getTexture();
+        if (texture != null) {
+            FeatureRenderer.renderModel(
+                    this.getContextModel(),
+                    texture,
+                    matrices,
+                    vertexConsumers,
+                    light,
+                    state,
+                    -1
+            );
+        }
     }
 }

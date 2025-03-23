@@ -5,6 +5,7 @@ import com.github.thedeathlycow.frostiful.entity.frostologer.FrostologerEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Comparator;
 import java.util.stream.Stream;
@@ -39,6 +40,7 @@ public enum FrostLayer {
         return NONE;
     }
 
+    @Nullable
     public Identifier getTexture() {
         return texture;
     }
