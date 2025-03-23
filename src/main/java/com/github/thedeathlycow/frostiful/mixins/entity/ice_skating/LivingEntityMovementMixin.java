@@ -6,8 +6,11 @@ import com.github.thedeathlycow.frostiful.entity.damage.FDamageSources;
 import com.github.thedeathlycow.frostiful.registry.FComponents;
 import com.github.thedeathlycow.frostiful.registry.FSoundEvents;
 import com.github.thedeathlycow.frostiful.registry.tag.FItemTags;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.ref.LocalFloatRef;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -23,19 +26,15 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.profiler.Profiler;
 import net.minecraft.util.profiler.Profilers;
 import net.minecraft.world.World;
-import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
-@Debug(export = true)
 public abstract class LivingEntityMovementMixin extends Entity implements IceSkater {
 
 
@@ -104,7 +103,6 @@ public abstract class LivingEntityMovementMixin extends Entity implements IceSka
             at = @At("TAIL")
     )
     private void updateIsIceSkating(CallbackInfo ci) {
-
         World world = this.getWorld();
         Profiler profiler = Profilers.get();
         profiler.push("frostiful.ice_skate_tick");
@@ -129,19 +127,18 @@ public abstract class LivingEntityMovementMixin extends Entity implements IceSka
         profiler.pop();
     }
 
-    @Inject(
-            method = "applyMovementInput",
-            at = @At("HEAD")
+    @WrapOperation(
+            method = "travelMidAir",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/block/Block;getSlipperiness()F"
+            )
     )
-    private void setSlipperinessForIceSkates(
-            Vec3d movementInput,
-            float slipperiness,
-            CallbackInfoReturnable<Vec3d> cir,
-            @Local(ordinal = 0, argsOnly = true) LocalFloatRef slipperinessRef
-    ) {
+    private float setSlipperinessForIceSkates(Block instance, Operation<Float> original) {
         if (this.frostiful$isIceSkating()) {
-            slipperinessRef.set(IceSkater.frostiful$getSlipperinessForEntity(this));
+            return IceSkater.frostiful$getSlipperinessForEntity(this);
         }
+        return original.call(instance);
     }
 
     @Inject(
