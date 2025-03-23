@@ -1,0 +1,14 @@
+{
+    "layers": {
+        "humanoid": [
+            {
+                "texture": "frostiful:fur_lined_chainmail"
+            }
+        ],
+        "humanoid_leggings": [
+            {
+                "texture": "frostiful:fur_lined_chainmail"
+            }
+        ]
+    }
+}
