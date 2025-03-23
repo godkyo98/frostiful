@@ -2,8 +2,7 @@ package com.github.thedeathlycow.frostiful.client.render.feature;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
 import com.github.thedeathlycow.frostiful.client.model.IceSkateModel;
-import com.github.thedeathlycow.frostiful.client.render.state.IceSkateRenderState;
-import com.github.thedeathlycow.frostiful.registry.tag.FItemTags;
+import com.github.thedeathlycow.frostiful.client.render.state.FBipedRenderState;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
@@ -13,8 +12,6 @@ import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.render.entity.state.BipedEntityRenderState;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.Identifier;
 
 public class IceSkateFeatureRenderer<
@@ -43,7 +40,7 @@ public class IceSkateFeatureRenderer<
             float limbAngle,
             float limbDistance
     ) {
-        if (((IceSkateRenderState) state).frostiful$wearingIceSkates()) {
+        if (((FBipedRenderState) state).frostiful$wearingIceSkates()) {
             this.getContextModel().copyTransforms(model);
             VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(SKATE_TEXTURE));
             this.model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV);

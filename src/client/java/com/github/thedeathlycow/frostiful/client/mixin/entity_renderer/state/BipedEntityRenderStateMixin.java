@@ -1,14 +1,17 @@
 package com.github.thedeathlycow.frostiful.client.mixin.entity_renderer.state;
 
-import com.github.thedeathlycow.frostiful.client.render.state.IceSkateRenderState;
+import com.github.thedeathlycow.frostiful.client.render.state.FBipedRenderState;
 import net.minecraft.client.render.entity.state.BipedEntityRenderState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(BipedEntityRenderState.class)
-public class BipedEntityRenderStateMixin implements IceSkateRenderState {
+public class BipedEntityRenderStateMixin implements FBipedRenderState {
     @Unique
     private boolean frostiful$wearingIceSkates = false;
+
+    @Unique
+    private boolean frostiful$wearingFrostologyCape = false;
 
     @Override
     @Unique
@@ -17,7 +20,17 @@ public class BipedEntityRenderStateMixin implements IceSkateRenderState {
     }
 
     @Override
-    public void frostiful$setWearingIceSkates(boolean value) {
+    public void frostiful$wearingIceSkates(boolean value) {
+        this.frostiful$wearingIceSkates = value;
+    }
 
+    @Override
+    public boolean frostiful$wearingFrostologyCape() {
+        return frostiful$wearingFrostologyCape;
+    }
+
+    @Override
+    public void frostiful$wearingFrostologyCape(boolean value) {
+        this.frostiful$wearingFrostologyCape = value;
     }
 }
