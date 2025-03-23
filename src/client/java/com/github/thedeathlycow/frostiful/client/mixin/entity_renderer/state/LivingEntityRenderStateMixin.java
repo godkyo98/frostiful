@@ -1,4 +1,4 @@
-package com.github.thedeathlycow.frostiful.client.mixin;
+package com.github.thedeathlycow.frostiful.client.mixin.entity_renderer.state;
 
 import com.github.thedeathlycow.frostiful.client.render.state.RootedEntityRenderState;
 import net.minecraft.client.render.entity.state.LivingEntityRenderState;

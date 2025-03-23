@@ -28,7 +28,7 @@ public class FEntityRenderers {
 
         LivingEntityFeatureRendererRegistrationCallback.EVENT.register(
                 (entityType, entityRenderer, registrationHelper, context) -> {
-                    if (entityRenderer instanceof BipedEntityRenderer<?, ?> bipedEntityRenderer) {
+                    if (entityRenderer instanceof BipedEntityRenderer<?, ?, ?> bipedEntityRenderer) {
                         registrationHelper.register(
                                 new IceSkateFeatureRenderer<>(
                                         bipedEntityRenderer,

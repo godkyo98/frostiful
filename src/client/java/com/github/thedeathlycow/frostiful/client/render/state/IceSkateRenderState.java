@@ -1,11 +1,11 @@
 package com.github.thedeathlycow.frostiful.client.render.state;
 
-public interface RootedEntityRenderState {
-    default int frostiful$getRootedTicks() {
+public interface IceSkateRenderState {
+    default boolean frostiful$wearingIceSkates() {
         throw new AssertionError("Implemented in mixin");
     }
 
-    default void frostiful$setRootedTicks(int value) {
+    default void frostiful$setWearingIceSkates(boolean value) {
         throw new AssertionError("Implemented in mixin");
     }
 }
