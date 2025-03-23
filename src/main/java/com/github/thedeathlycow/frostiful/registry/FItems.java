@@ -314,7 +314,7 @@ public final class FItems {
     }
 
     private static Item register(String id, Block block) {
-        return register(id, settings -> new BlockItem(block, settings));
+        return register(id, settings -> new BlockItem(block, settings.useBlockPrefixedTranslationKey()));
     }
 
     private static Item register(String id) {
