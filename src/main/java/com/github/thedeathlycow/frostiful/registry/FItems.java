@@ -15,6 +15,8 @@ import net.minecraft.item.*;
 import net.minecraft.item.equipment.EquipmentType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.math.Direction;
@@ -326,8 +328,9 @@ public final class FItems {
     }
 
     private static Item register(String id, Function<Item.Settings, Item> itemFactory, Item.Settings settings) {
-        Item item = itemFactory.apply(settings);
-        return Registry.register(Registries.ITEM, Frostiful.id(id), item);
+        RegistryKey<Item> key = RegistryKey.of(RegistryKeys.ITEM, Frostiful.id(id));
+        Item item = itemFactory.apply(settings.registryKey(key));
+        return Registry.register(Registries.ITEM, key, item);
     }
 
     private FItems() {

@@ -7,8 +7,11 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BlockSoundGroup;
 
 import java.util.function.Function;
@@ -310,8 +313,9 @@ public class FBlocks {
     }
 
     private static Block register(String id, Function<AbstractBlock.Settings, Block> blockFactory, AbstractBlock.Settings settings) {
-        Block block = blockFactory.apply(settings);
-        return Registry.register(Registries.BLOCK, Frostiful.id(id), block);
+        RegistryKey<Block> key = RegistryKey.of(RegistryKeys.BLOCK, Frostiful.id(id));
+        Block block = blockFactory.apply(settings.registryKey(key));
+        return Registry.register(Registries.BLOCK, key, block);
     }
 
     private static AbstractBlock.Settings dropsLike(Block block, boolean copyTranslationKey) {
