@@ -1,6 +1,7 @@
 package com.github.thedeathlycow.frostiful.client.render.entity;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
+import com.github.thedeathlycow.frostiful.entity.FrostSpellEntity;
 import com.github.thedeathlycow.frostiful.entity.SpellEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -10,23 +11,28 @@ import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
+import net.minecraft.client.render.entity.state.EntityRenderState;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Colors;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
-public class FrostSpellEntityRenderer extends EntityRenderer<SpellEntity> {
+public class FrostSpellEntityRenderer extends EntityRenderer<FrostSpellEntity, EntityRenderState> {
 
     private static final Identifier TEXTURE = Frostiful.id("textures/entity/frost_spell.png");
-    private static final RenderLayer LAYER;
+    private static final RenderLayer LAYER = RenderLayer.getEntityCutoutNoCull(TEXTURE);
 
     public FrostSpellEntityRenderer(EntityRendererFactory.Context ctx) {
         super(ctx);
     }
 
+    @Override
+    public EntityRenderState createRenderState() {
+        return new EntityRenderState();
+    }
+
     public void render(
-            SpellEntity dragonFireballEntity,
-            float yaw, float tickDelta,
+            EntityRenderState state,
             MatrixStack matrixStack,
             VertexConsumerProvider vertexConsumerProvider,
             int light
@@ -41,7 +47,7 @@ public class FrostSpellEntityRenderer extends EntityRenderer<SpellEntity> {
         produceVertex(vertexConsumer, entry, light, 1.0F, 1, 1, 0);
         produceVertex(vertexConsumer, entry, light, 0.0F, 1, 0, 0);
         matrixStack.pop();
-        super.render(dragonFireballEntity, yaw, tickDelta, matrixStack, vertexConsumerProvider, light);
+        super.render(state, matrixStack, vertexConsumerProvider, light);
     }
 
     private static void produceVertex(
@@ -57,14 +63,5 @@ public class FrostSpellEntityRenderer extends EntityRenderer<SpellEntity> {
                 .overlay(OverlayTexture.DEFAULT_UV)
                 .light(light)
                 .normal(matrix, 0.0F, 1.0F, 0.0F);
-    }
-
-    @Override
-    public Identifier getTexture(SpellEntity entity) {
-        return TEXTURE;
-    }
-
-    static {
-        LAYER = RenderLayer.getEntityCutoutNoCull(TEXTURE);
     }
 }
