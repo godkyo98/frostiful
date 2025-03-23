@@ -1,6 +1,6 @@
 package com.github.thedeathlycow.frostiful.client.render.state;
 
-public interface RootedEntityRenderState {
+public interface FLivingEntityRenderState {
     default int frostiful$getRootedTicks() {
         throw new AssertionError("Implemented in mixin");
     }

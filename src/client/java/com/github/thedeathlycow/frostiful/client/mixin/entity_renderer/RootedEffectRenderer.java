@@ -1,6 +1,6 @@
 package com.github.thedeathlycow.frostiful.client.mixin.entity_renderer;
 
-import com.github.thedeathlycow.frostiful.client.render.state.RootedEntityRenderState;
+import com.github.thedeathlycow.frostiful.client.render.state.FLivingEntityRenderState;
 import com.github.thedeathlycow.frostiful.registry.FComponents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -15,8 +15,6 @@ import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.state.LivingEntityRenderState;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -43,7 +41,7 @@ public class RootedEffectRenderer<T extends LivingEntity, S extends LivingEntity
     )
     private void updateRootedRenderState(T entity, S state, float f, CallbackInfo ci) {
         int rootedTicks = FComponents.FROST_WAND_ROOT_COMPONENT.get(entity).getRootedTicks();
-        ((RootedEntityRenderState) state).frostiful$setRootedTicks(rootedTicks);
+        ((FLivingEntityRenderState) state).frostiful$setRootedTicks(rootedTicks);
     }
 
 
@@ -60,7 +58,7 @@ public class RootedEffectRenderer<T extends LivingEntity, S extends LivingEntity
             int light,
             CallbackInfo ci
     ) {
-        int rootedTicks = ((RootedEntityRenderState) state).frostiful$getRootedTicks();
+        int rootedTicks = ((FLivingEntityRenderState) state).frostiful$getRootedTicks();
         if (rootedTicks > 0) {
             matrixStack.push();
             float blockSize = 1.75f;

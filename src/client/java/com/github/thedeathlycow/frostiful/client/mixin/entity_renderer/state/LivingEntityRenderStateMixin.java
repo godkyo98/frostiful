@@ -1,12 +1,12 @@
 package com.github.thedeathlycow.frostiful.client.mixin.entity_renderer.state;
 
-import com.github.thedeathlycow.frostiful.client.render.state.RootedEntityRenderState;
+import com.github.thedeathlycow.frostiful.client.render.state.FLivingEntityRenderState;
 import net.minecraft.client.render.entity.state.LivingEntityRenderState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(LivingEntityRenderState.class)
-public class LivingEntityRenderStateMixin implements RootedEntityRenderState {
+public class LivingEntityRenderStateMixin implements FLivingEntityRenderState {
     @Unique
     private int frostiful$rootedTicks = 0;
 
