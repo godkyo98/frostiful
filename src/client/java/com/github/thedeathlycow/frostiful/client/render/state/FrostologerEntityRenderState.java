@@ -6,8 +6,7 @@ import net.minecraft.client.render.entity.state.IllagerEntityRenderState;
 public class FrostologerEntityRenderState extends IllagerEntityRenderState {
     public boolean usingFrostWand = false;
     public boolean capeVisible = false;
-    public float temperatureScale = 0f;
-    public float rgColourMul = 0f;
+    public int tint = 0;
     public FrostLayer frostLayer = FrostLayer.NONE;
     public boolean glowingEyes = false;
     public float capePitch = 0f;

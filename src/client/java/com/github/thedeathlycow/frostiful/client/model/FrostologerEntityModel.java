@@ -19,9 +19,6 @@ public class FrostologerEntityModel<F extends FrostologerEntityRenderState> exte
     protected final ModelPart head;
     protected final ModelPart rightArm;
     protected final ModelPart leftArm;
-
-    private float rgColourMul = 0f;
-
     private final ModelPart cloak;
 
     public FrostologerEntityModel(ModelPart root) {
@@ -35,24 +32,6 @@ public class FrostologerEntityModel<F extends FrostologerEntityRenderState> exte
         this.cloak = root.getChild("cloak");
         this.cloak.visible = false;
     }
-
-
-    public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, int color, boolean applyColdOverlay) {
-        if (this.rgColourMul < 1 && applyColdOverlay) {
-            float alpha = ColorHelper.getAlpha(color) / 255f;
-            float red = ColorHelper.getRed(color) / 255f * this.rgColourMul;
-            float green = ColorHelper.getGreen(color) / 255f * this.rgColourMul;
-            float blue = ColorHelper.getBlue(color) / 255f;
-            color = ColorHelper.fromFloats(alpha, red, green, blue);
-        }
-
-        super.render(matrices, vertices, light, overlay, color);
-    }
-
-//    @Override
-//    public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, int color) {
-//        this.render(matrices, vertices, light, overlay, color, true);
-//    }
 
     public void renderCloak(MatrixStack matrices, VertexConsumer vertices, int light, int overlay) {
         this.cloak.visible = true;
