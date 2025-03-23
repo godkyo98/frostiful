@@ -20,10 +20,8 @@ import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
 
 public class IcicleItem extends BlockItem implements ProjectileItem {
-
-
     public IcicleItem(Block block, Item.Settings settings) {
-        super(block, settings);
+        super(block, settings.useBlockPrefixedTranslationKey());
     }
 
     @Override
