@@ -33,7 +33,7 @@ public class FRecipeProvider extends FabricRecipeProvider {
                 offerCutBlueIceRecipes();
                 offerCutPackedIceRecipes();
                 offerPackedSnowBrickRecipes();
-
+                offerPackedSnowRecipes();
             }
 
             private void offerCutBlueIceRecipes() {
@@ -106,6 +106,29 @@ public class FRecipeProvider extends FabricRecipeProvider {
                 offerWallRecipe(RecipeCategory.DECORATIONS, FItems.PACKED_SNOW_BRICK_WALL, FItems.PACKED_SNOW_BRICKS);
                 offerStonecuttingRecipe(RecipeCategory.DECORATIONS, FItems.PACKED_SNOW_BRICK_WALL, FItems.PACKED_SNOW_BRICKS);
                 offerStonecuttingRecipe(RecipeCategory.DECORATIONS, FItems.PACKED_SNOW_BRICK_WALL, FItems.PACKED_SNOW_BLOCK);
+            }
+
+            private void offerPackedSnowRecipes() {
+                createShaped(RecipeCategory.BUILDING_BLOCKS, FItems.PACKED_SNOW, 12)
+                        .criterion(hasItem(FItems.PACKED_SNOW_BLOCK), conditionsFromItem(FItems.PACKED_SNOW_BLOCK))
+                        .pattern("###")
+                        .input('#', FItems.PACKED_SNOW_BLOCK)
+                        .offerTo(exporter);
+
+                createShaped(RecipeCategory.BUILDING_BLOCKS, FItems.PACKED_SNOW_BLOCK, 4)
+                        .criterion(hasItem(Items.SNOW_BLOCK), conditionsFromItem(Items.SNOW_BLOCK))
+                        .pattern("###")
+                        .pattern("###")
+                        .pattern("###")
+                        .input('#', Items.SNOW_BLOCK)
+                        .offerTo(exporter);
+
+                createShaped(RecipeCategory.BUILDING_BLOCKS, FItems.PACKED_SNOW_BLOCK, 1)
+                        .criterion(hasItem(FItems.PACKED_SNOWBALL), conditionsFromItem(FItems.PACKED_SNOWBALL))
+                        .pattern("##")
+                        .pattern("##")
+                        .input('#', FItems.PACKED_SNOWBALL)
+                        .offerTo(exporter, "packed_snow_block_from_packed_snowball");
             }
         };
     }
