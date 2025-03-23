@@ -1,11 +1,11 @@
 package com.github.thedeathlycow.frostiful.client.render.state;
 
 public interface FLivingEntityRenderState {
-    default int frostiful$getRootedTicks() {
+    default boolean frostiful$isRooted() {
         throw new AssertionError("Implemented in mixin");
     }
 
-    default void frostiful$setRootedTicks(int value) {
+    default void frostiful$isRooted(boolean value) {
         throw new AssertionError("Implemented in mixin");
     }
 }

@@ -8,18 +8,16 @@ import org.spongepowered.asm.mixin.Unique;
 @Mixin(LivingEntityRenderState.class)
 public class LivingEntityRenderStateMixin implements FLivingEntityRenderState {
     @Unique
-    private int frostiful$rootedTicks = 0;
+    private boolean frostiful$isRooted = false;
 
     @Override
     @Unique
-    public int frostiful$getRootedTicks() {
-        return 0;
+    public boolean frostiful$isRooted() {
+        return this.frostiful$isRooted;
     }
 
     @Override
-    public void frostiful$setRootedTicks(int value) {
-        this.frostiful$rootedTicks = value;
+    public void frostiful$isRooted(boolean value) {
+        this.frostiful$isRooted = value;
     }
-
-
 }

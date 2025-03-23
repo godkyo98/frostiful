@@ -41,8 +41,8 @@ public class LivingEntityRendererMixin<T extends LivingEntity, S extends LivingE
             at = @At("TAIL")
     )
     private void updateRenderState(T entity, S state, float f, CallbackInfo ci) {
-        int rootedTicks = FComponents.FROST_WAND_ROOT_COMPONENT.get(entity).getRootedTicks();
-        ((FLivingEntityRenderState) state).frostiful$setRootedTicks(rootedTicks);
+        boolean isRooted = FComponents.FROST_WAND_ROOT_COMPONENT.get(entity).isRooted();
+        ((FLivingEntityRenderState) state).frostiful$isRooted(isRooted);
 
         if (SurvivalUtils.isShiveringRender(entity)) {
             state.shaking = true;
@@ -62,8 +62,7 @@ public class LivingEntityRendererMixin<T extends LivingEntity, S extends LivingE
             int light,
             CallbackInfo ci
     ) {
-        int rootedTicks = ((FLivingEntityRenderState) state).frostiful$getRootedTicks();
-        if (rootedTicks > 0) {
+        if (((FLivingEntityRenderState) state).frostiful$isRooted()) {
             matrixStack.push();
             float blockSize = 1.75f;
             matrixStack.scale(
@@ -85,25 +84,4 @@ public class LivingEntityRendererMixin<T extends LivingEntity, S extends LivingE
             matrixStack.pop();
         }
     }
-
-//    private void frostiful$renderBlock(LivingEntity livingEntity, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
-//
-//        this.frostiful$blockRenderManager
-//                .getModelRenderer()
-//                .render(
-//                        livingEntity.getWorld(),
-//                        this.frostiful$blockRenderManager.getModel(state),
-//                        state,
-//                        blockPos,
-//                        matrixStack,
-//                        vertexConsumerProvider.getBuffer(
-//                                RenderLayers.getMovingBlockLayer(state)
-//                        ),
-//                        false,
-//                        Random.create(),
-//                        state.getRenderingSeed(blockPos),
-//                        OverlayTexture.DEFAULT_UV
-//                );
-//    }
-
 }
