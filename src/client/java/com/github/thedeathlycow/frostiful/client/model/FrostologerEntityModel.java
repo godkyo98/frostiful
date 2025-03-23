@@ -1,7 +1,6 @@
 package com.github.thedeathlycow.frostiful.client.model;
 
 import com.github.thedeathlycow.frostiful.client.render.state.FrostologerEntityRenderState;
-import com.github.thedeathlycow.frostiful.entity.frostologer.FrostologerEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.*;
@@ -10,6 +9,8 @@ import net.minecraft.client.render.entity.model.IllagerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Arm;
 import net.minecraft.util.math.ColorHelper;
+import net.minecraft.util.math.MathHelper;
+import org.joml.Quaternionf;
 
 @Environment(EnvType.CLIENT)
 public class FrostologerEntityModel<F extends FrostologerEntityRenderState> extends IllagerEntityModel<F> {
@@ -94,6 +95,15 @@ public class FrostologerEntityModel<F extends FrostologerEntityRenderState> exte
                 this.rightArm.yaw = -0.1f + this.head.yaw;
                 this.rightArm.pitch = -1.57f + this.head.pitch;
             }
+        }
+
+        if (state.capeVisible) {
+            this.cloak.rotate(
+                    new Quaternionf()
+                            .rotateX((6.0f + state.capeSwing / 2.0f + state.capePitch) * MathHelper.PI / 180f)
+                            .rotateZ(state.capeStrafe / 2.0f * MathHelper.PI / 180f)
+                            .rotateY((180.0f - state.capeStrafe / 2.0f) * MathHelper.PI / 180f)
+            );
         }
     }
 }

@@ -10,4 +10,7 @@ public class FrostologerEntityRenderState extends IllagerEntityRenderState {
     public float rgColourMul = 0f;
     public FrostLayer frostLayer = FrostLayer.NONE;
     public boolean glowingEyes = false;
+    public float capePitch = 0f;
+    public float capeSwing = 0f;
+    public float capeStrafe = 0f;
 }
