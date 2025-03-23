@@ -12,7 +12,7 @@ import net.minecraft.util.math.BlockPos;
 public class BlockLightTemperatureTests {
     @GameTest(templateName = "frostiful-test:effects.local_temperature")
     public void villager_is_warmed_by_torch(TestContext context) {
-        BlockPos pos = new BlockPos(1, 2, 1);
+        BlockPos pos = new BlockPos(1, 1, 1);
         int temperature = -2000;
 
         VillagerEntity villager = context.spawnMob(EntityType.VILLAGER, pos);
@@ -45,11 +45,11 @@ public class BlockLightTemperatureTests {
 
     @GameTest(templateName = "frostiful-test:effects.local_temperature")
     public void villager_in_boat_is_warmed_by_torch(TestContext context) {
-        BlockPos pos = new BlockPos(1, 2, 1);
+        BlockPos pos = new BlockPos(1, 1, 1);
         int temperature = -2000;
 
         VillagerEntity villager = context.spawnMob(EntityType.VILLAGER, pos);
-        Entity boat = context.spawnEntity(EntityType.BOAT, pos);
+        Entity boat = context.spawnEntity(EntityType.OAK_BOAT, pos);
         villager.startRiding(boat, true);
 
         villager.thermoo$setTemperature(temperature);
@@ -93,7 +93,7 @@ public class BlockLightTemperatureTests {
 
     @GameTest(templateName = "frostiful-test:effects.local_temperature")
     public void villager_is_not_warmed(TestContext context) {
-        BlockPos pos = new BlockPos(1, 2, 1);
+        BlockPos pos = new BlockPos(1, 1, 1);
         int temperature = -2000;
 
         VillagerEntity villager = context.spawnMob(EntityType.VILLAGER, pos);

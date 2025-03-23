@@ -14,8 +14,8 @@ public class HotFloorTests {
     public void villager_on_magma_heated_more_than_villager_on_stone(TestContext context) {
         int temperatureChange = Frostiful.getConfig().freezingConfig.getHeatFromHotFloor();
 
-        final BlockPos stonePos = new BlockPos(2, 3, 3);
-        final BlockPos magmaPos = new BlockPos(4, 3, 3);
+        final BlockPos stonePos = new BlockPos(2, 2, 3);
+        final BlockPos magmaPos = new BlockPos(4, 2, 3);
         final int initialTemperature = -1000;
 
         final VillagerEntity magmaVillager = context.spawnMob(EntityType.VILLAGER, magmaPos);

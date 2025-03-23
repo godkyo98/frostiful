@@ -7,8 +7,12 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.entity.EntityPredicate;
+import net.minecraft.predicate.entity.EntityTypePredicate;
 import net.minecraft.predicate.entity.LootContextPredicate;
+import net.minecraft.registry.RegistryEntryLookup;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.test.GameTest;
 import net.minecraft.test.TestContext;
 import net.minecraft.util.math.BlockPos;
@@ -52,7 +56,7 @@ public class FrozenByFrostWandCriterionTest {
                 EntityType.CREEPER
         );
 
-        FrozenByFrostWandCriterion.Conditions conditions = createConditions();
+        FrozenByFrostWandCriterion.Conditions conditions = createConditions(context.getWorld());
 
         context.assertTrue(conditions.matches(creepers), "Conditions do not match!");
         context.complete();
@@ -69,7 +73,7 @@ public class FrozenByFrostWandCriterionTest {
                 EntityType.CREEPER
         );
 
-        FrozenByFrostWandCriterion.Conditions conditions = createConditions();
+        FrozenByFrostWandCriterion.Conditions conditions = createConditions(context.getWorld());
 
         context.assertTrue(conditions.matches(creepers), "Conditions do not match!");
         context.complete();
@@ -83,7 +87,7 @@ public class FrozenByFrostWandCriterionTest {
                 EntityType.CREEPER
         );
 
-        FrozenByFrostWandCriterion.Conditions conditions = createConditions();
+        FrozenByFrostWandCriterion.Conditions conditions = createConditions(context.getWorld());
 
         context.assertFalse(conditions.matches(creepers), "Conditions do match, but they should NOT!");
         context.complete();
@@ -98,7 +102,7 @@ public class FrozenByFrostWandCriterionTest {
                 EntityType.ZOMBIE
         );
 
-        FrozenByFrostWandCriterion.Conditions conditions = createConditions();
+        FrozenByFrostWandCriterion.Conditions conditions = createConditions(context.getWorld());
 
         context.assertFalse(conditions.matches(creepers), "Conditions do match, but they should NOT!");
         context.complete();
@@ -108,7 +112,7 @@ public class FrozenByFrostWandCriterionTest {
     public void zero_mobs_to_three_creeper_predicates_is_false(TestContext context) {
         List<LootContext> creepers = List.of();
 
-        FrozenByFrostWandCriterion.Conditions conditions = createConditions();
+        FrozenByFrostWandCriterion.Conditions conditions = createConditions(context.getWorld());
 
         context.assertFalse(conditions.matches(creepers), "Conditions do match, but they should NOT!");
         context.complete();
@@ -144,13 +148,14 @@ public class FrozenByFrostWandCriterionTest {
         return mockPlayer;
     }
 
-    private static FrozenByFrostWandCriterion.Conditions createConditions() {
+    private static FrozenByFrostWandCriterion.Conditions createConditions(ServerWorld world) {
         List<LootContextPredicate> predicates = new ArrayList<>();
+        RegistryEntryLookup<EntityType<?>> lookup = world.getRegistryManager().getOrThrow(RegistryKeys.ENTITY_TYPE);
 
         for (int i = 0; i < NUM_PREDICATES; i++) {
             LootContextPredicate context = EntityPredicate.contextPredicateFromEntityPredicate(
                     EntityPredicate.Builder.create()
-                            .type(EntityType.CREEPER)
+                            .type(EntityTypePredicate.create(lookup, EntityType.CREEPER))
             );
             predicates.add(context);
         }

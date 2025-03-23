@@ -34,8 +34,8 @@ public final class SunLichenPathfindingTests {
 
     private static void runAvoidanceTest(TestContext context, EntityType<? extends MobEntity> toSpawn, Block expectedBlock) {
         context.setTime(1000);
-        final BlockPos start = new BlockPos(1, 2, 1);
-        final BlockPos end = new BlockPos(10, 2, 7);
+        final BlockPos start = new BlockPos(1, 1, 1);
+        final BlockPos end = new BlockPos(10, 1, 7);
 
         final MobEntity entity = context.spawnMob(toSpawn, start);
         context.startMovingTowards(entity, end, 0.7f);
@@ -47,8 +47,8 @@ public final class SunLichenPathfindingTests {
 
     private static void runCollisionTest(TestContext context, EntityType<? extends MobEntity> toSpawn) {
         context.setTime(1000);
-        final BlockPos start = new BlockPos(1, 2, 1);
-        final BlockPos end = new BlockPos(10, 2, 7);
+        final BlockPos start = new BlockPos(1, 1, 1);
+        final BlockPos end = new BlockPos(10, 1, 7);
         final int freezeAmount = -1000;
 
         final MobEntity entity = context.spawnMob(toSpawn, start);

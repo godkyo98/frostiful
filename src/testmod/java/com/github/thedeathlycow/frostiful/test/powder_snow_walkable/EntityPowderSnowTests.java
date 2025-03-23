@@ -18,7 +18,7 @@ public class EntityPowderSnowTests {
     @GameTest(templateName = "frostiful-test:powder_snow_walkable_test")
     public void zombie_wearing_fur_boots_does_not_fall(TestContext context) {
         context.setTime(18000);
-        BlockPos spawnPos = new BlockPos(1, 3, 1);
+        BlockPos spawnPos = new BlockPos(1, 2, 1);
 
         ZombieEntity zombie = context.spawnEntity(EntityType.ZOMBIE, spawnPos);
         StackReference stackReference = zombie.getStackReference(EquipmentSlot.FEET.getOffsetEntitySlotId(100));
@@ -27,7 +27,7 @@ public class EntityPowderSnowTests {
         context.waitAndRun(
                 20,
                 () -> {
-                    context.dontExpectEntityAtEnd(EntityType.ZOMBIE, new BlockPos(1, 2, 1));
+                    context.dontExpectEntityAtEnd(EntityType.ZOMBIE, new BlockPos(1, 1, 1));
                 }
         );
     }
@@ -35,7 +35,7 @@ public class EntityPowderSnowTests {
     @GameTest(templateName = "frostiful-test:powder_snow_walkable_test")
     public void zombie_wearing_chainmail_fur_boots_does_not_fall(TestContext context) {
         context.setTime(18000);
-        BlockPos spawnPos = new BlockPos(1, 3, 1);
+        BlockPos spawnPos = new BlockPos(1, 2, 1);
 
         ZombieEntity zombie = context.spawnEntity(EntityType.ZOMBIE, spawnPos);
         StackReference stackReference = zombie.getStackReference(EquipmentSlot.FEET.getOffsetEntitySlotId(100));
@@ -43,7 +43,7 @@ public class EntityPowderSnowTests {
         context.waitAndRun(
                 20,
                 () -> {
-                    context.dontExpectEntityAtEnd(EntityType.ZOMBIE, new BlockPos(1, 2, 1));
+                    context.dontExpectEntityAtEnd(EntityType.ZOMBIE, new BlockPos(1, 1, 1));
                 }
         );
     }
@@ -51,7 +51,7 @@ public class EntityPowderSnowTests {
     @GameTest(templateName = "frostiful-test:powder_snow_walkable_test")
     public void zombie_wearing_leather_boots_does_not_fall(TestContext context) {
         context.setTime(18000);
-        BlockPos spawnPos = new BlockPos(1, 3, 1);
+        BlockPos spawnPos = new BlockPos(1, 2, 1);
 
         ZombieEntity zombie = context.spawnEntity(EntityType.ZOMBIE, spawnPos);
         StackReference stackReference = zombie.getStackReference(EquipmentSlot.FEET.getOffsetEntitySlotId(100));
@@ -60,7 +60,7 @@ public class EntityPowderSnowTests {
         context.waitAndRun(
                 20,
                 () -> {
-                    context.dontExpectEntityAtEnd(EntityType.ZOMBIE, new BlockPos(1, 2, 1));
+                    context.dontExpectEntityAtEnd(EntityType.ZOMBIE, new BlockPos(1, 1, 1));
                 }
         );
     }
@@ -68,28 +68,28 @@ public class EntityPowderSnowTests {
     @GameTest(templateName = "frostiful-test:powder_snow_walkable_test")
     public void zombie_wearing_no_boots_falls(TestContext context) {
         context.setTime(18000);
-        BlockPos spawnPos = new BlockPos(1, 3, 1);
+        BlockPos spawnPos = new BlockPos(1, 2, 1);
 
         ZombieEntity zombie = context.spawnEntity(EntityType.ZOMBIE, spawnPos);
 
         context.waitAndRun(
                 20,
                 () -> {
-                    context.expectEntityAtEnd(EntityType.ZOMBIE, new BlockPos(1, 2, 1));
+                    context.expectEntityAtEnd(EntityType.ZOMBIE, new BlockPos(1, 1, 1));
                 }
         );
     }
 
     @GameTest(templateName = "frostiful-test:powder_snow_walkable_test")
     public void rabbit_does_not_fall(TestContext context) {
-        BlockPos spawnPos = new BlockPos(1, 3, 1);
+        BlockPos spawnPos = new BlockPos(1, 2, 1);
 
         RabbitEntity rabbit = context.spawnEntity(EntityType.RABBIT, spawnPos);
 
         context.waitAndRun(
                 20,
                 () -> {
-                    context.dontExpectEntityAtEnd(EntityType.RABBIT, new BlockPos(1, 2, 1));
+                    context.dontExpectEntityAtEnd(EntityType.RABBIT, new BlockPos(1, 1, 1));
                 }
         );
     }

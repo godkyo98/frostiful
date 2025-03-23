@@ -314,7 +314,7 @@ public class FrostologerDestroyHeatSourcesTests {
 
     private static void runDestroyHeatSourceTest(TestContext context, BlockState toPlace, Block blockAtEnd) {
         ServerWorld serverWorld = context.getWorld();
-        BlockPos pos = new BlockPos(1, 2, 1);
+        BlockPos pos = new BlockPos(1, 1, 1);
 
         serverWorld.setBlockState(pos, toPlace);
 

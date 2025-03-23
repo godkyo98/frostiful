@@ -57,8 +57,8 @@ public final class IcicleBreakTests implements FabricGameTest {
     }
 
     private static void strikeIcicleWithProjectile(TestContext context, EntityType<?> type) {
-        Entity entity = context.spawnEntity(type, 0, 7, 0);
+        Entity entity = context.spawnEntity(type, 0, 6, 0);
         entity.addVelocity(0.0, 0.0, 5.0);
-        context.expectBlockAtEnd(Blocks.AIR, 0, 7, 3);
+        context.expectBlockAtEnd(Blocks.AIR, 0, 5, 3);
     }
 }

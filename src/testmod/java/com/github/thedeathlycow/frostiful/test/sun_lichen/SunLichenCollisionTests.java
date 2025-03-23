@@ -23,7 +23,7 @@ import java.util.function.Function;
 public final class SunLichenCollisionTests implements FabricGameTest {
     @GameTest(batchId = "sunLichenCollision", templateName = "frostiful-test:sun_lichen_tests.platform")
     public void cool_lichen_does_not_damage(TestContext context) {
-        final BlockPos pos = new BlockPos(1, 2, 1);
+        final BlockPos pos = new BlockPos(1, 1, 1);
 
         final MobEntity entity = context.spawnMob(EntityType.VILLAGER, pos);
         context.expectEntityWithData(pos, EntityType.VILLAGER, LivingEntity::getHealth, entity.getMaxHealth());
@@ -34,7 +34,7 @@ public final class SunLichenCollisionTests implements FabricGameTest {
 
     @GameTest(batchId = "sunLichenCollision", templateName = "frostiful-test:sun_lichen_tests.platform")
     public void hot_lichen_damages(TestContext context) {
-        final BlockPos pos = new BlockPos(1, 2, 1);
+        final BlockPos pos = new BlockPos(1, 1, 1);
 
         final MobEntity entity = context.spawnMob(EntityType.VILLAGER, pos);
 
@@ -46,7 +46,7 @@ public final class SunLichenCollisionTests implements FabricGameTest {
 
     @GameTest(batchId = "sunLichenCollision", templateName = "frostiful-test:sun_lichen_tests.platform")
     public void cold_lichen_does_not_warm(TestContext context) {
-        final BlockPos pos = new BlockPos(1, 2, 1);
+        final BlockPos pos = new BlockPos(1, 1, 1);
 
         final MobEntity entity = context.spawnMob(EntityType.VILLAGER, pos);
         final Function<VillagerEntity, Integer> frostGetter = TemperatureAware::thermoo$getTemperature;
@@ -61,7 +61,7 @@ public final class SunLichenCollisionTests implements FabricGameTest {
 
     @GameTest(batchId = "sunLichenCollision", templateName = "frostiful-test:sun_lichen_tests.platform")
     public void sun_lichen_does_not_overheat(TestContext context) {
-        final BlockPos pos = new BlockPos(1, 2, 1);
+        final BlockPos pos = new BlockPos(1, 1, 1);
 
         final MobEntity entity = context.spawnMob(EntityType.VILLAGER, pos);
         final Function<VillagerEntity, Integer> frostGetter = TemperatureAware::thermoo$getTemperature;
@@ -77,7 +77,7 @@ public final class SunLichenCollisionTests implements FabricGameTest {
 
     @GameTest(batchId = "sunLichenCollision", templateName = "frostiful-test:sun_lichen_tests.platform")
     public void warm_villager_is_burned_by_hot_sun_lichen(TestContext context) {
-        final BlockPos pos = new BlockPos(1, 2, 1);
+        final BlockPos pos = new BlockPos(1, 1, 1);
         int temperature = 500;
         MobEntity entity = setupWarmVillagerTest(context, pos, temperature);
 
@@ -93,7 +93,7 @@ public final class SunLichenCollisionTests implements FabricGameTest {
 
     @GameTest(batchId = "sunLichenCollision", templateName = "frostiful-test:sun_lichen_tests.platform")
     public void warm_villager_is_not_burned_by_cool_sun_lichen(TestContext context) {
-        final BlockPos pos = new BlockPos(1, 2, 1);
+        final BlockPos pos = new BlockPos(1, 1, 1);
         int temperature = 500;
         MobEntity entity = setupWarmVillagerTest(context, pos, temperature);
 
@@ -123,7 +123,7 @@ public final class SunLichenCollisionTests implements FabricGameTest {
     }
 
     private static void expectWarmLichenWarmsVillager(TestContext context, Block warmLichen) {
-        final BlockPos pos = new BlockPos(1, 2, 1);
+        final BlockPos pos = new BlockPos(1, 1, 1);
 
         final MobEntity entity = context.spawnMob(EntityType.VILLAGER, pos);
         final Function<VillagerEntity, Integer> frostGetter = TemperatureAware::thermoo$getTemperature;

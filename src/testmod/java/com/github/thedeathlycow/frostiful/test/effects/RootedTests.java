@@ -13,7 +13,7 @@ public class RootedTests {
 
     @GameTest(templateName = "frostiful-test:effects.platform")
     public void villager_stops_walking_when_rooted(TestContext context) {
-        BlockPos start = new BlockPos(1, 2, 1);
+        BlockPos start = new BlockPos(1, 1, 1);
         BlockPos end = start.add(2, 0, 2);
 
         MobEntity entity = context.spawnMob(EntityType.VILLAGER, start);
@@ -26,7 +26,7 @@ public class RootedTests {
 
     @GameTest(templateName = "frostiful-test:effects.platform")
     public void villager_can_walk_when_not_rooted(TestContext context) {
-        BlockPos start = new BlockPos(1, 2, 1);
+        BlockPos start = new BlockPos(1, 1, 1);
         BlockPos end = start.add(2, 0, 2);
 
         MobEntity entity = context.spawnMob(EntityType.VILLAGER, start);
@@ -37,7 +37,7 @@ public class RootedTests {
 
     @GameTest(templateName = "frostiful-test:effects.platform")
     public void villager_root_is_not_reset(TestContext context) {
-        BlockPos start = new BlockPos(1, 2, 1);
+        BlockPos start = new BlockPos(1, 1, 1);
 
         MobEntity entity = context.spawnMob(EntityType.VILLAGER, start);
         FrostWandRootComponent rootComponent = FComponents.FROST_WAND_ROOT_COMPONENT.get(entity);
