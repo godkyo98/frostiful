@@ -47,7 +47,6 @@ public class CapeFeatureRendererMixin {
             )
     )
     private Identifier getFrostologyCloakTexture(SkinTextures instance, Operation<Identifier> original) {
-
         boolean renderFrostologyCloak = this.scorchful$renderedPlayer != null
                 && AbstractFrostologyCloakItem.isWearing(this.scorchful$renderedPlayer, stack -> stack.isIn(FItemTags.FROSTOLOGY_CLOAKS));
 
