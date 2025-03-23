@@ -32,6 +32,7 @@ public class FRecipeProvider extends FabricRecipeProvider {
 
                 offerCutBlueIceRecipes();
                 offerCutPackedIceRecipes();
+                offerPackedSnowBrickRecipes();
 
             }
 
@@ -81,6 +82,30 @@ public class FRecipeProvider extends FabricRecipeProvider {
                 offerWallRecipe(RecipeCategory.DECORATIONS, FItems.CUT_PACKED_ICE_WALL, FItems.CUT_PACKED_ICE);
                 offerStonecuttingRecipe(RecipeCategory.DECORATIONS, FItems.CUT_PACKED_ICE_WALL, FItems.CUT_PACKED_ICE);
                 offerStonecuttingRecipe(RecipeCategory.DECORATIONS, FItems.CUT_PACKED_ICE_WALL, Items.PACKED_ICE, 4);
+            }
+
+            private void offerPackedSnowBrickRecipes() {
+                createShaped(RecipeCategory.BUILDING_BLOCKS, FItems.PACKED_SNOW_BRICKS, 4)
+                        .criterion(hasItem(FItems.PACKED_SNOW_BLOCK), conditionsFromItem(FItems.PACKED_SNOW_BLOCK))
+                        .pattern("##")
+                        .pattern("##")
+                        .input('#', FItems.PACKED_SNOW_BLOCK)
+                        .offerTo(exporter);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, FItems.PACKED_SNOW_BRICKS, FItems.PACKED_SNOW_BLOCK);
+
+                createStairsRecipe(FItems.PACKED_SNOW_BRICK_STAIRS, Ingredient.ofItem(FItems.PACKED_SNOW_BRICKS))
+                        .criterion(hasItem(FItems.PACKED_SNOW_BRICKS), conditionsFromItem(FItems.PACKED_SNOW_BRICKS))
+                        .offerTo(exporter);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, FItems.PACKED_SNOW_BRICK_STAIRS, FItems.PACKED_SNOW_BRICKS);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, FItems.PACKED_SNOW_BRICK_STAIRS, FItems.PACKED_SNOW_BLOCK);
+
+                offerSlabRecipe(RecipeCategory.DECORATIONS, FItems.PACKED_SNOW_BRICK_SLAB, FItems.PACKED_SNOW_BRICKS);
+                offerStonecuttingRecipe(RecipeCategory.DECORATIONS, FItems.PACKED_SNOW_BRICK_SLAB, FItems.PACKED_SNOW_BRICKS, 2);
+                offerStonecuttingRecipe(RecipeCategory.DECORATIONS, FItems.PACKED_SNOW_BRICK_SLAB, FItems.PACKED_SNOW_BLOCK, 2);
+
+                offerWallRecipe(RecipeCategory.DECORATIONS, FItems.PACKED_SNOW_BRICK_WALL, FItems.PACKED_SNOW_BRICKS);
+                offerStonecuttingRecipe(RecipeCategory.DECORATIONS, FItems.PACKED_SNOW_BRICK_WALL, FItems.PACKED_SNOW_BRICKS);
+                offerStonecuttingRecipe(RecipeCategory.DECORATIONS, FItems.PACKED_SNOW_BRICK_WALL, FItems.PACKED_SNOW_BLOCK);
             }
         };
     }

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_packed_snow_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "frostiful:packed_snow_bricks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "frostiful:packed_snow_brick_stairs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_packed_snow_bricks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "frostiful:packed_snow_brick_stairs"
+    ]
+  }
+}
