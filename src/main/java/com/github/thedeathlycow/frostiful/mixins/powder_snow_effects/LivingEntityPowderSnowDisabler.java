@@ -75,10 +75,10 @@ public abstract class LivingEntityPowderSnowDisabler extends Entity implements T
             ),
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/entity/LivingEntity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z",
+                    target = "Lnet/minecraft/entity/LivingEntity;damage(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/damage/DamageSource;F)Z",
                     ordinal = 0
             ),
-            index = 1
+            index = 2
     )
     private float blockPowderSnowFreezeDamage(float amount) {
         return 0f;
