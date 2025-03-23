@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "frostiful:glacial_heart",
+    "I": "frostiful:icicle",
+    "R": "frostiful:frozen_rod"
+  },
+  "pattern": [
+    "I#I",
+    " R ",
+    " R "
+  ],
+  "result": {
+    "count": 1,
+    "id": "frostiful:frost_wand"
+  }
+}

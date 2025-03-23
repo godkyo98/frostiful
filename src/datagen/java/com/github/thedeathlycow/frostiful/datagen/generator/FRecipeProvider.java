@@ -34,6 +34,16 @@ public class FRecipeProvider extends FabricRecipeProvider {
                 offerCutPackedIceRecipes();
                 offerPackedSnowBrickRecipes();
                 offerPackedSnowRecipes();
+
+                createShaped(RecipeCategory.COMBAT, FItems.FROST_WAND)
+                        .criterion(hasItem(FItems.GLACIAL_HEART), conditionsFromItem(FItems.GLACIAL_HEART))
+                        .pattern("I#I")
+                        .pattern(" R ")
+                        .pattern(" R ")
+                        .input('#', FItems.GLACIAL_HEART)
+                        .input('I', FItems.ICICLE)
+                        .input('R', FItems.FROZEN_ROD)
+                        .offerTo(exporter);
             }
 
             private void offerCutBlueIceRecipes() {
