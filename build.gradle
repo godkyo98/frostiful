@@ -229,3 +229,10 @@ loom {
 test {
     useJUnitPlatform()
 }
+
+fabricApi {
+    configureDataGeneration() {
+        createSourceSet = true
+        modId = "frostiful-datagen"
+    }
+}
