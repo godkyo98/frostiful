@@ -7,7 +7,7 @@ import net.minecraft.registry.tag.TagKey;
 
 public final class FItemTags {
 
-    public static final TagKey<Item> FUR = register("fur");
+    public static final TagKey<Item> ICICLES = register("icicles");
 
     public static final TagKey<Item> POWDER_SNOW_WALKABLE = register("powder_snow_walkable");
 

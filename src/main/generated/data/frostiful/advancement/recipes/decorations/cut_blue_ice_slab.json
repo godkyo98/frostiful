@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cut_blue_ice": {
+      "conditions": {
+        "items": [
+          {
+            "items": "frostiful:cut_blue_ice"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "frostiful:cut_blue_ice_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cut_blue_ice"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "frostiful:cut_blue_ice_slab"
+    ]
+  }
+}

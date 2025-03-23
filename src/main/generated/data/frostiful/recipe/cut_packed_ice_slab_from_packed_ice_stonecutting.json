@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "minecraft:packed_ice",
+  "result": {
+    "count": 8,
+    "id": "frostiful:cut_packed_ice_slab"
+  }
+}
