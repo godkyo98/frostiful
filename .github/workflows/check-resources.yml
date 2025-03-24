@@ -12,5 +12,7 @@ jobs:
         with:
           distribution: 'microsoft'
           java-version: '21'
+      - name: make gradle wrapper executable
+        run: chmod +x ./gradlew
       - run: ./gradlew runDatagen --stacktrace --warning-mode=fail
       - run: if [ -n "$(git status --porcelain)" ]; then exit 1; fi
