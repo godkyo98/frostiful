@@ -1,0 +1,39 @@
+{
+    "total_mobs": 6,
+    "total_mobs_added_per_player": 1,
+    "simultaneous_mobs": 2,
+    "simultaneous_mobs_added_per_player": 0.5,
+    "spawn_potentials": [
+        {
+            "data": {
+                "entity": {
+                    "id": "frostiful:chillager"
+                }
+            },
+            "weight": 1
+        },
+        {
+            "data": {
+                "equipment": {
+                    "slot_drop_chances": 0.0,
+                    "loot_table": "frostiful:equipment/frostologer_castle/chillager"
+                },
+                "entity": {
+                    "id": "frostiful:chillager"
+                }
+            },
+            "weight": 2
+        }
+    ],
+    "ticks_between_spawn": 20,
+    "loot_tables_to_eject": [
+        {
+            "data": "frostiful:spawners/frostologer_castle/ominous/key",
+            "weight": 1
+        },
+        {
+            "data": "frostiful:spawners/frostologer_castle/ominous/consumables",
+            "weight": 4
+        }
+    ]
+}
