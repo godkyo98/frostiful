@@ -88,11 +88,17 @@ public class FRecipeProvider extends FabricRecipeProvider {
                 offerFurPaddingRecipe(Items.RABBIT_HIDE, 9);
 
                 createShaped(RecipeCategory.DECORATIONS, FItems.ICE_PANE, 16)
-                        .criterion(hasItem(Items.ICE), this.conditionsFromItem(Items.ICE))
+                        .criterion(hasItem(Items.ICE), conditionsFromItem(Items.ICE))
                         .pattern("###")
                         .pattern("###")
                         .input('#', Items.ICE)
                         .offerTo(this.exporter);
+
+                createShapeless(RecipeCategory.COMBAT, FItems.GLACIAL_ARROW)
+                        .criterion(hasItem(FItems.ICICLE), conditionsFromTag(FItemTags.ICICLES))
+                        .input(FItemTags.ICICLES)
+                        .input(Items.ARROW)
+                        .offerTo(exporter);
             }
 
             // <editor-fold desc="Long form recipe generators">
