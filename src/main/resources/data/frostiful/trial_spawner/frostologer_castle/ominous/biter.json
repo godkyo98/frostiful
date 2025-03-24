@@ -1,0 +1,27 @@
+{
+    "total_mobs": 8,
+    "total_mobs_added_per_player": 2,
+    "simultaneous_mobs": 2,
+    "simultaneous_mobs_added_per_player": 1,
+    "spawn_potentials": [
+        {
+            "data": {
+                "entity": {
+                    "id": "frostiful:biter"
+                }
+            },
+            "weight": 1
+        }
+    ],
+    "ticks_between_spawn": 20,
+    "loot_tables_to_eject": [
+        {
+            "data": "frostiful:spawners/frostologer_castle/ominous/key",
+            "weight": 1
+        },
+        {
+            "data": "frostiful:spawners/frostologer_castle/ominous/consumables",
+            "weight": 4
+        }
+    ]
+}
