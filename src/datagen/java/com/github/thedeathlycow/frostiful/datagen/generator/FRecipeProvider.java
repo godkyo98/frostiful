@@ -105,8 +105,6 @@ public class FRecipeProvider extends FabricRecipeProvider {
                         .input(FItems.PACKED_SNOWBALL)
                         .input(Items.PAPER)
                         .offerTo(exporter);
-
-                createShapeless()
             }
 
             // <editor-fold desc="Long form recipe generators">
