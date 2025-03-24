@@ -76,6 +76,8 @@ public class FRecipeProvider extends FabricRecipeProvider {
                         .pattern("#")
                         .input('#', Items.BLUE_ICE)
                         .offerTo(exporter);
+
+                offerFurArmorRecipes();
             }
 
             private void offerCutBlueIceRecipes() {
@@ -195,6 +197,40 @@ public class FRecipeProvider extends FabricRecipeProvider {
                         )
                         .criterion("has_iron_sword", this.conditionsFromItem(Items.IRON_SWORD))
                         .offerTo(this.exporter, getItemPath(result) + "_smithing");
+            }
+
+            private void offerFurArmorRecipes() {
+                final String key = "has_fur_tuft";
+
+                createShaped(RecipeCategory.COMBAT, FItems.FUR_HELMET)
+                        .criterion(key, conditionsFromTag(FItemTags.FUR_TUFTS))
+                        .pattern("###")
+                        .pattern("# #")
+                        .input('#', FItemTags.FUR_TUFTS)
+                        .offerTo(exporter);
+
+                createShaped(RecipeCategory.COMBAT, FItems.FUR_CHESTPLATE)
+                        .criterion(key, conditionsFromTag(FItemTags.FUR_TUFTS))
+                        .pattern("# #")
+                        .pattern("###")
+                        .pattern("###")
+                        .input('#', FItemTags.FUR_TUFTS)
+                        .offerTo(exporter);
+
+                createShaped(RecipeCategory.COMBAT, FItems.FUR_LEGGINGS)
+                        .criterion(key, conditionsFromTag(FItemTags.FUR_TUFTS))
+                        .pattern("###")
+                        .pattern("# #")
+                        .pattern("# #")
+                        .input('#', FItemTags.FUR_TUFTS)
+                        .offerTo(exporter);
+
+                createShaped(RecipeCategory.COMBAT, FItems.FUR_BOOTS)
+                        .criterion(key, conditionsFromTag(FItemTags.FUR_TUFTS))
+                        .pattern("# #")
+                        .pattern("# #")
+                        .input('#', FItemTags.FUR_TUFTS)
+                        .offerTo(exporter);
             }
 
             private static RegistryKey<Recipe<?>> upgradeRecipeKey(Item item) {
