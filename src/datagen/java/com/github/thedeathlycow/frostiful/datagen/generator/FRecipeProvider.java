@@ -69,6 +69,13 @@ public class FRecipeProvider extends FabricRecipeProvider {
                 offerSmithingTemplateCopyingRecipe(FItems.FUR_UPGRADE_TEMPLATE, FItems.PACKED_SNOW_BLOCK);
                 offerSmithingTemplateCopyingRecipe(FItems.ICE_SKATE_UPGRADE_TEMPLATE, FItems.PACKED_SNOW_BLOCK);
 
+                createShaped(RecipeCategory.MISC, FItems.FROZEN_ROD)
+                        .criterion(hasItem(Items.BLUE_ICE), conditionsFromItem(Items.BLUE_ICE))
+                        .pattern("#")
+                        .pattern("#")
+                        .pattern("#")
+                        .input('#', Items.BLUE_ICE)
+                        .offerTo(exporter);
             }
 
             private void offerCutBlueIceRecipes() {
