@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.RecipeGenerator;
+import net.minecraft.data.server.recipe.SmithingTransformRecipeJsonBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
@@ -15,7 +16,6 @@ import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.util.Identifier;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -55,6 +55,10 @@ public class FRecipeProvider extends FabricRecipeProvider {
                 offerSmithingTrimRecipe(FItems.FROSTY_ARMOR_TRIM_SMITHING_TEMPLATE, upgradeRecipeKey(FItems.FROSTY_ARMOR_TRIM_SMITHING_TEMPLATE));
                 offerSmithingTrimRecipe(FItems.GLACIAL_ARMOR_TRIM_SMITHING_TEMPLATE, upgradeRecipeKey(FItems.GLACIAL_ARMOR_TRIM_SMITHING_TEMPLATE));
 
+                offerFurUpgradeRecipe(Items.CHAINMAIL_HELMET, FItems.FUR_PADDED_CHAINMAIL_HELMET);
+                offerFurUpgradeRecipe(Items.CHAINMAIL_CHESTPLATE, FItems.FUR_PADDED_CHAINMAIL_CHESTPLATE);
+                offerFurUpgradeRecipe(Items.CHAINMAIL_LEGGINGS, FItems.FUR_PADDED_CHAINMAIL_LEGGINGS);
+                offerFurUpgradeRecipe(Items.CHAINMAIL_BOOTS, FItems.FUR_PADDED_CHAINMAIL_BOOTS);
             }
 
             private void offerCutBlueIceRecipes() {
@@ -150,6 +154,18 @@ public class FRecipeProvider extends FabricRecipeProvider {
                         .pattern("##")
                         .input('#', FItems.PACKED_SNOWBALL)
                         .offerTo(exporter, "packed_snow_block_from_packed_snowball");
+            }
+
+            private void offerFurUpgradeRecipe(Item input, Item result) {
+                SmithingTransformRecipeJsonBuilder.create(
+                                Ingredient.ofItem(FItems.FUR_UPGRADE_TEMPLATE),
+                                Ingredient.ofItem(input),
+                                Ingredient.ofItem(FItems.FUR_PADDING),
+                                RecipeCategory.COMBAT,
+                                result
+                        )
+                        .criterion("has_fur_padding", this.conditionsFromItem(FItems.FUR_PADDING))
+                        .offerTo(this.exporter, getItemPath(result) + "_smithing");
             }
 
             private static RegistryKey<Recipe<?>> upgradeRecipeKey(Item item) {
