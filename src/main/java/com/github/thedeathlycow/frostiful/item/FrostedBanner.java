@@ -16,7 +16,10 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Rarity;
 import net.minecraft.util.Unit;
+
+import javax.xml.crypto.Data;
 
 import static net.minecraft.server.command.CommandManager.literal;
 
@@ -44,6 +47,7 @@ public final class FrostedBanner {
         stack.set(DataComponentTypes.BANNER_PATTERNS, bannerPatterns);
         stack.set(DataComponentTypes.HIDE_ADDITIONAL_TOOLTIP, Unit.INSTANCE);
         stack.set(DataComponentTypes.ITEM_NAME, FROSTED_BANNER_NAME);
+        stack.set(DataComponentTypes.RARITY, Rarity.UNCOMMON);
 
         return stack;
     }
