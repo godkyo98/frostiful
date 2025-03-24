@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:fur_padded_chainmail_chestplate_smithing"
+        "recipe": "frostiful:fur_padded_chainmail_chestplate_smithing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:fur_padded_chainmail_chestplate_smithing"
+      "frostiful:fur_padded_chainmail_chestplate_smithing"
     ]
   }
 }

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "frostiful:fur_padding_from_wolf_fur_tuft"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wolf_fur_tuft": {
+      "conditions": {
+        "items": [
+          {
+            "items": "frostiful:wolf_fur_tuft"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_wolf_fur_tuft"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "frostiful:fur_padding_from_wolf_fur_tuft"
+    ]
+  }
+}

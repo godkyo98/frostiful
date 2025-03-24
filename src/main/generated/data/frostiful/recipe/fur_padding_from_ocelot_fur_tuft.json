@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "frostiful:fur_padding",
+  "ingredients": [
+    "frostiful:ocelot_fur_tuft",
+    "frostiful:ocelot_fur_tuft",
+    "frostiful:ocelot_fur_tuft",
+    "frostiful:ocelot_fur_tuft",
+    "frostiful:ocelot_fur_tuft",
+    "frostiful:ocelot_fur_tuft",
+    "frostiful:ocelot_fur_tuft",
+    "frostiful:ocelot_fur_tuft",
+    "frostiful:ocelot_fur_tuft"
+  ],
+  "result": {
+    "count": 1,
+    "id": "frostiful:fur_padding"
+  }
+}

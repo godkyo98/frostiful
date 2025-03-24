@@ -9,13 +9,16 @@ import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.RecipeGenerator;
 import net.minecraft.data.server.recipe.SmithingTransformRecipeJsonBuilder;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.util.Identifier;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -78,6 +81,11 @@ public class FRecipeProvider extends FabricRecipeProvider {
                         .offerTo(exporter);
 
                 offerFurArmorRecipes();
+
+                offerFurPaddingRecipe(FItems.POLAR_BEAR_FUR_TUFT, 4);
+                offerFurPaddingRecipe(FItems.WOLF_FUR_TUFT, 9);
+                offerFurPaddingRecipe(FItems.OCELOT_FUR_TUFT, 9);
+                offerFurPaddingRecipe(Items.RABBIT_HIDE, 9);
             }
 
             private void offerCutBlueIceRecipes() {
@@ -184,7 +192,7 @@ public class FRecipeProvider extends FabricRecipeProvider {
                                 result
                         )
                         .criterion("has_fur_padding", this.conditionsFromItem(FItems.FUR_PADDING))
-                        .offerTo(this.exporter, getItemPath(result) + "_smithing");
+                        .offerTo(this.exporter, getItemId(result) + "_smithing");
             }
 
             private void offerSkateUpgradeRecipe(Item input, Item result) {
@@ -196,7 +204,7 @@ public class FRecipeProvider extends FabricRecipeProvider {
                                 result
                         )
                         .criterion("has_iron_sword", this.conditionsFromItem(Items.IRON_SWORD))
-                        .offerTo(this.exporter, getItemPath(result) + "_smithing");
+                        .offerTo(this.exporter, getItemId(result) + "_smithing");
             }
 
             private void offerFurArmorRecipes() {
@@ -233,8 +241,24 @@ public class FRecipeProvider extends FabricRecipeProvider {
                         .offerTo(exporter);
             }
 
-            private static RegistryKey<Recipe<?>> upgradeRecipeKey(Item item) {
+            private void offerFurPaddingRecipe(ItemConvertible input, int amount) {
+                createShapeless(RecipeCategory.MISC, FItems.FUR_PADDING)
+                        .group(Frostiful.id("fur_padding").toString())
+                        .criterion(hasItem(input), conditionsFromItem(input))
+                        .input(input, amount)
+                        .offerTo(exporter, furPaddingFrom(input));
+            }
+
+            private static RegistryKey<Recipe<?>> upgradeRecipeKey(ItemConvertible item) {
                 return RegistryKey.of(RegistryKeys.RECIPE, Frostiful.id(getItemPath(item) + "_smithing_trim"));
+            }
+
+            private static String getItemId(ItemConvertible item) {
+                return Registries.ITEM.getId(item.asItem()).toString();
+            }
+
+            private static String furPaddingFrom(ItemConvertible item) {
+                return Frostiful.MODID + ":fur_padding_from_" + getItemPath(item);
             }
         };
     }

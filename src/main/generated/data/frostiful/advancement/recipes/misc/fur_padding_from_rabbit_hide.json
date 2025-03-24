@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_fur_padding": {
+    "has_rabbit_hide": {
       "conditions": {
         "items": [
           {
-            "items": "frostiful:fur_padding"
+            "items": "minecraft:rabbit_hide"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "frostiful:fur_padded_chainmail_helmet_smithing"
+        "recipe": "frostiful:fur_padding_from_rabbit_hide"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_fur_padding"
+      "has_rabbit_hide"
     ]
   ],
   "rewards": {
     "recipes": [
-      "frostiful:fur_padded_chainmail_helmet_smithing"
+      "frostiful:fur_padding_from_rabbit_hide"
     ]
   }
 }

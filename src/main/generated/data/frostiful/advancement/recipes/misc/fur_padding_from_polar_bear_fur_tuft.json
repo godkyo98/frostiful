@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_fur_padding": {
+    "has_polar_bear_fur_tuft": {
       "conditions": {
         "items": [
           {
-            "items": "frostiful:fur_padding"
+            "items": "frostiful:polar_bear_fur_tuft"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "frostiful:fur_padded_chainmail_helmet_smithing"
+        "recipe": "frostiful:fur_padding_from_polar_bear_fur_tuft"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_fur_padding"
+      "has_polar_bear_fur_tuft"
     ]
   ],
   "rewards": {
     "recipes": [
-      "frostiful:fur_padded_chainmail_helmet_smithing"
+      "frostiful:fur_padding_from_polar_bear_fur_tuft"
     ]
   }
 }
