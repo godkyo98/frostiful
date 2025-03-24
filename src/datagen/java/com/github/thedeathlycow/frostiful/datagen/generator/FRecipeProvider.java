@@ -86,7 +86,16 @@ public class FRecipeProvider extends FabricRecipeProvider {
                 offerFurPaddingRecipe(FItems.WOLF_FUR_TUFT, 9);
                 offerFurPaddingRecipe(FItems.OCELOT_FUR_TUFT, 9);
                 offerFurPaddingRecipe(Items.RABBIT_HIDE, 9);
+
+                createShaped(RecipeCategory.DECORATIONS, FItems.ICE_PANE, 16)
+                        .criterion(hasItem(Items.ICE), this.conditionsFromItem(Items.ICE))
+                        .pattern("###")
+                        .pattern("###")
+                        .input('#', Items.ICE)
+                        .offerTo(this.exporter);
             }
+
+            // <editor-fold desc="Long form recipe generators">
 
             private void offerCutBlueIceRecipes() {
                 createShaped(RecipeCategory.BUILDING_BLOCKS, FItems.CUT_BLUE_ICE, 4)
@@ -248,6 +257,8 @@ public class FRecipeProvider extends FabricRecipeProvider {
                         .input(input, amount)
                         .offerTo(exporter, furPaddingFrom(input));
             }
+
+            // </editor-fold>
 
             private static RegistryKey<Recipe<?>> upgradeRecipeKey(ItemConvertible item) {
                 return RegistryKey.of(RegistryKeys.RECIPE, Frostiful.id(getItemPath(item) + "_smithing_trim"));
