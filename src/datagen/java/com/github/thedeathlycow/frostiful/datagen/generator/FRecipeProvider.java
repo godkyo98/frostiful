@@ -62,6 +62,13 @@ public class FRecipeProvider extends FabricRecipeProvider {
 
                 offerSkateUpgradeRecipe(FItems.FUR_BOOTS, FItems.ICE_SKATES);
                 offerSkateUpgradeRecipe(FItems.FUR_PADDED_CHAINMAIL_BOOTS, FItems.ARMORED_ICE_SKATES);
+
+                offerSmithingTemplateCopyingRecipe(FItems.SNOW_MAN_ARMOR_TRIM_SMITHING_TEMPLATE, FItems.PACKED_SNOW_BLOCK);
+                offerSmithingTemplateCopyingRecipe(FItems.FROSTY_ARMOR_TRIM_SMITHING_TEMPLATE, FItems.PACKED_SNOW_BLOCK);
+                offerSmithingTemplateCopyingRecipe(FItems.GLACIAL_ARMOR_TRIM_SMITHING_TEMPLATE, Ingredient.ofItems(FItems.CUT_BLUE_ICE, Items.BLUE_ICE));
+                offerSmithingTemplateCopyingRecipe(FItems.FUR_UPGRADE_TEMPLATE, FItems.PACKED_SNOW_BLOCK);
+                offerSmithingTemplateCopyingRecipe(FItems.ICE_SKATE_UPGRADE_TEMPLATE, FItems.PACKED_SNOW_BLOCK);
+
             }
 
             private void offerCutBlueIceRecipes() {

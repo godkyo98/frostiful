@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_ice_skate_upgrade_template": {
+      "conditions": {
+        "items": [
+          {
+            "items": "frostiful:ice_skate_upgrade_template"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "frostiful:ice_skate_upgrade_template"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_ice_skate_upgrade_template"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "frostiful:ice_skate_upgrade_template"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "minecraft:diamond",
+    "C": "frostiful:packed_snow_block",
+    "S": "frostiful:snow_man_armor_trim_smithing_template"
+  },
+  "pattern": [
+    "#S#",
+    "#C#",
+    "###"
+  ],
+  "result": {
+    "count": 2,
+    "id": "frostiful:snow_man_armor_trim_smithing_template"
+  }
+}
