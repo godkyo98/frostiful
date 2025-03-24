@@ -2,6 +2,7 @@ package com.github.thedeathlycow.frostiful.registry;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
 import com.github.thedeathlycow.thermoo.api.ThermooAttributes;
+import net.minecraft.datafixer.schema.IdentifierNormalizingSchema;
 import net.minecraft.entity.attribute.ClampedEntityAttribute;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttribute;
@@ -13,9 +14,9 @@ public final class FEntityAttributes {
     public static final double BASE_MIN_TEMPERATURE = 45;
 
     public static final RegistryEntry<EntityAttribute> ICE_BREAK_DAMAGE = register(
-            "generic.ice_breaker_damage",
+            "ice_breaker_damage",
             new ClampedEntityAttribute(
-                    "attribute.frostiful.generic.ice_break_damage", 3.0, 0, 1024.0
+                    "attribute.frostiful.ice_break_damage", 3.0, 0, 1024.0
             ).setTracked(true)
     );
 

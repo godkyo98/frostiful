@@ -26,7 +26,7 @@
                     "base": 1,
                     "per_level_above_first": 1
                 },
-                "attribute": "frostiful:generic.ice_breaker_damage",
+                "attribute": "frostiful:ice_breaker_damage",
                 "id": "frostiful:enchantment.ice_breaker",
                 "operation": "add_value"
             }

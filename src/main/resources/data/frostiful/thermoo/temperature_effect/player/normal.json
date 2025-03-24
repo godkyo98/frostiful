@@ -15,7 +15,7 @@
                 "config": {
                     "scale": 0.05,
                     "id": "frostiful:temperature_effect.freezing_slow",
-                    "attribute_type": "minecraft:generic.movement_speed",
+                    "attribute_type": "minecraft:movement_speed",
                     "operation": "add_value"
                 }
             },

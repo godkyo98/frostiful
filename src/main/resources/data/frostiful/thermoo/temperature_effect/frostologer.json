@@ -11,7 +11,7 @@
                 "config": {
                     "scale": -0.1,
                     "id": "frostiful:temperature_effect.frostologer_attack_damage",
-                    "attribute_type": "minecraft:generic.attack_damage",
+                    "attribute_type": "minecraft:attack_damage",
                     "operation": "add_value"
                 }
             },
