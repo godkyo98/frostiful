@@ -79,5 +79,5 @@ Frostiful has a custom run configuration for updating structure templates betwee
 
 This will dump the updated NBT files into `run/structure_update/updated/structure`. Note that you will need to agree to Minecraft's [EULA](https://account.mojang.com/documents/minecraft_eula) for this to work.
 
-> [!INFO]
+> [!WARNING]
 > This only works for vanilla stuff, so if needed you may have to temporarily and manually change the ID to the closest vanilla thing for the datafixes to apply, eg `frostiful:chillager` -> `minecraft:pillager`
