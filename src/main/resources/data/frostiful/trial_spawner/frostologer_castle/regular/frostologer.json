@@ -1,0 +1,23 @@
+{
+    "ticks_between_spawns": 20,
+    "spawn_potentials": [
+        {
+            "data": {
+                "entity": {
+                    "id": "frostiful:frostologer"
+                }
+            },
+            "weight": 1
+        }
+    ],
+    "loot_tables_to_eject": [
+        {
+            "data": "frostiful:spawners/frostologer_castle/regular/boss",
+            "weight": 1
+        }
+    ],
+    "simultaneous_mobs": 1.0,
+    "simultaneous_mobs_added_per_player": 1.0,
+    "total_mobs_added_per_player": 1.0,
+    "total_mobs": 1.0
+}

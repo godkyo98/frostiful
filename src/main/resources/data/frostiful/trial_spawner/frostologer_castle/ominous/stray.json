@@ -1,5 +1,5 @@
 {
-    "ticks_between_spawns": 20.
+    "ticks_between_spawns": 20,
     "spawn_potentials": [
         {
             "data": {
