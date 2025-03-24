@@ -12,6 +12,7 @@ import com.github.thedeathlycow.frostiful.survival.ActiveTemperatureEffects;
 import com.github.thedeathlycow.frostiful.survival.PassiveTemperatureEffects;
 import com.github.thedeathlycow.frostiful.survival.ServerPlayerEnvironmentTickListeners;
 import com.github.thedeathlycow.frostiful.survival.SoakingEffects;
+import com.github.thedeathlycow.frostiful.datafix.StructureUpdateHelper;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigHolder;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
@@ -44,6 +45,7 @@ public class Frostiful implements ModInitializer {
         FrostifulConfig.updateConfig(configHolder);
 
         if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
+            StructureUpdateHelper.initialize();
             CommandRegistrationCallback.EVENT.register(
                     (dispatcher, registryAccess, environment) -> {
                         RootCommand.register(dispatcher);
