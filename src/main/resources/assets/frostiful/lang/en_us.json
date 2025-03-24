@@ -54,12 +54,9 @@
   "item.frostiful.snow_man_armor_trim_smithing_template": "Snow Man Armor Trim",
   "trim_pattern.frostiful.snow_man": "Snow Man Armor Trim",
   
-  "item.frostiful.snowflake_banner_pattern": "Banner Pattern",
-  "item.frostiful.snowflake_banner_pattern.desc": "Snowflake",
-  "item.frostiful.icicle_banner_pattern": "Banner Pattern",
-  "item.frostiful.icicle_banner_pattern.desc": "Icicle",
-  "item.frostiful.frostology_banner_pattern": "Banner Pattern",
-  "item.frostiful.frostology_banner_pattern.desc": "Frostology",
+  "item.frostiful.snowflake_banner_pattern": "Snowflake Banner Pattern",
+  "item.frostiful.icicle_banner_pattern": "Icicle Banner Pattern",
+  "item.frostiful.frostology_banner_pattern": "Frostology Banner Pattern",
   
   "filled_map.frostiful.frostologer_castle": "Snowy Castle Explorer Map",
   

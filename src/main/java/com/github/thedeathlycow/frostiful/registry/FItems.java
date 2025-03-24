@@ -282,7 +282,7 @@ public final class FItems {
             "icicle_banner_pattern",
             settings -> new BannerPatternItem(
                     FBannerPatternTags.ICICLE_PATTERN_ITEM,
-                    settings.maxCount(1)
+                    settings.maxCount(1).rarity(Rarity.UNCOMMON)
             )
     );
 
@@ -290,7 +290,7 @@ public final class FItems {
             "frostology_banner_pattern",
             settings -> new BannerPatternItem(
                     FBannerPatternTags.FROSTOLOGY_PATTERN_ITEM,
-                    settings.maxCount(1)
+                    settings.maxCount(1).rarity(Rarity.RARE)
             )
     );
 
