@@ -59,6 +59,9 @@ public class FRecipeProvider extends FabricRecipeProvider {
                 offerFurUpgradeRecipe(Items.CHAINMAIL_CHESTPLATE, FItems.FUR_PADDED_CHAINMAIL_CHESTPLATE);
                 offerFurUpgradeRecipe(Items.CHAINMAIL_LEGGINGS, FItems.FUR_PADDED_CHAINMAIL_LEGGINGS);
                 offerFurUpgradeRecipe(Items.CHAINMAIL_BOOTS, FItems.FUR_PADDED_CHAINMAIL_BOOTS);
+
+                offerSkateUpgradeRecipe(FItems.FUR_BOOTS, FItems.ICE_SKATES);
+                offerSkateUpgradeRecipe(FItems.FUR_PADDED_CHAINMAIL_BOOTS, FItems.ARMORED_ICE_SKATES);
             }
 
             private void offerCutBlueIceRecipes() {
@@ -165,6 +168,18 @@ public class FRecipeProvider extends FabricRecipeProvider {
                                 result
                         )
                         .criterion("has_fur_padding", this.conditionsFromItem(FItems.FUR_PADDING))
+                        .offerTo(this.exporter, getItemPath(result) + "_smithing");
+            }
+
+            private void offerSkateUpgradeRecipe(Item input, Item result) {
+                SmithingTransformRecipeJsonBuilder.create(
+                                Ingredient.ofItem(FItems.ICE_SKATE_UPGRADE_TEMPLATE),
+                                Ingredient.ofItem(input),
+                                Ingredient.ofItem(Items.IRON_SWORD),
+                                RecipeCategory.TRANSPORTATION,
+                                result
+                        )
+                        .criterion("has_iron_sword", this.conditionsFromItem(Items.IRON_SWORD))
                         .offerTo(this.exporter, getItemPath(result) + "_smithing");
             }
 

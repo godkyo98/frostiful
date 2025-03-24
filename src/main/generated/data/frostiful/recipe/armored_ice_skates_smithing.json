@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "minecraft:iron_sword",
+  "base": "frostiful:fur_padded_chainmail_boots",
+  "result": {
+    "count": 1,
+    "id": "frostiful:armored_ice_skates"
+  },
+  "template": "frostiful:ice_skate_upgrade_template"
+}
