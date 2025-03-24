@@ -99,6 +99,14 @@ public class FRecipeProvider extends FabricRecipeProvider {
                         .input(FItemTags.ICICLES)
                         .input(Items.ARROW)
                         .offerTo(exporter);
+
+                createShapeless(RecipeCategory.DECORATIONS, FItems.SNOWFLAKE_BANNER_PATTERN)
+                        .criterion(hasItem(FItems.PACKED_SNOWBALL), conditionsFromItem(FItems.PACKED_SNOWBALL))
+                        .input(FItems.PACKED_SNOWBALL)
+                        .input(Items.PAPER)
+                        .offerTo(exporter);
+
+                createShapeless()
             }
 
             // <editor-fold desc="Long form recipe generators">

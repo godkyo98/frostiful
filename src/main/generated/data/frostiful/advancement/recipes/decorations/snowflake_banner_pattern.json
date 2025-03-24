@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_packed_snowball": {
+      "conditions": {
+        "items": [
+          {
+            "items": "frostiful:packed_snowball"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "frostiful:snowflake_banner_pattern"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_packed_snowball"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "frostiful:snowflake_banner_pattern"
+    ]
+  }
+}

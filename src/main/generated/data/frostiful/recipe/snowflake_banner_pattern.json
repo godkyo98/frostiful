@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "frostiful:packed_snowball",
+    "minecraft:paper"
+  ],
+  "result": {
+    "count": 1,
+    "id": "frostiful:snowflake_banner_pattern"
+  }
+}

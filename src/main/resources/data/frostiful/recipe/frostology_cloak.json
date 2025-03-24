@@ -1,23 +1,16 @@
 {
     "type": "minecraft:crafting_shaped",
+    "category": "equipment",
     "pattern": [
         "I I",
         "P#P",
         "PCP"
     ],
     "key": {
-        "#": {
-            "item": "frostiful:glacial_heart"
-        },
-        "I": {
-            "tag": "c:icicles"
-        },
-        "P": {
-            "item": "frostiful:fur_padding"
-        },
-        "C": {
-            "item": "frostiful:inert_frostology_cloak"
-        }
+        "#": "frostiful:glacial_heart",
+        "I": "#frostiful:icicles",
+        "P": "frostiful:fur_padding",
+        "C": "frostiful:inert_frostology_cloak"
     },
     "result": {
         "id": "frostiful:frostology_cloak",
