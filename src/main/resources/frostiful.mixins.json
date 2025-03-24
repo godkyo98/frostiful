@@ -8,6 +8,7 @@
         "block.PowderSnowWalkableMixin",
         "block.SnowPackingMixin",
         "block.WindBlowoutMixin",
+        "datafix.AttributeIdPrefixFixMixin",
         "entity.AnimalEntityMixin",
         "entity.DamageSourcesMixin",
         "entity.EntityInvoker",
