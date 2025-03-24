@@ -45,7 +45,6 @@ public class Frostiful implements ModInitializer {
         FrostifulConfig.updateConfig(configHolder);
 
         if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
-            StructureUpdateHelper.initialize();
             CommandRegistrationCallback.EVENT.register(
                     (dispatcher, registryAccess, environment) -> {
                         RootCommand.register(dispatcher);
@@ -70,6 +69,7 @@ public class Frostiful implements ModInitializer {
         FPlacedFeatures.initialize();
         FEntityAttributes.initialize();
         FCriteria.initialize();
+        StructureUpdateHelper.initialize();
 
         ServerLivingEntityEvents.AFTER_DAMAGE.register(FrostWandRootComponent::afterDamage);
 

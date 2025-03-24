@@ -53,3 +53,28 @@ Status Definitions:
 * ✅ Supported: This version is fully supported and will receive all new features, fixes, and updates (where possible)
 * ⚠️ Critical fixes only: This version will receive only critical crash and security fixes, as well as minor features where they can be easily cherry-picked
 * ❌ Unsupported: This version will receive no future updates, except for critical security fixes
+
+# Build and Run
+
+Frostiful is built using [Gradle](https://gradle.org/) using the [Fabric Loom Gradle plugin](https://github.com/FabricMC/fabric-loom).
+
+```bash
+# builds a production jar of Frostiful
+./gradlew build 
+
+# runs Frostiful's unit tests
+./gradlew check
+
+# runs Frostiful's game tests
+./gradlew runGametest
+```
+
+## Updating structures
+
+Frostiful has a custom run configuration for updating structure templates between Minecraft versions, to account for changes in datafixer format. To run this configuration, place your structure template `.nbt` files in `run/structure_update/structure` and then run the following command:
+
+```bash
+./gradlew runUpdateStructures
+```
+
+This will dump the updated NBT files into `run/structure_update/updated/structure`. Note that you will need to agree to Minecraft's [EULA](https://account.mojang.com/documents/minecraft_eula) for this to work.

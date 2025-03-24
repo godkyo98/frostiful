@@ -226,6 +226,13 @@ loom {
             vmArg "-Dfabric-api.gametest.report-file=${project.buildDir}/junit.xml"
             runDir "build/gametest"
         }
+        updateStructures {
+            server()
+            name = "Update Structures"
+
+            vmArg("-Dfrostiful.update-structures")
+            runDir "run/structure_update"
+        }
     }
 }
 
