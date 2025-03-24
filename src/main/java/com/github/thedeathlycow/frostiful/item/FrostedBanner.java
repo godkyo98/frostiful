@@ -47,7 +47,6 @@ public final class FrostedBanner {
         stack.set(DataComponentTypes.BANNER_PATTERNS, bannerPatterns);
         stack.set(DataComponentTypes.HIDE_ADDITIONAL_TOOLTIP, Unit.INSTANCE);
         stack.set(DataComponentTypes.ITEM_NAME, FROSTED_BANNER_NAME);
-        stack.set(DataComponentTypes.RARITY, Rarity.UNCOMMON);
 
         return stack;
     }
