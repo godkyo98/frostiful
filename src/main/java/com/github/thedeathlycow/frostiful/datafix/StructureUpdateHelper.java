@@ -41,7 +41,7 @@ public final class StructureUpdateHelper {
                     .filter(path -> path.toString().endsWith(".nbt"))
                     .forEach(StructureUpdateHelper::updateStructureFile);
         } catch (IOException e) {
-            Frostiful.LOGGER.error("Unable to read structures: {}", e);
+            Frostiful.LOGGER.error("Unable to read structures", e);
         }
     }
 
@@ -58,7 +58,7 @@ public final class StructureUpdateHelper {
                 Frostiful.LOGGER.info("Updated structure {}", path);
             }
         } catch (IOException e) {
-            Frostiful.LOGGER.error("Failed to update structure file {}: {}", path, e);
+            Frostiful.LOGGER.error("Failed to update structure file {}", path);
         }
     }
 
