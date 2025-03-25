@@ -37,7 +37,6 @@ Some modded warm foods will provide [Warmth](./Status-Effects). This can be conf
 While this mod is designed to be as compatible as possible with other mods, it is inevitable that issues will arise. Specific incompatibilities will be documented here as they become known.
 
 * [Hephaestus / Tinker's Construct](https://github.com/Alpha-s-Stuff/TinkersConstruct): Temperature bar not showing up. **FIX:** set `extraHeartRenderer` to `false` in the `mantle-client.toml` config.
-* [Iris Shaders](https://github.com/IrisShaders/Iris): Frostiful Armor Trim Patterns not showing up consistently. Currently no fix. **HELP WANTED**
 
 ## Other Temperature Mods
 
