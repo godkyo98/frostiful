@@ -233,7 +233,7 @@ public final class FItems {
                     FBlocks.FROZEN_TORCH,
                     FBlocks.FROZEN_WALL_TORCH,
                     Direction.DOWN,
-                    settings
+                    settings.useBlockPrefixedTranslationKey()
             )
     );
 
