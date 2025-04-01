@@ -32,9 +32,9 @@ public class FrostologerEntityRenderer extends MobEntityRenderer<FrostologerEnti
     public FrostologerEntityRenderer(EntityRendererFactory.Context context) {
         super(context, new FrostologerEntityModel<>(context.getPart(FEntityModelLayers.FROSTOLOGER)), 0.5F);
 
-        this.addFeature(new HeadFeatureRenderer<>(this, context.getModelLoader(), context.getItemRenderer()));
-        this.addFeature(new HeldItemFeatureRenderer<>(this, context.getItemRenderer()));
-        this.addFeature(new FrostologerCloakFeatureRenderer(this, context.getModelLoader(), context.getEquipmentModelLoader()));
+        this.addFeature(new HeadFeatureRenderer<>(this, context.getEntityModels(), HeadFeatureRenderer.HeadTransformation.DEFAULT));
+        this.addFeature(new HeldItemFeatureRenderer<>(this));
+        this.addFeature(new FrostologerCloakFeatureRenderer(this, context.getEntityModels(), context.getEquipmentModelLoader()));
         this.addFeature(
                 new FrostologerEyesFeatureRenderer<>(
                         this,

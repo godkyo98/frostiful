@@ -22,7 +22,7 @@ public class ChillagerEntityRenderer extends IllagerEntityRenderer<ChillagerEnti
 
     public ChillagerEntityRenderer(EntityRendererFactory.Context context) {
         super(context, new IllagerEntityModel<>(context.getPart(FEntityModelLayers.CHILLAGER)), 0.5F);
-        this.addFeature(new HeldItemFeatureRenderer<>(this, context.getItemRenderer()));
+        this.addFeature(new HeldItemFeatureRenderer<>(this));
 
         this.model.getHat().visible = true;
     }

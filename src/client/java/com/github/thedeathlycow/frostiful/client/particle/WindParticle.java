@@ -41,59 +41,71 @@ public class WindParticle extends SpriteBillboardParticle {
         this.setSpriteForAge(this.spriteProvider);
     }
 
-    @Override
-    public void buildGeometry(VertexConsumer vertexConsumer, Camera camera, float tickDelta) {
-        this.buildGeometry(vertexConsumer, camera, tickDelta, true, (quaternion) -> {
-            quaternion.mul(FRONT_ROTATION);
-        });
-        this.buildGeometry(vertexConsumer, camera, tickDelta, false, (quaternion) -> {
-            quaternion.mul(BACK_ROTATION);
-        });
-    }
+    // TODO: figure this shit out
 
-    private void buildGeometry(
-            VertexConsumer vertexConsumer,
-            Camera camera,
-            float tickDelta,
-            boolean flip,
-            Consumer<Quaternionf> rotator
-    ) {
-        Vec3d cameraPos = camera.getPos();
-        float dx = (float) (MathHelper.lerp(tickDelta, this.prevPosX, this.x) - cameraPos.getX());
-        float dy = (float) (MathHelper.lerp(tickDelta, this.prevPosY, this.y) - cameraPos.getY());
-        float dz = (float) (MathHelper.lerp(tickDelta, this.prevPosZ, this.z) - cameraPos.getZ());
-        var quaternion = new Quaternionf().setAngleAxis(0.0f, FROM.x(), FROM.y(), FROM.z());
-        rotator.accept(quaternion);
-        TO.rotate(quaternion);
-        var points = new Vector3f[]{
-                new Vector3f(-1.0F, -1.0F, 0.0F),
-                new Vector3f(-1.0F, 1.0F, 0.0F),
-                new Vector3f(1.0F, 1.0F, 0.0F),
-                new Vector3f(1.0F, -1.0F, 0.0F)
-        };
+//    @Override
+//    public void render(VertexConsumer vertexConsumer, Camera camera, float tickDelta) {
+//        this.alpha = 1.0F - MathHelper.clamp((this.age + tickDelta) / this.maxAge, 0.0F, 1.0F);
+//        Quaternionf quaternionf = new Quaternionf();
+//        quaternionf.rotate(FRONT_ROTATION);
+//        this.method_60373(vertexConsumer, camera, quaternionf, tickDelta);
+//        quaternionf.rotationYXZ((float) -Math.PI, 1.0472F, 0.0F);
+//        this.method_60373(vertexConsumer, camera, quaternionf, tickDelta);
+//    }
 
-        float size = this.getSize(tickDelta) * (flip ? -1 : 1);
-
-        for (int i = 0; i < 4; ++i) {
-            Vector3f point = points[i];
-            point.rotate(quaternion);
-            point.mul(size);
-            point.add(dx, dy, dz);
-        }
-
-        int brightness = this.getBrightness(tickDelta);
-        this.vertex(vertexConsumer, points[0], this.getMaxU(), this.getMaxV(), brightness);
-        this.vertex(vertexConsumer, points[1], this.getMaxU(), this.getMinV(), brightness);
-        this.vertex(vertexConsumer, points[2], this.getMinU(), this.getMinV(), brightness);
-        this.vertex(vertexConsumer, points[3], this.getMinU(), this.getMaxV(), brightness);
-    }
-
-    private void vertex(VertexConsumer vertexConsumer, Vector3f pos, float u, float v, int light) {
-        vertexConsumer.vertex(pos.x(), pos.y(), pos.z())
-                .texture(u, v)
-                .color(this.red, this.green, this.blue, this.alpha)
-                .light(light);
-    }
+//    @Override
+//    public void buildGeometry(VertexConsumer vertexConsumer, Camera camera, float tickDelta) {
+//        this.buildGeometry(vertexConsumer, camera, tickDelta, true, (quaternion) -> {
+//            quaternion.mul(FRONT_ROTATION);
+//        });
+//        this.buildGeometry(vertexConsumer, camera, tickDelta, false, (quaternion) -> {
+//            quaternion.mul(BACK_ROTATION);
+//        });
+//    }
+//
+//    private void buildGeometry(
+//            VertexConsumer vertexConsumer,
+//            Camera camera,
+//            float tickDelta,
+//            boolean flip,
+//            Consumer<Quaternionf> rotator
+//    ) {
+//        Vec3d cameraPos = camera.getPos();
+//        float dx = (float) (MathHelper.lerp(tickDelta, this.prevPosX, this.x) - cameraPos.getX());
+//        float dy = (float) (MathHelper.lerp(tickDelta, this.prevPosY, this.y) - cameraPos.getY());
+//        float dz = (float) (MathHelper.lerp(tickDelta, this.prevPosZ, this.z) - cameraPos.getZ());
+//        var quaternion = new Quaternionf().setAngleAxis(0.0f, FROM.x(), FROM.y(), FROM.z());
+//        rotator.accept(quaternion);
+//        TO.rotate(quaternion);
+//        var points = new Vector3f[]{
+//                new Vector3f(-1.0F, -1.0F, 0.0F),
+//                new Vector3f(-1.0F, 1.0F, 0.0F),
+//                new Vector3f(1.0F, 1.0F, 0.0F),
+//                new Vector3f(1.0F, -1.0F, 0.0F)
+//        };
+//
+//        float size = this.getSize(tickDelta) * (flip ? -1 : 1);
+//
+//        for (int i = 0; i < 4; ++i) {
+//            Vector3f point = points[i];
+//            point.rotate(quaternion);
+//            point.mul(size);
+//            point.add(dx, dy, dz);
+//        }
+//
+//        int brightness = this.getBrightness(tickDelta);
+//        this.vertex(vertexConsumer, points[0], this.getMaxU(), this.getMaxV(), brightness);
+//        this.vertex(vertexConsumer, points[1], this.getMaxU(), this.getMinV(), brightness);
+//        this.vertex(vertexConsumer, points[2], this.getMinU(), this.getMinV(), brightness);
+//        this.vertex(vertexConsumer, points[3], this.getMinU(), this.getMaxV(), brightness);
+//    }
+//
+//    private void vertex(VertexConsumer vertexConsumer, Vector3f pos, float u, float v, int light) {
+//        vertexConsumer.vertex(pos.x(), pos.y(), pos.z())
+//                .texture(u, v)
+//                .color(this.red, this.green, this.blue, this.alpha)
+//                .light(light);
+//    }
 
     @Override
     public ParticleTextureSheet getType() {

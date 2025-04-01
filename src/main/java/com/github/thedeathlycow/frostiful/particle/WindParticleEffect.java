@@ -24,7 +24,7 @@ public record WindParticleEffect(
     );
 
     public static final PacketCodec<RegistryByteBuf, WindParticleEffect> PACKET_CODEC = PacketCodec.tuple(
-            PacketCodecs.BOOL,
+            PacketCodecs.BOOLEAN,
             WindParticleEffect::flipped,
             WindParticleEffect::new
     );

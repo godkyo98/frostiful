@@ -200,11 +200,12 @@ public final class FItems {
             settings -> new GlacialArrowItem(settings)
     );
 
+    // TODO: Spawn egg colors
     public static final Item FROSTOLOGER_SPAWN_EGG = register(
             "frostologer_spawn_egg",
             settings -> new SpawnEggItem(
                     FEntityTypes.FROSTOLOGER,
-                    0x473882, 0xBEB2EB,
+//                    0x473882, 0xBEB2EB,
                     settings
             )
     );
@@ -212,7 +213,7 @@ public final class FItems {
             "chillager_spawn_egg",
             settings -> new SpawnEggItem(
                     FEntityTypes.CHILLAGER,
-                    0x3432A8, 0xA2CCFC,
+//                    0x3432A8, 0xA2CCFC,
                     settings
             )
     );
@@ -221,8 +222,7 @@ public final class FItems {
             "biter_spawn_egg",
             settings -> new SpawnEggItem(
                     FEntityTypes.BITER,
-                    0xEBFEFF,
-                    0x2E64C3,
+//                    0xEBFEFF, 0x2E64C3,
                     settings
             )
     );

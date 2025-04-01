@@ -3,7 +3,9 @@ package com.github.thedeathlycow.frostiful.registry;
 import com.github.thedeathlycow.frostiful.Frostiful;
 import com.github.thedeathlycow.frostiful.registry.tag.FItemTags;
 import net.minecraft.item.equipment.ArmorMaterial;
+import net.minecraft.item.equipment.EquipmentAssetKeys;
 import net.minecraft.item.equipment.EquipmentType;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Util;
 
@@ -23,7 +25,7 @@ public class FArmorMaterials {
             SoundEvents.ITEM_ARMOR_EQUIP_GENERIC,
             0.0f, 0.0f,
             FItemTags.REPAIRS_FUR_ARMOR,
-            Frostiful.id("fur")
+            RegistryKey.of(EquipmentAssetKeys.REGISTRY_KEY, Frostiful.id("fur"))
     );
 
     public static final ArmorMaterial FUR_LINED_CHAINMAIL = new ArmorMaterial(
@@ -40,7 +42,7 @@ public class FArmorMaterials {
             0.0f,
             0.0f,
             FItemTags.REPAIRS_FUR_LINED_CHAINMAIL_ARMOR,
-            Frostiful.id("fur_lined_chainmail")
+            RegistryKey.of(EquipmentAssetKeys.REGISTRY_KEY, Frostiful.id("fur_lined_chainmail"))
     );
 
     private FArmorMaterials() {
