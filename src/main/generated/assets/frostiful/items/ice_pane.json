@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "frostiful:block/ice_pane"
+    "model": "frostiful:item/ice_pane"
   }
 }

@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "frostiful:block/icy_trial_spawner"
+    "model": "frostiful:item/icy_trial_spawner"
   }
 }

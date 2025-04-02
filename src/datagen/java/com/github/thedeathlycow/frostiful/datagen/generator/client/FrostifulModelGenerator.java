@@ -66,5 +66,22 @@ public class FrostifulModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(FItems.PACKED_SNOW_BRICK_STAIRS);
         itemModelGenerator.register(FItems.PACKED_SNOW_BRICK_SLAB);
         itemModelGenerator.register(FItems.PACKED_SNOW_BRICK_WALL);
+
+        itemModelGenerator.register(FItems.ICE_PANE);
+        itemModelGenerator.register(FItems.CUT_PACKED_ICE_STAIRS);
+        itemModelGenerator.register(FItems.CUT_PACKED_ICE_SLAB);
+        itemModelGenerator.register(FItems.CUT_PACKED_ICE_WALL);
+        itemModelGenerator.register(FItems.CUT_BLUE_ICE_STAIRS);
+        itemModelGenerator.register(FItems.CUT_BLUE_ICE_SLAB);
+        itemModelGenerator.register(FItems.CUT_BLUE_ICE_WALL);
+        itemModelGenerator.register(FItems.BRITTLE_ICE);
+
+        itemModelGenerator.register(FItems.SNOWFLAKE_BANNER_PATTERN);
+        itemModelGenerator.register(FItems.ICICLE_BANNER_PATTERN);
+        itemModelGenerator.register(FItems.FROSTOLOGY_BANNER_PATTERN);
+        itemModelGenerator.register(FItems.ICY_TRIAL_SPAWNER);
+        itemModelGenerator.register(FItems.ICY_VAULT);
+        itemModelGenerator.register(FItems.CASTLE_KEY);
+        itemModelGenerator.register(FItems.OMINOUS_CASTLE_KEY);
     }
 }

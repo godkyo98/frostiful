@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "frostiful:block/brittle_ice"
+    "model": "frostiful:item/brittle_ice"
   }
 }
