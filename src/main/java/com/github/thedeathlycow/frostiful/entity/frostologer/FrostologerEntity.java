@@ -10,6 +10,7 @@ import com.github.thedeathlycow.frostiful.item.enchantment.HeatDrainEnchantmentE
 import com.github.thedeathlycow.frostiful.registry.*;
 import com.github.thedeathlycow.frostiful.registry.tag.FBlockTags;
 import com.github.thedeathlycow.frostiful.registry.tag.FDamageTypeTags;
+import com.github.thedeathlycow.frostiful.survival.PassiveTemperatureEffects;
 import com.github.thedeathlycow.thermoo.api.ThermooAttributes;
 import com.github.thedeathlycow.thermoo.api.temperature.EnvironmentManager;
 import com.github.thedeathlycow.thermoo.api.temperature.HeatingModes;
@@ -124,7 +125,6 @@ public class FrostologerEntity extends SpellcastingIllagerEntity implements Rang
      * @param blockPos The position of `state` in `world`.
      */
     public void destroyHeatSource(ServerWorld world, BlockState state, BlockPos blockPos) {
-
         BlockState frozenState;
         Block heatedBlock = state.getBlock();
         FluidState fluidState = state.getFluidState();
@@ -572,11 +572,8 @@ public class FrostologerEntity extends SpellcastingIllagerEntity implements Rang
             Vec3i distance = new Vec3i(this.range, this.range, this.range);
 
             for (BlockPos pos : BlockPos.iterate(origin.subtract(distance), origin.add(distance))) {
-                BlockState state = world.getBlockState(pos);
-
-                // TODO: replace with updated system
-                if (EnvironmentManager.INSTANCE.getController().isHeatSource(state) && world instanceof ServerWorld serverWorld) {
-                    FrostologerEntity.this.destroyHeatSource(serverWorld, state, pos);
+                if (world instanceof ServerWorld serverWorld && PassiveTemperatureEffects.getBlockLightTemperatureChange(world, pos) > 0) {
+                    FrostologerEntity.this.destroyHeatSource(serverWorld, world.getBlockState(pos), pos);
                 }
             }
 
