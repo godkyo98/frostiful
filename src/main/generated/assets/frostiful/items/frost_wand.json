@@ -1,0 +1,37 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "cases": [
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "frostiful:item/frost_wand"
+        },
+        "when": [
+          "gui",
+          "ground",
+          "fixed"
+        ]
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:condition",
+      "on_false": {
+        "type": "minecraft:special",
+        "base": "frostiful:item/frost_wand_in_hand",
+        "model": {
+          "type": "frostiful:frost_wand"
+        }
+      },
+      "on_true": {
+        "type": "minecraft:special",
+        "base": "frostiful:item/frost_wand_casting",
+        "model": {
+          "type": "frostiful:frost_wand"
+        }
+      },
+      "property": "minecraft:using_item"
+    },
+    "property": "minecraft:display_context"
+  }
+}

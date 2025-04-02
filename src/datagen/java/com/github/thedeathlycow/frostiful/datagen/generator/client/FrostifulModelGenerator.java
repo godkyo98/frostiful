@@ -1,17 +1,21 @@
 package com.github.thedeathlycow.frostiful.datagen.generator.client;
 
+import com.github.thedeathlycow.frostiful.client.render.FrostWandItemRenderer;
 import com.github.thedeathlycow.frostiful.registry.FArmorMaterials;
 import com.github.thedeathlycow.frostiful.registry.FItems;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.minecraft.client.data.BlockStateModelGenerator;
-import net.minecraft.client.data.ItemModelGenerator;
+import net.minecraft.client.data.*;
+import net.minecraft.client.render.item.model.ItemModel;
+import net.minecraft.client.render.item.model.special.TridentModelRenderer;
+import net.minecraft.item.Item;
 
 public class FrostifulModelGenerator extends FabricModelProvider {
     private static final String HELMET = "helmet";
     private static final String CHESTPLATE = "chestplate";
     private static final String LEGGINGS = "leggings";
     private static final String BOOTS = "boots";
+
     public FrostifulModelGenerator(FabricDataOutput output) {
         super(output);
     }
@@ -23,6 +27,7 @@ public class FrostifulModelGenerator extends FabricModelProvider {
 
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
+        this.registerFrostWand(FItems.FROST_WAND, itemModelGenerator);
         itemModelGenerator.registerArmor(FItems.FUR_HELMET, FArmorMaterials.FUR_ASSET, HELMET, false);
         itemModelGenerator.registerArmor(FItems.FUR_CHESTPLATE, FArmorMaterials.FUR_ASSET, CHESTPLATE, false);
         itemModelGenerator.registerArmor(FItems.FUR_LEGGINGS, FArmorMaterials.FUR_ASSET, LEGGINGS, false);
@@ -87,5 +92,22 @@ public class FrostifulModelGenerator extends FabricModelProvider {
         itemModelGenerator.registerSpawnEgg(FItems.FROSTOLOGER_SPAWN_EGG, 0x473882, 0xBEB2EB);
         itemModelGenerator.registerSpawnEgg(FItems.CHILLAGER_SPAWN_EGG, 0x3432A8, 0xA2CCFC);
         itemModelGenerator.registerSpawnEgg(FItems.BITER_SPAWN_EGG, 0xEBFEFF, 0x2E64C3);
+    }
+
+    private void registerFrostWand(Item item, ItemModelGenerator itemModelGenerator) {
+        ItemModel.Unbaked sprite = ItemModels.basic(itemModelGenerator.upload(item, Models.GENERATED));
+
+        ItemModel.Unbaked inHand = ItemModels.special(
+                ModelIds.getItemSubModelId(item, "_in_hand"),
+                new FrostWandItemRenderer.Unbaked()
+        );
+        ItemModel.Unbaked casting = ItemModels.special(
+                ModelIds.getItemSubModelId(item, "_casting"),
+                new FrostWandItemRenderer.Unbaked()
+        );
+
+        ItemModel.Unbaked model3d = ItemModels.condition(ItemModels.usingItemProperty(), casting, inHand);
+
+        itemModelGenerator.output.accept(item, ItemModelGenerator.createModelWithInHandVariant(sprite, model3d));
     }
 }

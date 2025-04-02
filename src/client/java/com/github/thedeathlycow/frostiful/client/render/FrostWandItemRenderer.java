@@ -2,6 +2,8 @@ package com.github.thedeathlycow.frostiful.client.render;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
 import com.github.thedeathlycow.frostiful.client.model.FrostWandItemModel;
+import com.github.thedeathlycow.frostiful.client.registry.FEntityModelLayers;
+import com.mojang.serialization.MapCodec;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
@@ -9,7 +11,13 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
+import net.minecraft.client.render.entity.model.EntityModelLayers;
+import net.minecraft.client.render.entity.model.LoadedEntityModels;
+import net.minecraft.client.render.entity.model.TridentEntityModel;
 import net.minecraft.client.render.item.ItemRenderer;
+import net.minecraft.client.render.item.model.special.SimpleSpecialModelRenderer;
+import net.minecraft.client.render.item.model.special.SpecialModelRenderer;
+import net.minecraft.client.render.item.model.special.TridentModelRenderer;
 import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
@@ -18,64 +26,39 @@ import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
-public class FrostWandItemRenderer {
+public class FrostWandItemRenderer implements SimpleSpecialModelRenderer {
+    public static final Identifier ID = Frostiful.id("frost_wand_renderer");
+    public static final Identifier INVENTORY_MODEL_ID = Frostiful.id("item/frost_wand_in_inventory");
 
-//    public static final Identifier ID = Frostiful.id("frost_wand_renderer");
-//    public static final Identifier INVENTORY_MODEL_ID = Frostiful.id("item/frost_wand_in_inventory");
-//
-//    private final EntityModelLayer modelLayer;
-//    private FrostWandItemModel model;
-//    private ItemRenderer itemRenderer;
-//    private BakedModel inventoryModel;
-//
-//    public FrostWandItemRenderer(EntityModelLayer modelLayer) {
-//        this.modelLayer = modelLayer;
-//    }
-//
-//    /**
-//     * Code largely based on similar functionality in the mod
-//     * <a href="https://github.com/Ladysnake/Impaled/">'Impaled'</a>
-//     *
-//     * @param stack           the rendered item stack
-//     * @param mode            the model transformation mode
-//     * @param matrices        the matrix stack
-//     * @param vertexConsumers the vertex consumer provider
-//     * @param light           packed lightmap coordinates
-//     * @param overlay         the overlay UV passed to {@link VertexConsumer#overlay(int)}
-//     */
-//    @Override
-//    public void render(ItemStack stack, ModelTransformationMode mode, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-//        boolean renderAsItem = mode == ModelTransformationMode.GUI
-//                || mode == ModelTransformationMode.GROUND
-//                || mode == ModelTransformationMode.FIXED;
-//
-//        if (renderAsItem) {
-//            matrices.pop();
-//            matrices.push();
-//            itemRenderer.renderItem(stack, mode, false, matrices, vertexConsumers, light, overlay, this.inventoryModel);
-//        } else {
-//            matrices.push();
-//            matrices.scale(0.6F, -0.6F, -0.6F);
-//            matrices.translate(0f, 1f, 0f);
-//            VertexConsumer vertexConsumer = ItemRenderer.getItemGlintConsumer(
-//                    vertexConsumers, this.model.getLayer(FrostWandItemModel.TEXTURE), false, stack.hasGlint()
-//            );
-//
-//            this.model.render(matrices, vertexConsumer, light, overlay);
-//            matrices.pop();
-//        }
-//    }
-//
-//    @Override
-//    public Identifier getFabricId() {
-//        return ID;
-//    }
-//
-//    @Override
-//    public void reload(ResourceManager manager) {
-//        MinecraftClient client = MinecraftClient.getInstance();
-//        this.model = new FrostWandItemModel(client.getEntityModelLoader().getModelPart(this.modelLayer));
-//        this.itemRenderer = client.getItemRenderer();
-//        this.inventoryModel = client.getBakedModelManager().getModel(INVENTORY_MODEL_ID);
-//    }
+    private final FrostWandItemModel model;
+
+    public FrostWandItemRenderer(FrostWandItemModel model) {
+        this.model = model;
+    }
+
+    @Override
+    public void render(
+            ModelTransformationMode modelTransformationMode, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, boolean glint
+    ) {
+        matrices.push();
+        matrices.scale(1.0F, -1.0F, -1.0F);
+        VertexConsumer vertexConsumer = ItemRenderer.getItemGlintConsumer(vertexConsumers, this.model.getLayer(TridentEntityModel.TEXTURE), false, glint);
+        this.model.render(matrices, vertexConsumer, light, overlay);
+        matrices.pop();
+    }
+
+    @Environment(EnvType.CLIENT)
+    public record Unbaked() implements SpecialModelRenderer.Unbaked {
+        public static final MapCodec<FrostWandItemRenderer.Unbaked> CODEC = MapCodec.unit(new FrostWandItemRenderer.Unbaked());
+
+        @Override
+        public MapCodec<FrostWandItemRenderer.Unbaked> getCodec() {
+            return CODEC;
+        }
+
+        @Override
+        public SpecialModelRenderer<?> bake(LoadedEntityModels entityModels) {
+            return new FrostWandItemRenderer(new FrostWandItemModel(entityModels.getModelPart(FEntityModelLayers.FROST_WAND)));
+        }
+    }
 }
