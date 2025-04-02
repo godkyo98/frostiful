@@ -17,8 +17,11 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.client.render.entity.feature.HeadFeatureRenderer;
 import net.minecraft.client.render.entity.feature.HeldItemFeatureRenderer;
+import net.minecraft.client.render.entity.state.ArmedEntityRenderState;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.mob.IllagerEntity;
+import net.minecraft.item.CrossbowItem;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.ColorHelper;
 import net.minecraft.util.math.MathHelper;
@@ -57,6 +60,18 @@ public class FrostologerEntityRenderer extends MobEntityRenderer<FrostologerEnti
     @Override
     public void updateRenderState(FrostologerEntity frostologer, FrostologerEntityRenderState state, float tickDelta) {
         super.updateRenderState(frostologer, state, tickDelta);
+        ArmedEntityRenderState.updateRenderState(frostologer, state, this.itemModelResolver);
+        state.hasVehicle = frostologer.hasVehicle();
+        state.illagerMainArm = frostologer.getMainArm();
+        state.illagerState = frostologer.getState();
+        state.crossbowPullTime = state.illagerState == IllagerEntity.State.CROSSBOW_CHARGE
+                ? CrossbowItem.getPullTime(frostologer.getActiveItem(), frostologer)
+                : 0;
+        state.itemUseTime = frostologer.getItemUseTime();
+        state.handSwingProgress = frostologer.getHandSwingProgress(tickDelta);
+        state.attacking = frostologer.isAttacking();
+
+
         state.usingFrostWand = frostologer.isUsingFrostWand();
         state.capeVisible = frostologer.getEquippedStack(EquipmentSlot.CHEST).isOf(FItems.FROSTOLOGY_CLOAK);
         state.frostLayer = FrostLayer.fromFrostologer(frostologer);

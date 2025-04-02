@@ -31,10 +31,6 @@ public class FrostifulClient implements ClientModInitializer {
         FEntityModelLayers.initialize();
         FEntityRenderers.initialize();
 
-        // TODO: Frost wand renderer
-//        FrostWandItemRenderer frostWandRenderer = new FrostWandItemRenderer(FEntityModelLayers.FROST_WAND);
-//        ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES).registerReloadListener(frostWandRenderer);
-//        BuiltinItemRendererRegistry.INSTANCE.register(() -> FItems.FROST_WAND, frostWandRenderer);
         SpecialModelTypes.ID_MAPPER.put(Frostiful.id("frost_wand"), FrostWandItemRenderer.Unbaked.CODEC);
         ModelLoadingPlugin.register(new FrostifulModelLoadingPlugin());
 
