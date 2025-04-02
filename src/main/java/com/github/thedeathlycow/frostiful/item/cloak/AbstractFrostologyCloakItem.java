@@ -26,7 +26,6 @@ public abstract class AbstractFrostologyCloakItem extends Item {
                         .damageOnHurt(false)
                         .build()
         ));
-//        DispenserBlock.registerBehavior(this, ArmorItem.DISPENSER_BEHAVIOR);
     }
 
     public static boolean isWearing(LivingEntity entity, Predicate<ItemStack> isCloak) {
