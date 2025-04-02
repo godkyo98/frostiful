@@ -83,5 +83,9 @@ public class FrostifulModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(FItems.ICY_VAULT);
         itemModelGenerator.register(FItems.CASTLE_KEY);
         itemModelGenerator.register(FItems.OMINOUS_CASTLE_KEY);
+
+        itemModelGenerator.registerSpawnEgg(FItems.FROSTOLOGER_SPAWN_EGG, 0x473882, 0xBEB2EB);
+        itemModelGenerator.registerSpawnEgg(FItems.CHILLAGER_SPAWN_EGG, 0x3432A8, 0xA2CCFC);
+        itemModelGenerator.registerSpawnEgg(FItems.BITER_SPAWN_EGG, 0xEBFEFF, 0x2E64C3);
     }
 }
