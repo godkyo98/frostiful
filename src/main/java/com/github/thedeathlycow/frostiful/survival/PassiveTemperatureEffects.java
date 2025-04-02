@@ -1,7 +1,6 @@
 package com.github.thedeathlycow.frostiful.survival;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
-import com.github.thedeathlycow.frostiful.block.SunLichenBlock;
 import com.github.thedeathlycow.frostiful.config.FrostifulConfig;
 import com.github.thedeathlycow.frostiful.entity.component.SnowAccumulationComponent;
 import com.github.thedeathlycow.frostiful.registry.tag.FBlockTags;
@@ -13,6 +12,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
@@ -46,9 +46,16 @@ public final class PassiveTemperatureEffects {
         if (steppingState.isIn(FBlockTags.HOT_FLOOR)) {
             ItemStack footStack = entity.getEquippedStack(EquipmentSlot.FEET);
 
-            if (!EnchantmentHelper.hasAnyEnchantmentsIn(footStack, FEnchantmentTags.IS_FROSTY)) {
-                // TODO: fix fire particles
-                SunLichenBlock.createFireParticles(context.world(), entity.getBlockPos());
+            if (entity.getRandom().nextInt(10) == 0 && !EnchantmentHelper.hasAnyEnchantmentsIn(footStack, FEnchantmentTags.IS_FROSTY)) {
+                context.world().spawnParticles(
+                        ParticleTypes.FLAME,
+                        entity.getX(),
+                        entity.getY() + 0.3,
+                        entity.getZ(),
+                        2,
+                        0.2, 0.7, 0.2,
+                        1e-2
+                );
                 return config.freezingConfig.getHeatFromHotFloor();
             }
         }

@@ -52,7 +52,7 @@ public class SunLichenBlock extends GlowLichenBlock implements Heatable {
 
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (entity instanceof LivingEntity livingEntity && world instanceof ServerWorld serverWorld) {
+        if (entity instanceof LivingEntity livingEntity) {
             if (this.heatLevel > COLD_LEVEL && this.canBurnEntity(livingEntity)) {
                 FrostifulConfig config = Frostiful.getConfig();
 
@@ -69,10 +69,13 @@ public class SunLichenBlock extends GlowLichenBlock implements Heatable {
                     }
                 }
 
-                entity.damage(serverWorld, world.getDamageSources().hotFloor(), 1);
-                if (livingEntity instanceof ServerPlayerEntity player) {
-                    FCriteria.SUN_LICHEN_DISCHARGE.trigger(player, heatToDischarge);
+                if (world instanceof ServerWorld serverWorld) {
+                    entity.damage(serverWorld, world.getDamageSources().hotFloor(), 1);
+                    if (livingEntity instanceof ServerPlayerEntity player) {
+                        FCriteria.SUN_LICHEN_DISCHARGE.trigger(player, heatToDischarge);
+                    }
                 }
+
                 createFireParticles(world, pos);
 
                 BlockState coldSunLichenState = FBlocks.COLD_SUN_LICHEN.getStateWithProperties(state);
@@ -139,7 +142,7 @@ public class SunLichenBlock extends GlowLichenBlock implements Heatable {
         world.playSound(null, pos, FSoundEvents.FIRE_LICHEN_DISCHARGE, SoundCategory.BLOCKS, 0.7F, pitch);
     }
 
-    public static void createFireParticles(World world, BlockPos pos) {
+    private static void createFireParticles(World world, BlockPos pos) {
         final double maxHorizontalOffset = 0.5;
 
         ThreadLocalRandom random = ThreadLocalRandom.current();
