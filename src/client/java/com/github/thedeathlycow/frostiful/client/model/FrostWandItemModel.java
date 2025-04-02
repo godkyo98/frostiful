@@ -16,8 +16,6 @@ import net.minecraft.util.Identifier;
 public class FrostWandItemModel extends Model {
     public static final Identifier TEXTURE = Frostiful.id("textures/entity/frost_wand.png");
 
-    private static final int FULL_BRIGHTNESS = (15 << 4) | (15 << 20); // packed lightmap coordinates are (block << 4) | (sky << 20)
-
     public FrostWandItemModel(ModelPart root) {
         super(root, RenderLayer::getEntityTranslucent);
     }
