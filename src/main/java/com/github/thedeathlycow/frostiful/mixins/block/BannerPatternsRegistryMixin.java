@@ -15,8 +15,7 @@ public class BannerPatternsRegistryMixin {
     @Inject(
             method = "bootstrap",
             at = @At(
-                    value = "TAIL",
-                    shift = At.Shift.BEFORE
+                    value = "TAIL"
             )
     )
     private static void registerFrostifulBannerPatterns(

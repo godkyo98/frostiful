@@ -3,6 +3,7 @@ package com.github.thedeathlycow.frostiful.client.mixin.entity_renderer;
 import com.github.thedeathlycow.frostiful.client.render.state.FBipedRenderState;
 import com.github.thedeathlycow.frostiful.item.cloak.AbstractFrostologyCloakItem;
 import com.github.thedeathlycow.frostiful.registry.tag.FItemTags;
+import net.minecraft.client.item.ItemModelManager;
 import net.minecraft.client.render.entity.BipedEntityRenderer;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.render.entity.state.BipedEntityRenderState;
@@ -20,7 +21,13 @@ public abstract class BipedEntityRendererMixin<T extends MobEntity, S extends Bi
             method = "updateBipedRenderState",
             at = @At("TAIL")
     )
-    private static void updateIceSkateRenderState(LivingEntity entity, BipedEntityRenderState state, float tickDelta, CallbackInfo ci) {
+    private static void updateIceSkateRenderState(
+            LivingEntity entity,
+            BipedEntityRenderState state,
+            float tickDelta,
+            ItemModelManager itemModelResolver,
+            CallbackInfo ci
+    ) {
         boolean wearingSkates = entity.getEquippedStack(EquipmentSlot.FEET).isIn(FItemTags.ICE_SKATES);
 
         FBipedRenderState fState = ((FBipedRenderState) state);
