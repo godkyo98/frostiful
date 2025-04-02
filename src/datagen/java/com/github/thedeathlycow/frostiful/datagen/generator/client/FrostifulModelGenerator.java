@@ -101,13 +101,7 @@ public class FrostifulModelGenerator extends FabricModelProvider {
                 ModelIds.getItemSubModelId(item, "_in_hand"),
                 new FrostWandItemRenderer.Unbaked()
         );
-        ItemModel.Unbaked casting = ItemModels.special(
-                ModelIds.getItemSubModelId(item, "_casting"),
-                new FrostWandItemRenderer.Unbaked()
-        );
 
-        ItemModel.Unbaked model3d = ItemModels.condition(ItemModels.usingItemProperty(), casting, inHand);
-
-        itemModelGenerator.output.accept(item, ItemModelGenerator.createModelWithInHandVariant(sprite, model3d));
+        itemModelGenerator.output.accept(item, ItemModelGenerator.createModelWithInHandVariant(sprite, inHand));
     }
 }

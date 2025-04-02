@@ -15,22 +15,11 @@
       }
     ],
     "fallback": {
-      "type": "minecraft:condition",
-      "on_false": {
-        "type": "minecraft:special",
-        "base": "frostiful:item/frost_wand_in_hand",
-        "model": {
-          "type": "frostiful:frost_wand"
-        }
-      },
-      "on_true": {
-        "type": "minecraft:special",
-        "base": "frostiful:item/frost_wand_casting",
-        "model": {
-          "type": "frostiful:frost_wand"
-        }
-      },
-      "property": "minecraft:using_item"
+      "type": "minecraft:special",
+      "base": "frostiful:item/frost_wand_in_hand",
+      "model": {
+        "type": "frostiful:frost_wand"
+      }
     },
     "property": "minecraft:display_context"
   }

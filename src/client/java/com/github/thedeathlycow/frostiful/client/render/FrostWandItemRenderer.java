@@ -27,9 +27,6 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class FrostWandItemRenderer implements SimpleSpecialModelRenderer {
-    public static final Identifier ID = Frostiful.id("frost_wand_renderer");
-    public static final Identifier INVENTORY_MODEL_ID = Frostiful.id("item/frost_wand_in_inventory");
-
     private final FrostWandItemModel model;
 
     public FrostWandItemRenderer(FrostWandItemModel model) {
@@ -42,7 +39,12 @@ public class FrostWandItemRenderer implements SimpleSpecialModelRenderer {
     ) {
         matrices.push();
         matrices.scale(1.0F, -1.0F, -1.0F);
-        VertexConsumer vertexConsumer = ItemRenderer.getItemGlintConsumer(vertexConsumers, this.model.getLayer(TridentEntityModel.TEXTURE), false, glint);
+        VertexConsumer vertexConsumer = ItemRenderer.getItemGlintConsumer(
+                vertexConsumers,
+                this.model.getLayer(FrostWandItemModel.TEXTURE),
+                false,
+                glint
+        );
         this.model.render(matrices, vertexConsumer, light, overlay);
         matrices.pop();
     }
