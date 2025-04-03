@@ -3,7 +3,6 @@ package com.github.thedeathlycow.frostiful.survival.wind;
 import com.github.thedeathlycow.frostiful.entity.FreezingWindEntity;
 import com.github.thedeathlycow.frostiful.entity.WindEntity;
 import com.github.thedeathlycow.frostiful.registry.FEntityTypes;
-import net.minecraft.entity.SpawnReason;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 

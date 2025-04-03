@@ -5,7 +5,6 @@ import com.github.thedeathlycow.frostiful.registry.FEntityTypes;
 import net.fabricmc.fabric.api.gametest.v1.FabricGameTest;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.damage.DamageSources;
-import net.minecraft.entity.mob.PillagerEntity;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.world.ServerWorld;
@@ -13,7 +12,6 @@ import net.minecraft.test.GameTest;
 import net.minecraft.test.TestContext;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.village.raid.Raid;
-import net.minecraft.world.World;
 
 @SuppressWarnings("unused")
 public class ChillagerDropTests {

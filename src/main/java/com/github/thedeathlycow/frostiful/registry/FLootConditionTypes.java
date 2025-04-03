@@ -1,9 +1,9 @@
 package com.github.thedeathlycow.frostiful.registry;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
-import com.github.thedeathlycow.frostiful.entity.loot.WearingIceLikeItem;
 import com.github.thedeathlycow.frostiful.entity.loot.LocationWarmthLootCondition;
 import com.github.thedeathlycow.frostiful.entity.loot.RootedLootCondition;
+import com.github.thedeathlycow.frostiful.entity.loot.WearingIceLikeItem;
 import net.minecraft.loot.condition.LootConditionType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;

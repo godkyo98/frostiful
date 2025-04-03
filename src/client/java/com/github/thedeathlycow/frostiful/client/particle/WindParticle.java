@@ -9,12 +9,9 @@ import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
-
-import java.util.function.Consumer;
 
 @Environment(EnvType.CLIENT)
 public class WindParticle extends SpriteBillboardParticle {

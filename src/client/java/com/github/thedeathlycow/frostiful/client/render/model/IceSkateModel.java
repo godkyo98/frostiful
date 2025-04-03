@@ -4,7 +4,6 @@ import net.minecraft.client.model.*;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.render.entity.model.EntityModelPartNames;
 import net.minecraft.client.render.entity.state.BipedEntityRenderState;
-import net.minecraft.entity.LivingEntity;
 
 public class IceSkateModel<T extends BipedEntityRenderState> extends BipedEntityModel<T> {
 

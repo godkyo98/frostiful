@@ -2,7 +2,6 @@ package com.github.thedeathlycow.frostiful.client.render.entity;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
 import com.github.thedeathlycow.frostiful.entity.FrostSpellEntity;
-import com.github.thedeathlycow.frostiful.entity.SpellEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.OverlayTexture;

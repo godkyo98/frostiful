@@ -9,9 +9,7 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.IllagerEntityRenderer;
 import net.minecraft.client.render.entity.feature.HeldItemFeatureRenderer;
 import net.minecraft.client.render.entity.model.IllagerEntityModel;
-import net.minecraft.client.render.entity.state.EntityRenderState;
 import net.minecraft.client.render.entity.state.IllagerEntityRenderState;
-import net.minecraft.client.render.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)

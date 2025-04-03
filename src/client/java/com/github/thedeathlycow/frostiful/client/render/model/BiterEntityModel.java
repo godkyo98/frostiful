@@ -5,9 +5,7 @@ import com.github.thedeathlycow.frostiful.client.render.state.BiterEntityRenderS
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.entity.animation.FrogAnimations;
 import net.minecraft.client.render.entity.model.EntityModel;
-import net.minecraft.client.render.entity.model.FrogEntityModel;
 import net.minecraft.util.math.MathHelper;
 
 @Environment(EnvType.CLIENT)

@@ -1,12 +1,12 @@
 package com.github.thedeathlycow.frostiful.client.render.entity;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
-import com.github.thedeathlycow.frostiful.client.render.model.FrostologerEntityModel;
 import com.github.thedeathlycow.frostiful.client.registry.FEntityModelLayers;
 import com.github.thedeathlycow.frostiful.client.render.feature.FrostLayer;
 import com.github.thedeathlycow.frostiful.client.render.feature.FrostologerCloakFeatureRenderer;
 import com.github.thedeathlycow.frostiful.client.render.feature.FrostologerEyesFeatureRenderer;
 import com.github.thedeathlycow.frostiful.client.render.feature.FrostologerFrostFeatureRenderer;
+import com.github.thedeathlycow.frostiful.client.render.model.FrostologerEntityModel;
 import com.github.thedeathlycow.frostiful.client.render.state.FrostologerEntityRenderState;
 import com.github.thedeathlycow.frostiful.entity.frostologer.FrostologerEntity;
 import com.github.thedeathlycow.frostiful.item.component.CapeComponent;

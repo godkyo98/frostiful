@@ -8,8 +8,6 @@ import com.github.thedeathlycow.frostiful.registry.FSoundEvents;
 import com.github.thedeathlycow.frostiful.registry.tag.FItemTags;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.llamalad7.mixinextras.sugar.Local;
-import com.llamalad7.mixinextras.sugar.ref.LocalFloatRef;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;

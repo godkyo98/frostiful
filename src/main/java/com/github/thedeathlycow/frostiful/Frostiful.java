@@ -1,6 +1,7 @@
 package com.github.thedeathlycow.frostiful;
 
 import com.github.thedeathlycow.frostiful.config.FrostifulConfig;
+import com.github.thedeathlycow.frostiful.datafix.StructureUpdateHelper;
 import com.github.thedeathlycow.frostiful.entity.component.FrostWandRootComponent;
 import com.github.thedeathlycow.frostiful.entity.loot.StrayLootTableModifier;
 import com.github.thedeathlycow.frostiful.item.FrostedBanner;
@@ -12,7 +13,6 @@ import com.github.thedeathlycow.frostiful.survival.ActiveTemperatureEffects;
 import com.github.thedeathlycow.frostiful.survival.PassiveTemperatureEffects;
 import com.github.thedeathlycow.frostiful.survival.ServerPlayerEnvironmentTickListeners;
 import com.github.thedeathlycow.frostiful.survival.SoakingEffects;
-import com.github.thedeathlycow.frostiful.datafix.StructureUpdateHelper;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigHolder;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;

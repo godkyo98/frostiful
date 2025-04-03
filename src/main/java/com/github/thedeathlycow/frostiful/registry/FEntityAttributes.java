@@ -2,7 +2,6 @@ package com.github.thedeathlycow.frostiful.registry;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
 import com.github.thedeathlycow.thermoo.api.ThermooAttributes;
-import net.minecraft.datafixer.schema.IdentifierNormalizingSchema;
 import net.minecraft.entity.attribute.ClampedEntityAttribute;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttribute;
