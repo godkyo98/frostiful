@@ -52,8 +52,11 @@ The config page on the wiki is the best source of what each option does, so be s
 Frostiful also exposes a number of vanilla mechanics related to freezing to configuration or datapacks, such as what boots can be used to walk on powder snow, how much and how often freeze damage applies when fully frozen, and the effects you get from being cold.
 
 #  Mod Integrations
+## Thermoo Patches
+Using Frostiful in a mod pack? Then it is highly recommended that you also download the mod [Thermoo Patches](https://www.curseforge.com/minecraft/mc-mods/thermoo-patches). This mod offers an all-in-one suite of compatibility patches for mods such as Origins, Fabric Seasons, Serene Seasons, Colorful Hearts, Overflowing Bars, Friends & Foes, and more!
 
-Frostiful has built-in integrations for many mods. You can get even more from [Thermoo Patches](https://modrinth.com/mod/thermoo-patches), which offers a suite of integration patches for many other mods, such as Origins, Fabric Seasons, Serene Seasons, Colorful Hearts, Overflowing Bars, Armor Points++, Ad Astra, and more!
+## Builtin Integrations
+These patches are builtin to Frostiful.
 
 * [Tips](https://modrinth.com/mod/tips): Added some Frostiful-specific tips
 * [Enchantment Descriptions](https://modrinth.com/mod/enchantment-descriptions): Descriptions are provided for Frostiful's enchantments

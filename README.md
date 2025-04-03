@@ -1,19 +1,26 @@
 <p align="center">
     <img src="./src/main/resources/assets/frostiful/frostiful.png" alt="Frostiful title">
-    A Frosty Vanilla+ Survival Experience
+    A Vanilla+ Freezing Temperature Mod. Also try [Scorchful](https://github.com/TheDeathlyCow/scorchful)!
 </p>
 
 # Download Pages
 
-CurseForge: https://www.curseforge.com/minecraft/mc-mods/frostiful
+* Modrinth: https://modrinth.com/mod/frostiful
+* CurseForge: https://www.curseforge.com/minecraft/mc-mods/frostiful
 
-Modrinth: https://modrinth.com/mod/frostiful
+The above mod pages and this Git repository are the only official sources for this mod. Other sources may contain out of date or even maliciously modified versions of this mod.
 
-The above download pages are the ONLY source of this mod, DO NOT TRUST ANY OTHER SOURCE!
+# Documentation
 
-# Wiki
+Frostiful's current wiki is available at https://github.com/TheDeathlyCow/scorchful/wiki
 
-Basically everything about this mod is documented extensively on the [wiki](https://github.com/TheDeathlyCow/frostiful/wiki/).
+A new wiki is currently in progress on Modded Wiki. Pages are still being migrated over, but it will be complete soon! You can find the main page at: https://modded.wiki/w/Mod:Frostiful
+
+Thanks to [Patbox](https://github.com/Patbox/) for hosting the wiki!
+
+## Developer Docs
+
+Frostiful has documentation available for addon and modpack makers. This can be found at: https://frostiful.thedeathlycow.com/
 
 # Mod Integrations 
 

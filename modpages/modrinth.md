@@ -77,7 +77,11 @@ Frostiful also exposes a number of vanilla mechanics related to freezing to conf
 
 #  Mod Integrations
 
-Frostiful has built-in integrations for many mods. You can get even more from [Thermoo Patches](https://modrinth.com/mod/thermoo-patches), which offers a suite of integration patches for many other mods, such as Origins, Fabric Seasons, Serene Seasons, Colorful Hearts, Overflowing Bars, Armor Points++, Ad Astra, and more!
+## Thermoo Patches
+Using Frostiful in a mod pack? Then it is highly recommended that you also download the mod [Thermoo Patches](https://modrinth.com/mod/thermoo-patches). This mod offers an all-in-one suite of compatibility patches for mods such as Origins, Fabric Seasons, Serene Seasons, Colorful Hearts, Overflowing Bars, Friends & Foes, and more!
+
+## Builtin Integrations
+These patches are builtin to Frostiful.
 
 * [Tips](https://modrinth.com/mod/tips): Added some Frostiful-specific tips
 * [Enchantment Descriptions](https://modrinth.com/mod/enchantment-descriptions): Descriptions are provided for Frostiful's enchantments
