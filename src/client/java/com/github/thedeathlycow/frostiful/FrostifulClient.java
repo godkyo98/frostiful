@@ -1,6 +1,5 @@
 package com.github.thedeathlycow.frostiful;
 
-import com.github.thedeathlycow.frostiful.client.FrostifulModelLoadingPlugin;
 import com.github.thedeathlycow.frostiful.client.FrozenHeartsOverlay;
 import com.github.thedeathlycow.frostiful.client.network.PointWindSpawnPacketListener;
 import com.github.thedeathlycow.frostiful.client.registry.FCutouts;
@@ -15,7 +14,6 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
-import net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.render.item.model.special.SpecialModelTypes;
 
@@ -29,7 +27,6 @@ public class FrostifulClient implements ClientModInitializer {
         FEntityRenderers.initialize();
 
         SpecialModelTypes.ID_MAPPER.put(Frostiful.id("frost_wand"), FrostWandItemRenderer.Unbaked.CODEC);
-        ModelLoadingPlugin.register(new FrostifulModelLoadingPlugin());
 
         ClientPlayNetworking.registerGlobalReceiver(
                 PointWindSpawnPacket.PACKET_ID,

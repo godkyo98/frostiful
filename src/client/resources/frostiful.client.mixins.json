@@ -8,7 +8,6 @@
         "DrippingWetPlayerMixin",
         "ElytraFeatureRendererMixin",
         "SplashTextResourceSupplierMixin",
-        "SpriteAtlasManagerMixin",
         "entity_renderer.ArmorStandEntityRendererMixin",
         "entity_renderer.BipedEntityRendererMixin",
         "entity_renderer.LivingEntityRendererMixin",
