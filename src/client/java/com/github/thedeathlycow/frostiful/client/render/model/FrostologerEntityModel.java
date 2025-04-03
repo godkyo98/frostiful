@@ -1,4 +1,4 @@
-package com.github.thedeathlycow.frostiful.client.model;
+package com.github.thedeathlycow.frostiful.client.render.model;
 
 import com.github.thedeathlycow.frostiful.client.render.state.FrostologerEntityRenderState;
 import net.fabricmc.api.EnvType;

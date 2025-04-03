@@ -1,7 +1,7 @@
 package com.github.thedeathlycow.frostiful.client.registry;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
-import com.github.thedeathlycow.frostiful.client.model.IceSkateModel;
+import com.github.thedeathlycow.frostiful.client.render.model.IceSkateModel;
 import com.github.thedeathlycow.frostiful.client.render.entity.*;
 import com.github.thedeathlycow.frostiful.client.render.feature.IceSkateFeatureRenderer;
 import com.github.thedeathlycow.frostiful.registry.FEntityTypes;

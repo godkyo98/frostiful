@@ -1,9 +1,8 @@
 package com.github.thedeathlycow.frostiful.client.render.feature;
 
-import com.github.thedeathlycow.frostiful.client.model.FrostologerEntityModel;
+import com.github.thedeathlycow.frostiful.client.render.model.FrostologerEntityModel;
 import com.github.thedeathlycow.frostiful.client.registry.FEntityModelLayers;
 import com.github.thedeathlycow.frostiful.client.render.state.FrostologerEntityRenderState;
-import com.github.thedeathlycow.frostiful.item.component.CapeComponent;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.OverlayTexture;

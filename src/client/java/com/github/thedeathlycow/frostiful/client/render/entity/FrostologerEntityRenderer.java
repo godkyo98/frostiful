@@ -1,7 +1,7 @@
 package com.github.thedeathlycow.frostiful.client.render.entity;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
-import com.github.thedeathlycow.frostiful.client.model.FrostologerEntityModel;
+import com.github.thedeathlycow.frostiful.client.render.model.FrostologerEntityModel;
 import com.github.thedeathlycow.frostiful.client.registry.FEntityModelLayers;
 import com.github.thedeathlycow.frostiful.client.render.feature.FrostLayer;
 import com.github.thedeathlycow.frostiful.client.render.feature.FrostologerCloakFeatureRenderer;
@@ -11,7 +11,6 @@ import com.github.thedeathlycow.frostiful.client.render.state.FrostologerEntityR
 import com.github.thedeathlycow.frostiful.entity.frostologer.FrostologerEntity;
 import com.github.thedeathlycow.frostiful.item.component.CapeComponent;
 import com.github.thedeathlycow.frostiful.registry.FDataComponentTypes;
-import com.github.thedeathlycow.frostiful.registry.FItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -21,7 +20,6 @@ import net.minecraft.client.render.entity.feature.HeadFeatureRenderer;
 import net.minecraft.client.render.entity.feature.HeldItemFeatureRenderer;
 import net.minecraft.client.render.entity.state.ArmedEntityRenderState;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.mob.IllagerEntity;
 import net.minecraft.item.CrossbowItem;

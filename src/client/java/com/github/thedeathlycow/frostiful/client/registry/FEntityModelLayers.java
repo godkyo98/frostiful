@@ -1,10 +1,10 @@
 package com.github.thedeathlycow.frostiful.client.registry;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
-import com.github.thedeathlycow.frostiful.client.model.BiterEntityModel;
-import com.github.thedeathlycow.frostiful.client.model.FrostWandItemModel;
-import com.github.thedeathlycow.frostiful.client.model.FrostologerEntityModel;
-import com.github.thedeathlycow.frostiful.client.model.IceSkateModel;
+import com.github.thedeathlycow.frostiful.client.render.model.BiterEntityModel;
+import com.github.thedeathlycow.frostiful.client.render.model.FrostWandItemModel;
+import com.github.thedeathlycow.frostiful.client.render.model.FrostologerEntityModel;
+import com.github.thedeathlycow.frostiful.client.render.model.IceSkateModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;

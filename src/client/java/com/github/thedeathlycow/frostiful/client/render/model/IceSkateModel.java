@@ -1,4 +1,4 @@
-package com.github.thedeathlycow.frostiful.client.model;
+package com.github.thedeathlycow.frostiful.client.render.model;
 
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.entity.model.BipedEntityModel;

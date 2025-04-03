@@ -1,7 +1,7 @@
 package com.github.thedeathlycow.frostiful.client.render.feature;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
-import com.github.thedeathlycow.frostiful.client.model.IceSkateModel;
+import com.github.thedeathlycow.frostiful.client.render.model.IceSkateModel;
 import com.github.thedeathlycow.frostiful.client.render.state.FBipedRenderState;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;

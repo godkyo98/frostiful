@@ -1,6 +1,6 @@
-package com.github.thedeathlycow.frostiful.client.render;
+package com.github.thedeathlycow.frostiful.client.render.entity;
 
-import com.github.thedeathlycow.frostiful.client.model.FrostWandItemModel;
+import com.github.thedeathlycow.frostiful.client.render.model.FrostWandItemModel;
 import com.github.thedeathlycow.frostiful.client.registry.FEntityModelLayers;
 import com.mojang.serialization.MapCodec;
 import net.fabricmc.api.EnvType;

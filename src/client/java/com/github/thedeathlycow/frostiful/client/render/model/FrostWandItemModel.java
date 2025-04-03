@@ -1,4 +1,4 @@
-package com.github.thedeathlycow.frostiful.client.model;
+package com.github.thedeathlycow.frostiful.client.render.model;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
 import net.fabricmc.api.EnvType;

@@ -1,13 +1,12 @@
 package com.github.thedeathlycow.frostiful.datagen.generator.client;
 
-import com.github.thedeathlycow.frostiful.client.render.FrostWandItemRenderer;
+import com.github.thedeathlycow.frostiful.client.render.entity.FrostWandItemRenderer;
 import com.github.thedeathlycow.frostiful.registry.FArmorMaterials;
 import com.github.thedeathlycow.frostiful.registry.FItems;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.client.data.*;
 import net.minecraft.client.render.item.model.ItemModel;
-import net.minecraft.client.render.item.model.special.TridentModelRenderer;
 import net.minecraft.item.Item;
 
 public class FrostifulModelGenerator extends FabricModelProvider {

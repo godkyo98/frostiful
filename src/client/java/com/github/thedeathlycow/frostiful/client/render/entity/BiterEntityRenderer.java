@@ -1,7 +1,7 @@
 package com.github.thedeathlycow.frostiful.client.render.entity;
 
 import com.github.thedeathlycow.frostiful.Frostiful;
-import com.github.thedeathlycow.frostiful.client.model.BiterEntityModel;
+import com.github.thedeathlycow.frostiful.client.render.model.BiterEntityModel;
 import com.github.thedeathlycow.frostiful.client.registry.FEntityModelLayers;
 import com.github.thedeathlycow.frostiful.client.render.state.BiterEntityRenderState;
 import com.github.thedeathlycow.frostiful.entity.BiterEntity;

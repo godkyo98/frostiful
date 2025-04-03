@@ -7,7 +7,7 @@ import com.github.thedeathlycow.frostiful.client.registry.FCutouts;
 import com.github.thedeathlycow.frostiful.client.registry.FEntityModelLayers;
 import com.github.thedeathlycow.frostiful.client.registry.FEntityRenderers;
 import com.github.thedeathlycow.frostiful.client.registry.FParticleFactoryRegistry;
-import com.github.thedeathlycow.frostiful.client.render.FrostWandItemRenderer;
+import com.github.thedeathlycow.frostiful.client.render.entity.FrostWandItemRenderer;
 import com.github.thedeathlycow.frostiful.compat.FoodIntegration;
 import com.github.thedeathlycow.frostiful.server.network.PointWindSpawnPacket;
 import com.github.thedeathlycow.thermoo.api.client.StatusBarOverlayRenderEvents;
