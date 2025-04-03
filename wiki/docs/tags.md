@@ -11,9 +11,10 @@ from Thermoo that Frostiful appends to.
     Items that are most relevant to mod pack authors have been marked with :star:
 
 !!! warning
-    This page reflects the latest set of tags available for Minecraft 1.21.1. Items documented here may not necessarily reflect what appears in an older version of Frostiful. Starting from Frostiful 2.2, removed options will be documented in [Removed Tags](#removed-tags).
+    This page reflects the latest set of tags available for Minecraft 1.21.x. Items documented here may not necessarily reflect what appears in an older version of Frostiful. Starting from Frostiful 2.2, removed options will be documented in [Removed Tags](#removed-tags).
 
 ## Armor Materials (deprecated)
+> Available for 1.21.1 only
 
 Location: `data/frostiful/tags/armor_material`.
 
@@ -60,17 +61,20 @@ Location: `data/frostiful/tags/block`.
 
 Location: `data/frostiful/tags/worldgen/biome`.
 
-| Tag ID                                           | Description                                                             | Default values (summarized)                                                                                                     |
-|--------------------------------------------------|-------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|
-| `#frostiful:has_feature/sun_lichen_covered_rock` | Biomes that sun lichen covered rocks generate in                        | Snowy, icy, and taiga biomes                                                                                                    |
-| `#frostiful:has_feature/icicle_cluster`          | Biomes that icicle clusters generate in                                 | Snowy and icy biomes                                                                                                            |
-| `#frostiful:has_feature/brittle_ice`             | Biomes that brittle ice sheets generate in                              | Frozen ocean                                                                                                                    |
-| `#frostiful:has_structure/chillager_outpost`     | Biomes that the [Chillager Outpost](./chillager-outpost) generates in   | Snowy plains, ice spikes                                                                                                        |
-| `#frostiful:has_structure/frostologer_castle`    | Biomes that the [Frostologer Castle](./frostologer-castle) generates in | Snowy plains, ice spikes                                                                                                        |
-| :star: `#frostiful:freezing_blacklist_biomes`    | Biomes that can never be cold                                           | Nether and End biomes                                                                                                           |
-| `#frostiful:freezing_wind_always_spawns`         | Biomes where freezing wind will always appear on the ground             | Mountains and windswept biomes                                                                                                  |
-| `#frostiful:freezing_wind_spawns_in_storms`      | Biomes where freezing wind will appear on the ground in storms          | Snowy and hilly biomes                                                                                                          |
-| `#frostiful:freezing_wind_never_spawns`          | Biomes that freezing wind will never spawn in                           | Nether and End biomes                                                                                                           |
+| Tag ID                                           | Description                                                             | Default values (summarized)                                                                            |
+|--------------------------------------------------|-------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| `#frostiful:has_feature/sun_lichen_covered_rock` | Biomes that sun lichen covered rocks generate in                        | Snowy, icy, and taiga biomes                                                                           |
+| `#frostiful:has_feature/icicle_cluster`          | Biomes that icicle clusters generate in                                 | Snowy and icy biomes                                                                                   |
+| `#frostiful:has_feature/brittle_ice`             | Biomes that brittle ice sheets generate in                              | Frozen ocean                                                                                           |
+| `#frostiful:has_structure/chillager_outpost`     | Biomes that the [Chillager Outpost](./chillager-outpost) generates in   | Snowy plains, ice spikes                                                                               |
+| `#frostiful:has_structure/frostologer_castle`    | Biomes that the [Frostologer Castle](./frostologer-castle) generates in | Snowy plains, ice spikes                                                                               |
+| :star: `#frostiful:freezing_blacklist_biomes`    | Biomes that can never be cold                                           | Nether and End biomes                                                                                  |
+| `#frostiful:freezing_wind_always_spawns`         | Biomes where freezing wind will always appear on the ground             | Mountains and windswept biomes                                                                         |
+| `#frostiful:freezing_wind_spawns_in_storms`      | Biomes where freezing wind will appear on the ground in storms          | Snowy and hilly biomes                                                                                 |
+| `#frostiful:freezing_wind_never_spawns`          | Biomes that freezing wind will never spawn in                           | Nether and End biomes                                                                                  |
+| :star: `#frostiful:is_climate/*` tags            | Biomes that belong to the named climate                                 | See [Temperature System](https://modded.wiki/w/Frostiful:Temperature_System) for a comprehensive list. |
+| :star: `#frostiful:is_not_climate/*` tags        | Biomes that cannot belong to the named climate                          | See [Temperature System](https://modded.wiki/w/Frostiful:Temperature_System) for a comprehensive list. |
+
 
 ## Damage Types
 
@@ -111,18 +115,21 @@ Location: `data/frostiful/tags/entity_type`.
 
 Location: `data/frostiful/tags/entity_type`.
 
-| Tag ID                              | Description                                                                                | Default values (summarized)                                       |
-|-------------------------------------|--------------------------------------------------------------------------------------------|-------------------------------------------------------------------|
-| `#frostiful:frostology_cloaks`      | Items that make the [Frostology Cloak](./frostology-cloak) appear when worn                | Cloak of Frostology, Inert Cloak of Frostology                    |
-| `#frostiful:fur_armor`              | Items that trigger the craft fur armor [advancement](./advancement)                        | All fur armour items                                              |
-| `#frostiful:fur_boots`              | Items that are [fur boots](./fur-armor)                                                    | Fur boots items                                                   |
-| `#frostiful:ice_skates`             | Items that allow you to skate on ice                                                       | Ice Skates, Armored Ice Skates                                    |
-| `#frostiful:icicles`                | Items that are [Icicles](./icicle) for crafting purposes                                   | Icicles and Icicles from Immersive Weathering                     |
-| `#frostiful:powder_snow_walkable`   | Items that will let you walk on powder snow when worn in the feet or body slot             | Leather, fur, fur padded chainmail boots and leather horse armour |
-| `#frostiful:sun_lichens`            | The [sun lichen](./sun-lichen) block items                                                 | All variants of sun lichen                                        |
-| `#frostiful:supports_heat_drain`    | Items that support the [Enervation and Curse of Frozen Touch](./Enchantments) enchantments | Swords, axes, spears, and the Frost Wand                          |
-| :star: `#frostiful:warming_foods`   | Items that provide the Warmth status effect when consumed                                  | Various modded drinks, like teas, coffees, and hot chocolate      |
-| `#frostiful:enchantable/frost_wand` | Items that can receive the Frost Wand's enchantments in the Enchanting Table               | Frost Wand                                                        |
+| Tag ID                                         | Description                                                                                | Default values (summarized)                                       |
+|------------------------------------------------|--------------------------------------------------------------------------------------------|-------------------------------------------------------------------|
+| `#frostiful:fur_armor`                         | Items that trigger the craft fur armor [advancement](./advancement)                        | All fur armour items                                              |
+| `#frostiful:fur_boots`                         | Items that are [fur boots](./fur-armor)                                                    | Fur boots items                                                   |
+| `#frostiful:fur_tufts`                         | Used for crafting Fur Padding and Fur Armor                                                | Rabbit hide and all fur tuft items                                |
+| `#frostiful:ice_skates`                        | Items that allow you to skate on ice                                                       | Ice Skates, Armored Ice Skates                                    |
+| `#frostiful:icicles`                           | Items that are [Icicles](./icicle) for crafting purposes                                   | Icicles and Icicles from Immersive Weathering                     |
+| `#frostiful:powder_snow_walkable`              | Items that will let you walk on powder snow when worn in the feet or body slot             | Leather, fur, fur padded chainmail boots and leather horse armour |
+| `#frostiful:sun_lichens`                       | The [sun lichen](./sun-lichen) block items                                                 | All variants of sun lichen                                        |
+| `#frostiful:supports_heat_drain`               | Items that support the [Enervation and Curse of Frozen Touch](./Enchantments) enchantments | Swords, axes, spears, and the Frost Wand                          |
+| :star: `#frostiful:warming_foods`              | Items that provide the Warmth status effect when consumed                                  | Various modded drinks, like teas, coffees, and hot chocolate      |
+| `#frostiful:enchantable/frost_wand`            | Items that can receive the Frost Wand's enchantments in the Enchanting Table               | Frost Wand                                                        |
+| `#frostiful:repairs_fur_armor`                 | Used to repair Fur Armor                                                                   | Fur Tufts                                                         |                                                     
+| `#frostiful:repairs_fur_lined_chainmail_armor` | Used to repair Fur Lined Chainmail Armor                                                   | Iron Ingots                                                       |
+| `#frostiful:repairs_frost_wand`                | Used to repair the Frost Wand                                                              | Frozen Rod                                                        | 
 
 ## Trim Patterns
 
@@ -153,3 +160,9 @@ Starting from Frostiful 2.2, removed tags will be documented here.
 |---------------------------|-----------------------------------------------|-----------------|-----------------------------------------------------------------------------|
 | Seasonal temperature tags | Categorizes biome temperature based on season | 2.2             | `#frostiful:is_climate/*` and `#frostiful:is_not_climate/*` tags            |
 | `#frostiful:dry_biomes`   | Biomes that are cold at night                 | 2.2             | Feature moved to Scorchful (Frostiful still required for freezing to apply) |
+
+### Item Tags
+
+| Tag ID                         | Description                                                                                                  | Removed version | Replacement                                                                                |
+|--------------------------------|--------------------------------------------------------------------------------------------------------------|-----------------|--------------------------------------------------------------------------------------------|
+| `#frostiful:frostology_cloaks` | Items that make the [Frostology Cloak](https://modded.wiki/w/Frostiful:Cloak_of_Frostology) appear when worn | 2.2+1.21.4      | Replaced with `frostiful:cape` and `frostiful:ice_like` [item components](./components.md) |
