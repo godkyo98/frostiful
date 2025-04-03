@@ -92,12 +92,13 @@ These patches are builtin to Frostiful.
 * [Frozen Up](https://www.curseforge.com/minecraft/mc-mods/frozen-up): Truffle Hot Chocolate provides the Warmth effect
 * [Spectrum](https://modrinth.com/mod/spectrum): Hot Chocolate, Demon Tea, Restoration Tea, and Glistering Jelly Tea provide the Warmth effect.
 
-
-### Compatibility
-
-While this mod is designed to be as compatible as possible with other mods, it is inevitable that sometimes issues will arise. Specific incompatibilities will be documented here and on the [wiki](https://github.com/TheDeathlyCow/frostiful/wiki#compatibility) as they become known.
+## Other Temperature Mods
 
 Note that other temperature mods, such as Thermite or EnvironmentZ do not work with Frostiful's temperature system and likely never will. Running Frostiful with these mods is redundant as they also add their own temperature system in addition to Frostiful. These mods may technically run together, however if you want to have a warm temperature system with Frostiful I would recommend using [Scorchful](https://modrinth.com/mod/scorchful) instead, as it was made to work together with Frostiful.
+
+## Incompatibilities
+
+While Frostiful is made to be as compatible as possible with other mods, issues will inevitably arise from time to time. Specific incompatibilities and fixes are documented on the Developer Docs website, which you can find [here](https://frostiful.thedeathlycow.com/).
 
 # Other Recommended Mods
 
