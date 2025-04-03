@@ -11,6 +11,28 @@ This page documents the various component types added by Frostiful.
 This is a new component type added for items. For the full format in Vanilla,
 see: [https://minecraft.wiki/w/Data_component_format](https://minecraft.wiki/w/Data_component_format)
 
+### Cape
+> Available 1.21.4+
+
+This component can be used to render capes when worn in the Chest or [Cape Trinket slot](https://www.modrinth.com/mod/trinkets).
+
+- `{}` **minecraft:components**: Parent tag.
+    - `{}` **frostiful:cape**: A compound component.
+        - `"` **cape_texture**: A Identifier/Resource Location of the cape texture to use.
+        - `"` **override_account_cape**: An optional boolean indicating whether this should render over any capes on the player's account. Defaults to `true`.
+
+!!! tip
+    The Cloak of Frostology texture path is `frostiful:textures/entity/frostology_cloak.png`. Other Cape textures use a hashed value for their ID by default, and are not available unless you have seen a player wearing that cape during your session. If you want to use a specific cape texture, add a dedicated file to a resource pack first.
+
+### Ice Like 
+> Available 1.21.4+
+
+When present on an item, causes that item to have the effects of the [Cloak of Frostology](https://modded.wiki/w/Frostiful:Cloak_of_Frostology).
+
+- `{}` **minecraft:components**: Parent tag.
+    - `{}` **frostiful:ice_like**: A compound component.
+        - `"` **block_damage_types**: An optional damage-type tag ID of what damage types this item should fully block when worn. Defaults to `minecraft:is_freezing`.  
+
 ### Frost Resistance
 
 This component adds Frost Resistance and Environment Frost Resistance attribute modifiers to items. This does not modify

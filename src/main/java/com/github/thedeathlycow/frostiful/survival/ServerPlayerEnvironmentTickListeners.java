@@ -3,9 +3,8 @@ package com.github.thedeathlycow.frostiful.survival;
 import com.github.thedeathlycow.frostiful.Frostiful;
 import com.github.thedeathlycow.frostiful.config.FrostifulConfig;
 import com.github.thedeathlycow.frostiful.config.group.EnvironmentConfigGroup;
-import com.github.thedeathlycow.frostiful.item.cloak.AbstractFrostologyCloakItem;
+import com.github.thedeathlycow.frostiful.item.component.IceLikeComponent;
 import com.github.thedeathlycow.frostiful.registry.FGameRules;
-import com.github.thedeathlycow.frostiful.registry.FItems;
 import com.github.thedeathlycow.thermoo.api.environment.component.EnvironmentComponentTypes;
 import com.github.thedeathlycow.thermoo.api.environment.component.TemperatureRecordComponent;
 import com.github.thedeathlycow.thermoo.api.environment.event.ServerPlayerEnvironmentTickEvents;
@@ -65,15 +64,12 @@ public final class ServerPlayerEnvironmentTickListeners {
         boolean doPassiveFreezing = config.freezingConfig.doPassiveFreezing()
                 && context.world().getGameRules().getBoolean(FGameRules.DO_PASSIVE_FREEZING);
 
-        if (doPassiveFreezing) {
+        if (IceLikeComponent.isWearing(player)) {
             return TriState.TRUE;
+        } else if (!doPassiveFreezing) {
+            return TriState.FALSE;
         } else {
-            return TriState.of(
-                    AbstractFrostologyCloakItem.isWearing(
-                            player,
-                            stack -> stack.isOf(FItems.FROSTOLOGY_CLOAK)
-                    )
-            );
+            return TriState.DEFAULT;
         }
     }
 

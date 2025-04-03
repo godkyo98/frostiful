@@ -1,8 +1,0 @@
-{
-    "condition": "frostiful:chest_equipped_with_trinket",
-    "items": {
-        "items": [
-            "frostiful:frostology_cloak"
-        ]
-    }
-}

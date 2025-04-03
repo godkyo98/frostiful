@@ -3,7 +3,7 @@ package com.github.thedeathlycow.frostiful.client.render.feature;
 import com.github.thedeathlycow.frostiful.client.model.FrostologerEntityModel;
 import com.github.thedeathlycow.frostiful.client.registry.FEntityModelLayers;
 import com.github.thedeathlycow.frostiful.client.render.state.FrostologerEntityRenderState;
-import com.github.thedeathlycow.frostiful.item.cloak.AbstractFrostologyCloakItem;
+import com.github.thedeathlycow.frostiful.item.component.CapeComponent;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.OverlayTexture;
@@ -40,12 +40,12 @@ public class FrostologerCloakFeatureRenderer extends FeatureRenderer<Frostologer
             float limbAngle,
             float limbDistance
     ) {
-        if (!state.invisible && state.capeVisible) {
+        if (!state.invisible && state.capeTexture != null) {
             matrixStack.push();
             matrixStack.translate(0.0, 0.0, 3f / 16f);
 
             VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(
-                    RenderLayer.getEntitySolid(AbstractFrostologyCloakItem.MODEL_TEXTURE_ID)
+                    RenderLayer.getEntitySolid(state.capeTexture)
             );
             this.model.setAngles(state);
             this.model.renderCloak(matrixStack, vertexConsumer, light, OverlayTexture.DEFAULT_UV);
