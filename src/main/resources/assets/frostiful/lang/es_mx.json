@@ -1,7 +1,4 @@
 {
-"attribute.frostiful.generic.frost_resistance": "Resistencia a la Congelación",
-"attribute.frostiful.generic.max_frost": "Congelación máxima",
-
 
 "itemGroup.frostiful.frostiful": "Frostiful",
 "item.frostiful.frost_wand": "Varita de escarcha",
@@ -107,13 +104,6 @@
 "entity.frostiful.freezing_wind": "Viento helado",
 
 
-"frostiful.commands.frost.exception.not_living_entity": "¡El objetivo no es una entidad viviente!",
-"commands.frostiful.get.progress.success": "La escala de congelación de %s es %d",
-"commands.frostiful.frost.add.success": "Se agregó %d congelamiento a %s (ahora %d)",
-"commands.frostiful.frost.remove.success": "Se ha eliminado %d congelamiento de %s (ahora %d)",
-"commands.frostiful.frost.set.success": "Establecer el congelamiento de %s en %d",
-"commands.frostiful.frost.get.current.success": "%s tiene %d congelamiento",
-"commands.frostiful.frost.get.max.success": "%s puede tener un máximo de %d congelamiento",
 "commands.frostiful.root.set.success.single": "Se ha enraizado %s durante %s ticks",
 "commands.frostiful.root.set.success.multiple": "Se han enraizado %s objetivos durante %s ticks",
 
