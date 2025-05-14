@@ -21,7 +21,7 @@ jobs:
           download_translations: true
 
           crowdin_branch_name: ${{ env.BRANCH_NAME }}
-          localization_branch_name: '${{ env.BRANCH_NAME }}-translate/l10n-crowdin-translations'
+          localization_branch_name: ${{ env.BRANCH_NAME }}-translate/l10n-crowdin-translations
 
           create_pull_request: true
           pull_request_title: '[${{ env.BRANCH_NAME }}] New Crowdin translations'
