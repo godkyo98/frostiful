@@ -2,6 +2,9 @@ name: Crowdin Download
 
 on: [ workflow_dispatch ]
 
+env:
+  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+
 permissions:
   contents: write
   pull-requests: write
