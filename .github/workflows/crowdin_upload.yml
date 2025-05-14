@@ -5,6 +5,7 @@ on:
     paths: [ 'src/main/resources/assets/frostiful/lang/**' ]
     branches:
       - 1.21.4
+      - 1.21.1
   workflow_dispatch:
 
 jobs:
