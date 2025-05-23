@@ -4,10 +4,10 @@ import com.github.thedeathlycow.frostiful.Frostiful;
 import com.github.thedeathlycow.frostiful.item.*;
 import com.github.thedeathlycow.frostiful.item.attribute.FrostResistanceComponent;
 import com.github.thedeathlycow.frostiful.item.attribute.ResistanceComponentBuilder;
-import com.github.thedeathlycow.frostiful.item.cloak.FrostologyCloakItem;
-import com.github.thedeathlycow.frostiful.item.cloak.InertFrostologyCloakItem;
+import com.github.thedeathlycow.frostiful.item.cloak.FrostologyCloakItemComponents;
 import com.github.thedeathlycow.frostiful.item.component.CapeComponent;
 import com.github.thedeathlycow.frostiful.item.component.IceLikeComponent;
+import com.github.thedeathlycow.frostiful.item.component.InertTooltipComponent;
 import com.github.thedeathlycow.frostiful.registry.tag.FBannerPatternTags;
 import com.github.thedeathlycow.frostiful.registry.tag.FItemTags;
 import net.minecraft.block.Block;
@@ -26,40 +26,36 @@ import java.util.function.Function;
 public final class FItems {
     public static final Item FUR_HELMET = register(
             "fur_helmet",
-            settings -> new ArmorItem(
-                    FArmorMaterials.FUR,
-                    EquipmentType.HELMET,
+            settings -> new Item(
                     settings
+                            .armor(FArmorMaterials.FUR, EquipmentType.HELMET)
                             .maxDamage(EquipmentType.HELMET.getMaxDamage(5))
                             .component(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.VERY_PROTECTIVE)
             )
     );
     public static final Item FUR_CHESTPLATE = register(
             "fur_chestplate",
-            settings -> new ArmorItem(
-                    FArmorMaterials.FUR,
-                    EquipmentType.CHESTPLATE,
+            settings -> new Item(
                     settings
+                            .armor(FArmorMaterials.FUR, EquipmentType.CHESTPLATE)
                             .maxDamage(EquipmentType.CHESTPLATE.getMaxDamage(5))
                             .component(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.VERY_PROTECTIVE)
             )
     );
     public static final Item FUR_LEGGINGS = register(
             "fur_leggings",
-            settings -> new ArmorItem(
-                    FArmorMaterials.FUR,
-                    EquipmentType.LEGGINGS,
+            settings -> new Item(
                     settings
+                            .armor(FArmorMaterials.FUR, EquipmentType.LEGGINGS)
                             .maxDamage(EquipmentType.LEGGINGS.getMaxDamage(5))
                             .component(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.VERY_PROTECTIVE)
             )
     );
     public static final Item FUR_BOOTS = register(
             "fur_boots",
-            settings -> new ArmorItem(
-                    FArmorMaterials.FUR,
-                    EquipmentType.BOOTS,
+            settings -> new Item(
                     settings
+                            .armor(FArmorMaterials.FUR, EquipmentType.BOOTS)
                             .maxDamage(EquipmentType.BOOTS.getMaxDamage(5))
                             .component(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.VERY_PROTECTIVE)
             )
@@ -84,40 +80,36 @@ public final class FItems {
 
     public static final Item FUR_PADDED_CHAINMAIL_HELMET = register(
             "fur_padded_chainmail_helmet",
-            settings -> new ArmorItem(
-                    FArmorMaterials.FUR_LINED_CHAINMAIL,
-                    EquipmentType.HELMET,
+            settings -> new Item(
                     settings
+                            .armor(FArmorMaterials.FUR_LINED_CHAINMAIL, EquipmentType.HELMET)
                             .maxDamage(EquipmentType.HELMET.getMaxDamage(15))
                             .component(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.VERY_PROTECTIVE)
             )
     );
     public static final Item FUR_PADDED_CHAINMAIL_CHESTPLATE = register(
             "fur_padded_chainmail_chestplate",
-            settings -> new ArmorItem(
-                    FArmorMaterials.FUR_LINED_CHAINMAIL,
-                    EquipmentType.CHESTPLATE,
+            settings -> new Item(
                     settings
+                            .armor(FArmorMaterials.FUR_LINED_CHAINMAIL, EquipmentType.CHESTPLATE)
                             .maxDamage(EquipmentType.CHESTPLATE.getMaxDamage(15))
                             .component(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.VERY_PROTECTIVE)
             )
     );
     public static final Item FUR_PADDED_CHAINMAIL_LEGGINGS = register(
             "fur_padded_chainmail_leggings",
-            settings -> new ArmorItem(
-                    FArmorMaterials.FUR_LINED_CHAINMAIL,
-                    EquipmentType.LEGGINGS,
+            settings -> new Item(
                     settings
+                            .armor(FArmorMaterials.FUR_LINED_CHAINMAIL, EquipmentType.LEGGINGS)
                             .maxDamage(EquipmentType.LEGGINGS.getMaxDamage(15))
                             .component(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.VERY_PROTECTIVE)
             )
     );
     public static final Item FUR_PADDED_CHAINMAIL_BOOTS = register(
             "fur_padded_chainmail_boots",
-            settings -> new ArmorItem(
-                    FArmorMaterials.FUR_LINED_CHAINMAIL,
-                    EquipmentType.BOOTS,
+            settings -> new Item(
                     settings
+                            .armor(FArmorMaterials.FUR_LINED_CHAINMAIL, EquipmentType.BOOTS)
                             .maxDamage(EquipmentType.BOOTS.getMaxDamage(15))
                             .component(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.VERY_PROTECTIVE)
             )
@@ -133,21 +125,24 @@ public final class FItems {
 
     public static final Item INERT_FROSTOLOGY_CLOAK = register(
             "inert_frostology_cloak",
-            settings -> new InertFrostologyCloakItem(
+            settings -> new Item(
                     settings
-                            .maxCount(1)
+                            .component(FDataComponentTypes.INERT_TOOLTIP, InertTooltipComponent.INSTANCE)
                             .component(FDataComponentTypes.CAPE, CapeComponent.FROSTOLOGY_CLOAK)
+                            .component(DataComponentTypes.EQUIPPABLE, FrostologyCloakItemComponents.createEquippableComponent())
                             .rarity(Rarity.UNCOMMON)
+                            .maxCount(1)
             )
     );
 
     public static final Item FROSTOLOGY_CLOAK = register(
             "frostology_cloak",
-            settings -> new FrostologyCloakItem(
+            settings -> new Item(
                     settings
-                            .attributeModifiers(FrostologyCloakItem.createAttributeModifiers())
+                            .attributeModifiers(FrostologyCloakItemComponents.createAttributeModifiers())
                             .component(FDataComponentTypes.ICE_LIKE, IceLikeComponent.DEFAULT)
                             .component(FDataComponentTypes.CAPE, CapeComponent.FROSTOLOGY_CLOAK)
+                            .component(DataComponentTypes.EQUIPPABLE, FrostologyCloakItemComponents.createEquippableComponent())
                             .rarity(Rarity.EPIC)
                             .maxCount(1)
             )
@@ -155,10 +150,9 @@ public final class FItems {
 
     public static final Item ICE_SKATES = register(
             "ice_skates",
-            settings -> new ArmorItem(
-                    FArmorMaterials.FUR,
-                    EquipmentType.BOOTS,
+            settings -> new Item(
                     settings
+                            .armor(FArmorMaterials.FUR, EquipmentType.BOOTS)
                             .maxDamage(EquipmentType.BOOTS.getMaxDamage(5))
                             .component(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.VERY_PROTECTIVE)
             )
@@ -166,10 +160,9 @@ public final class FItems {
 
     public static final Item ARMORED_ICE_SKATES = register(
             "armored_ice_skates",
-            settings -> new ArmorItem(
-                    FArmorMaterials.FUR_LINED_CHAINMAIL,
-                    EquipmentType.BOOTS,
+            settings -> new Item(
                     settings
+                            .armor(FArmorMaterials.FUR_LINED_CHAINMAIL, EquipmentType.BOOTS)
                             .maxDamage(EquipmentType.BOOTS.getMaxDamage(15))
                             .component(FDataComponentTypes.FROST_RESISTANCE, FrostResistanceComponent.VERY_PROTECTIVE)
             )
@@ -202,7 +195,7 @@ public final class FItems {
     );
     public static final Item GLACIAL_ARROW = register(
             "glacial_arrow",
-            settings -> new GlacialArrowItem(settings)
+            GlacialArrowItem::new
     );
 
     public static final Item FROSTOLOGER_SPAWN_EGG = register(
@@ -264,25 +257,30 @@ public final class FItems {
 
     public static final Item SNOWFLAKE_BANNER_PATTERN = register(
             "snowflake_banner_pattern",
-            settings -> new BannerPatternItem(
-                    FBannerPatternTags.SNOWFLAKE_PATTERN_ITEM,
-                    settings.maxCount(1)
+            settings -> new Item(
+                    settings
+                            .maxCount(1)
+                            .component(DataComponentTypes.PROVIDES_BANNER_PATTERNS, FBannerPatternTags.SNOWFLAKE_PATTERN_ITEM)
             )
     );
 
     public static final Item ICICLE_BANNER_PATTERN = register(
             "icicle_banner_pattern",
-            settings -> new BannerPatternItem(
-                    FBannerPatternTags.ICICLE_PATTERN_ITEM,
-                    settings.maxCount(1).rarity(Rarity.UNCOMMON)
+            settings -> new Item(
+                    settings
+                            .maxCount(1)
+                            .rarity(Rarity.UNCOMMON)
+                            .component(DataComponentTypes.PROVIDES_BANNER_PATTERNS, FBannerPatternTags.ICICLE_PATTERN_ITEM)
             )
     );
 
     public static final Item FROSTOLOGY_BANNER_PATTERN = register(
             "frostology_banner_pattern",
-            settings -> new BannerPatternItem(
-                    FBannerPatternTags.FROSTOLOGY_PATTERN_ITEM,
-                    settings.maxCount(1).rarity(Rarity.RARE)
+            settings -> new Item(
+                    settings
+                            .maxCount(1)
+                            .rarity(Rarity.RARE)
+                            .component(DataComponentTypes.PROVIDES_BANNER_PATTERNS, FBannerPatternTags.FROSTOLOGY_PATTERN_ITEM)
             )
     );
 

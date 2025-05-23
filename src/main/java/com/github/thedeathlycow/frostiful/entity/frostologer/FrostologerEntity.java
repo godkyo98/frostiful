@@ -12,7 +12,6 @@ import com.github.thedeathlycow.frostiful.registry.tag.FBlockTags;
 import com.github.thedeathlycow.frostiful.registry.tag.FDamageTypeTags;
 import com.github.thedeathlycow.frostiful.survival.PassiveTemperatureEffects;
 import com.github.thedeathlycow.thermoo.api.ThermooAttributes;
-import com.github.thedeathlycow.thermoo.api.temperature.EnvironmentManager;
 import com.github.thedeathlycow.thermoo.api.temperature.HeatingModes;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -340,7 +339,7 @@ public class FrostologerEntity extends SpellcastingIllagerEntity implements Rang
         stepPositionsPool[1] = frostologerPos.down();
         for (BlockPos blockPos : stepPositionsPool) {
             BlockState blockState = world.getBlockState(blockPos);
-            if (EnvironmentManager.INSTANCE.getController().isHeatSource(blockState)) {
+            if (PassiveTemperatureEffects.getBlockLightTemperatureChange(world, blockPos) > 0) {
                 this.destroyHeatSource(serverWorld, blockState, blockPos);
             }
 
@@ -371,7 +370,7 @@ public class FrostologerEntity extends SpellcastingIllagerEntity implements Rang
             double y = box.getMin(Direction.Axis.Y) + random.nextDouble(box.getLengthY());
             double z = box.getMin(Direction.Axis.Z) + random.nextDouble(box.getLengthZ());
 
-            getWorld().addParticle(
+            this.getWorld().addParticleClient(
                     ParticleTypes.SNOWFLAKE,
                     x, y, z,
                     0, 0, 0
@@ -510,7 +509,7 @@ public class FrostologerEntity extends SpellcastingIllagerEntity implements Rang
     @Override
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
-        this.dataTracker.set(IS_USING_FROST_WAND, nbt.getBoolean("IsUsingFrostWand"));
+        this.dataTracker.set(IS_USING_FROST_WAND, nbt.getBoolean("IsUsingFrostWand", false));
     }
 
     @Override
