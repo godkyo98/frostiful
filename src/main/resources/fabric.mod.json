@@ -26,7 +26,7 @@
         "TheLegendofSaram (Mexican Spanish Translation)"
     ],
     "contact": {
-        "homepage": "https://github.com/TheDeathlyCow/frostiful/wiki",
+        "homepage": "https://frostiful.thedeathlycow.com",
         "sources": "https://github.com/TheDeathlyCow/frostiful",
         "issues": "https://github.com/TheDeathlyCow/frostiful/issues"
     },
@@ -84,7 +84,7 @@
         "modmenu": {
             "links": {
                 "modmenu.discord": "https://discord.thedeathlycow.com",
-                "modmenu.wiki": "https://github.com/TheDeathlyCow/frostiful/wiki",
+                "modmenu.wiki": "https://frostiful.thedeathlycow.com",
                 "modmenu.kofi": "https://ko-fi.com/thedeathlycow",
                 "modmenu.modrinth": "https://modrinth.com/mod/frostiful",
                 "modmenu.crowdin": "https://crowdin.com/project/frostiful"
