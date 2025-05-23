@@ -251,7 +251,7 @@ fabricApi {
 
 publishMods {
     changelog = file("changelogs/${mod_version}.md").text
-    type = STABLE
+    type = BETA
 
     file = remapJar.archiveFile
     additionalFiles.from(remapSourcesJar.archiveFile)
@@ -263,7 +263,7 @@ publishMods {
     curseforge {
         accessToken = providers.environmentVariable("CURSEFORGE_API_KEY")
         projectId = "715248"
-        minecraftVersions.addAll("1.21.4")
+        minecraftVersions.addAll("1.21.5")
 
         javaVersions.add(JavaVersion.VERSION_21)
 
